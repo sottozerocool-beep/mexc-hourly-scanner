@@ -1617,8 +1617,13 @@ def scan_market() -> dict[str, Any]:
                 setup = evaluate_setup(symbol, side, candles, contract, ticker, btc)
                 if setup:
                     all_setups.append(setup)
-            except Exception:
+            except Exception as exc:
                 skip("candidate_evaluation_failed", symbol)
+                skip_examples.setdefault("candidate_evaluation_error_details", [])
+                if len(skip_examples["candidate_evaluation_error_details"]) < 5:
+                    skip_examples["candidate_evaluation_error_details"].append(
+                        f"{symbol}: {type(exc).__name__}: {exc}"
+                    )
 
     qualified = apply_correlation_filter([item for item in all_setups if item["status"] == "QUALIFIED"])
     watchlist = sorted([item for item in all_setups if item["status"] == "WATCHLIST"], key=lambda item: item["score"], reverse=True)
