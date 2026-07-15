@@ -961,10 +961,7 @@ def target_plan(candles: dict[str, Any], indicators: dict[str, Any], ticker: dic
         and 0.30 <= risk_atr <= 2.50
         and late_distance_atr <= 0.75
     )
-    reasons = [
-        f"Livello LuxAlgo {'Strong Low' if bullish else 'Strong High'} a "
-        f"{smc_level:.10g}, distanza {smc_level_distance_atr:.2f} ATR"
-    ]
+    reasons = []
     if tp2 is None or rr_tp2 is None or rr_tp2 < MIN_REWARD_RISK:
         reasons.append("no_structural_target_at_or_above_2R")
     if risk_atr < 0.30:
@@ -1278,7 +1275,10 @@ def evaluate_setup(
         if qualification_steps else ""
     )
 
-    reasons = []
+    reasons = [
+        f"Livello LuxAlgo {'Strong Low' if bullish else 'Strong High'} a "
+        f"{smc_level:.10g}, distanza {smc_level_distance_atr:.2f} ATR"
+    ]
     if zone["confluences"] >= 3:
         reasons.append(f"Zona con {zone['confluences']} confluenze: {', '.join(zone['sources'][:4])}")
     confirmation_valid = bool(patterns) and tested
