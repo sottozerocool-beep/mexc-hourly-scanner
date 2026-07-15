@@ -1,43 +1,44 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-07-15T18:05:57Z
+**Scan timestamp:** 2026-07-15T23:39:50Z
 **Primary timeframe:** 1H
 **Contracts retrieved:** 771
-**Contracts eligible:** 335
+**Contracts eligible:** 333
 **Contracts analyzed:** 332
 **Contracts skipped:** 439
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 64,949.50
+**BTC_USDT price:** 64,805.70
 **BTC regime:** BULLISH
-**BTC Regime Score:** 100
-**EMA 20 / EMA 50 / EMA 200:** 64,797.70 / 64,235.95 / 63,496.16
-**ADX / +DI / -DI:** 33.00599 / 25.99877 / 17.2692
-**6H return:** 0.49%
-**24H return:** 0.66%
-**ATR volatility:** 0.5901416559% | veto=False
+**BTC Regime Score:** 65
+**EMA 20 / EMA 50 / EMA 200:** 64,823.47 / 64,350.01 / 63,562.94
+**ADX / +DI / -DI:** 25.24679 / 21.67961 / 20.06212
+**6H return:** -0.40%
+**24H return:** -0.01%
+**ATR volatility:** 0.5171678789% | veto=False
 **Permitted direction:** LONG
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 148 | Strong High rilevati: 183 | Entro 1.50 ATR: 4
+Strong Low rilevati: 147 | Strong High rilevati: 184 | Entro 1.50 ATR: 6
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| ETHFI_USDT | STRONG_HIGH | 0.4405 | 0.4373 | 0.73% | 0.43 | COUNTER_BIAS | Chiusura 1H sopra 0.4405 |
-| PUMPFUN_USDT | STRONG_HIGH | 0.001694 | 0.001676 | 1.07% | 0.47 | COUNTER_BIAS | Chiusura 1H sopra 0.001694 |
-| MANTA_USDT | STRONG_HIGH | 0.06126 | 0.06091 | 0.57% | 0.53 | COUNTER_BIAS | Chiusura 1H sopra 0.06126 |
-| TIA_USDT | STRONG_HIGH | 0.4236 | 0.4154 | 1.97% | 1.34 | COUNTER_BIAS | Chiusura 1H sopra 0.4236 |
+| USDC_USDT | STRONG_LOW | 0.99991 | 0.99998 | 0.01% | 1.32 | PREFERRED | Chiusura 1H sotto 0.99991 |
+| ZBT_USDT | STRONG_LOW | 0.0852 | 0.0893 | 4.59% | 1.41 | PREFERRED | Chiusura 1H sotto 0.0852 |
+| PUMPFUN_USDT | STRONG_HIGH | 0.001695 | 0.001689 | 0.36% | 0.17 | COUNTER_BIAS | Chiusura 1H sopra 0.001695 |
+| JASMY_USDT | STRONG_HIGH | 0.004614 | 0.004569 | 0.98% | 0.93 | COUNTER_BIAS | Chiusura 1H sopra 0.004614 |
+| TIA_USDT | STRONG_HIGH | 0.4236 | 0.4169 | 1.61% | 1.16 | COUNTER_BIAS | Chiusura 1H sopra 0.4236 |
 
 **Strong Low più vicini:**
-ZBT_USDT 0.0852 (5.86%, 1.53 ATR, PREFERRED); HMSTR_USDT 0.0001836 (3.16%, 2.16 ATR, PREFERRED); SPELL_USDT 0.0000864 (2.26%, 2.37 ATR, PREFERRED); BSB_USDT 0.1142 (15.72%, 2.49 ATR, PREFERRED); BLEND_USDT 0.05937 (3.20%, 2.76 ATR, PREFERRED)
+USDC_USDT 0.99991 (0.01%, 1.32 ATR, PREFERRED); ZBT_USDT 0.0852 (4.59%, 1.41 ATR, PREFERRED); HMSTR_USDT 0.0001836 (2.75%, 1.92 ATR, PREFERRED); ICP_USDT 2.143 (1.65%, 2.05 ATR, PREFERRED); GRAM_USDT 1.5485 (1.74%, 2.20 ATR, PREFERRED)
 
 **Strong High più vicini:**
-ETHFI_USDT 0.4405 (0.73%, 0.43 ATR, COUNTER_BIAS); PUMPFUN_USDT 0.001694 (1.07%, 0.47 ATR, COUNTER_BIAS); MANTA_USDT 0.06126 (0.57%, 0.53 ATR, COUNTER_BIAS); TIA_USDT 0.4236 (1.97%, 1.34 ATR, COUNTER_BIAS); ONDO_USDT 0.3393 (2.05%, 1.64 ATR, COUNTER_BIAS)
+PUMPFUN_USDT 0.001695 (0.36%, 0.17 ATR, COUNTER_BIAS); JASMY_USDT 0.004614 (0.98%, 0.93 ATR, COUNTER_BIAS); TIA_USDT 0.4236 (1.61%, 1.16 ATR, COUNTER_BIAS); ESP_USDT 0.07335 (1.34%, 1.26 ATR, COUNTER_BIAS); PENGU_USDT 0.006362 (2.05%, 1.59 ATR, COUNTER_BIAS)
 
 ## Best Available Opportunity
 
