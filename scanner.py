@@ -995,6 +995,43 @@ def evaluate_setup(
         return None
     status = "QUALIFIED" if all_mandatory and final_score >= MIN_QUALIFIED_SCORE else "WATCHLIST"
 
+    qualification_steps = []
+    if not mandatory["price_location_valid"]:
+        qualification_steps.append(
+            f"ritorno entro 0,50 ATR dalla zona {zone['zone_low']:.10g}–{zone['zone_high']:.10g}"
+        )
+    if not mandatory["closed_candle_confirmation"]:
+        qualification_steps.append(
+            "test della zona seguito da engulfing/rejection/reclaim o rottura strutturale su candela 1H chiusa"
+        )
+    if not mandatory["reward_risk_valid"]:
+        qualification_steps.append(
+            "nuovo riferimento d'ingresso con TP2 strutturale almeno 2R e invalidazione tra 0,30 e 2,50 ATR"
+        )
+    if not mandatory["candidate_trend_valid"]:
+        qualification_steps.append("pendenza EMA50 coerente o ripresa strutturale confermata")
+    if not mandatory["btc_regime_alignment"]:
+        qualification_steps.append(f"regime BTC che autorizzi {side}")
+    if btc["volatility_veto"]:
+        qualification_steps.append("completamento di due candele BTC 1H con range normalizzato")
+    if all_mandatory and raw_score < MIN_QUALIFIED_SCORE:
+        missing.append("score_below_80")
+        gap = MIN_QUALIFIED_SCORE - raw_score
+        improvements = []
+        if breakdown["F_volume_open_interest"] < 6:
+            improvements.append("volume di conferma almeno 1,20x la mediana e OI utilizzabile")
+        if breakdown["E_momentum_divergence"] < 7:
+            improvements.append("RSI in rotazione favorevole o divergenza valida")
+        if breakdown["G_relative_performance"] < 5:
+            improvements.append("miglioramento della performance relativa contro BTC")
+        if breakdown["H_execution_quality"] < 4:
+            improvements.append("spread/funding/fair-index di qualità superiore")
+        qualification_steps.append(
+            f"almeno {gap} punti aggiuntivi mantenendo tutti i requisiti: "
+            + "; ".join(improvements[:3] or ["conferma 1H più forte"])
+        )
+    qualification_trigger = "; poi nuova verifica completa. ".join(qualification_steps)
+
     reasons = []
     if zone["confluences"] >= 3:
         reasons.append(f"Zona con {zone['confluences']} confluenze: {', '.join(zone['sources'][:4])}")
@@ -1071,6 +1108,7 @@ def evaluate_setup(
         "volume_confirmation_ratio": diagnostics["confirmation_volume_ratio_to_20_median"],
         "mandatory_conditions": mandatory,
         "missing_requirements": missing,
+        "qualification_trigger": qualification_trigger,
         "strongest_reasons": reasons,
         "main_risks": risks,
         "cancel_condition": cancellation,
@@ -1467,7 +1505,11 @@ def report_markdown(report: dict[str, Any]) -> str:
     if watchlist:
         for setup in watchlist:
             missing = ", ".join(setup.get("missing_requirements", []))
-            lines.append(f"- **{setup['symbol']} {setup['side']} — {setup['score']}/100:** manca `{missing}`. Score: {setup['score_breakdown']}")
+            lines.append(
+                f"- **{setup['symbol']} {setup['side']} — {setup['score']}/100:** manca `{missing}`. "
+                f"Trigger richiesto: {setup.get('qualification_trigger') or 'nuova conferma 1H valida'}. "
+                f"Score: {setup['score_breakdown']}"
+            )
         lines.append("")
     else:
         lines.extend(["Nessun candidato utile in watchlist.", ""])
