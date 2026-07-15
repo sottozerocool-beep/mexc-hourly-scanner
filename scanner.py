@@ -3,6 +3,10 @@
 
 Uses only official, public MEXC Futures market-data endpoints. It never reads
 account data and never places orders.
+
+The Strong/Weak High/Low state machine is adapted from the open-source
+"Smart Money Concepts [LuxAlgo]" Pine Script by LuxAlgo, licensed under
+CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/
 """
 
 from __future__ import annotations
@@ -38,6 +42,8 @@ MIN_QUALIFIED_SCORE = 80
 MIN_WATCHLIST_SCORE = 72
 MAX_REPORTED = 5
 MIN_REWARD_RISK = 2.0
+SMC_SWING_LENGTH = 50
+MAX_NEAR_STRONG_LEVEL_ATR = 1.50
 HTTP_TIMEOUT = 40
 HTTP_ATTEMPTS = 5
 OUTPUT_DIR = Path(os.getenv("OUTPUT_DIR", "output"))
@@ -273,6 +279,230 @@ def structure_state(high: list[float], low: list[float]) -> dict[str, Any]:
         "lower_high": lower_high,
         "bullish": higher_low and higher_high,
         "bearish": lower_low and lower_high,
+    }
+
+
+def luxalgo_strong_weak_levels(
+    candles: dict[str, Any],
+    swing_length: int = SMC_SWING_LENGTH,
+) -> dict[str, Any]:
+    """Port the LuxAlgo Pine v5 Strong/Weak High/Low state machine.
+
+    The source Pine script detects a swing pivot ``swing_length`` completed
+    bars after the pivot, flips the swing bias only when a close crosses the
+    latest confirmed swing, and classifies the trailing bottom as Strong Low
+    in a bullish swing bias or the trailing top as Strong High in a bearish
+    swing bias.  Only completed MEXC candles are passed to this function.
+    """
+
+    high = candles["high"]
+    low = candles["low"]
+    close = candles["close"]
+    times = candles["time"]
+    length = len(close)
+    if swing_length < 1 or length <= swing_length:
+        return {
+            "swing_length": swing_length,
+            "swing_bias": "NEUTRAL",
+            "trailing_high": None,
+            "trailing_low": None,
+            "strong_high": None,
+            "strong_low": None,
+        }
+
+    bearish_leg = 0
+    bullish_leg = 1
+    leg_value = bearish_leg
+    swing_bias = 0
+
+    swing_high_level: float | None = None
+    swing_high_crossed = False
+    swing_low_level: float | None = None
+    swing_low_crossed = False
+
+    trailing_top: float | None = None
+    trailing_bottom: float | None = None
+    trailing_top_index: int | None = None
+    trailing_bottom_index: int | None = None
+
+    for index in range(length):
+        # Pine calls updateTrailingExtremes() before detecting a new pivot.
+        if trailing_top is not None and high[index] >= trailing_top:
+            trailing_top = high[index]
+            trailing_top_index = index
+        if trailing_bottom is not None and low[index] <= trailing_bottom:
+            trailing_bottom = low[index]
+            trailing_bottom_index = index
+
+        previous_leg = leg_value
+        previous_high_level = swing_high_level
+        previous_low_level = swing_low_level
+
+        if index >= swing_length:
+            pivot_index = index - swing_length
+            later_highs = high[pivot_index + 1:index + 1]
+            later_lows = low[pivot_index + 1:index + 1]
+            new_leg_high = bool(later_highs) and high[pivot_index] > max(later_highs)
+            new_leg_low = bool(later_lows) and low[pivot_index] < min(later_lows)
+
+            if new_leg_high:
+                leg_value = bearish_leg
+            elif new_leg_low:
+                leg_value = bullish_leg
+
+            if leg_value != previous_leg:
+                if leg_value == bullish_leg:
+                    swing_low_level = low[pivot_index]
+                    swing_low_crossed = False
+                    trailing_bottom = low[pivot_index]
+                    trailing_bottom_index = pivot_index
+                else:
+                    swing_high_level = high[pivot_index]
+                    swing_high_crossed = False
+                    trailing_top = high[pivot_index]
+                    trailing_top_index = pivot_index
+
+        # Pine ta.crossover/ta.crossunder compare the current and previous
+        # values of both series.  A newly confirmed pivot may change the
+        # current level while the prior bar still carries the older level.
+        if (
+            swing_high_level is not None
+            and previous_high_level is not None
+            and index > 0
+            and close[index] > swing_high_level
+            and close[index - 1] <= previous_high_level
+            and not swing_high_crossed
+        ):
+            swing_high_crossed = True
+            swing_bias = 1
+
+        if (
+            swing_low_level is not None
+            and previous_low_level is not None
+            and index > 0
+            and close[index] < swing_low_level
+            and close[index - 1] >= previous_low_level
+            and not swing_low_crossed
+        ):
+            swing_low_crossed = True
+            swing_bias = -1
+
+    def level_payload(
+        value: float | None,
+        level_index: int | None,
+        classification: str,
+    ) -> dict[str, Any] | None:
+        if value is None or level_index is None:
+            return None
+        timestamp = int(times[level_index])
+        return {
+            "level": value,
+            "classification": classification,
+            "source_bar_index": level_index,
+            "source_timestamp_utc": datetime.fromtimestamp(
+                timestamp, tz=timezone.utc
+            ).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        }
+
+    high_classification = "STRONG_HIGH" if swing_bias == -1 else "WEAK_HIGH"
+    low_classification = "STRONG_LOW" if swing_bias == 1 else "WEAK_LOW"
+    trailing_high = level_payload(trailing_top, trailing_top_index, high_classification)
+    trailing_low = level_payload(trailing_bottom, trailing_bottom_index, low_classification)
+    return {
+        "swing_length": swing_length,
+        "swing_bias": "BULLISH" if swing_bias == 1 else "BEARISH" if swing_bias == -1 else "NEUTRAL",
+        "trailing_high": trailing_high,
+        "trailing_low": trailing_low,
+        "strong_high": trailing_high if high_classification == "STRONG_HIGH" else None,
+        "strong_low": trailing_low if low_classification == "STRONG_LOW" else None,
+    }
+
+
+def strong_level_record(
+    symbol: str,
+    candles: dict[str, Any],
+    ticker: dict[str, Any],
+    btc: dict[str, Any],
+) -> dict[str, Any] | None:
+    """Return the currently active LuxAlgo Strong level for one contract."""
+
+    levels = luxalgo_strong_weak_levels(candles)
+    if levels["strong_low"] is not None:
+        level_data = levels["strong_low"]
+        side = "LONG"
+        classification = "STRONG_LOW"
+    elif levels["strong_high"] is not None:
+        level_data = levels["strong_high"]
+        side = "SHORT"
+        classification = "STRONG_HIGH"
+    else:
+        return None
+
+    current_price = finite_float(ticker.get("lastPrice")) or candles["close"][-1]
+    level = float(level_data["level"])
+    atr_values = atr_series(candles["high"], candles["low"], candles["close"], 14)
+    atr = atr_values[-1]
+    if atr is None or atr <= 0 or current_price <= 0:
+        return None
+
+    distance = abs(current_price - level)
+    distance_atr = distance / float(atr)
+    distance_percent = 100.0 * distance / current_price
+    expected_side = current_price >= level if side == "LONG" else current_price <= level
+    latest_closed_respected = (
+        candles["close"][-1] >= level if side == "LONG" else candles["close"][-1] <= level
+    )
+    btc_regime = btc.get("regime")
+    preferred = (
+        (side == "LONG" and btc_regime == "BULLISH")
+        or (side == "SHORT" and btc_regime == "BEARISH")
+    )
+    preference = (
+        "PREFERRED"
+        if preferred
+        else "NEUTRAL"
+        if btc_regime == "NEUTRAL"
+        else "COUNTER_BIAS"
+    )
+
+    bid1 = finite_float(ticker.get("bid1"))
+    ask1 = finite_float(ticker.get("ask1"))
+    spread = (ask1 - bid1) / ((ask1 + bid1) / 2.0) if bid1 and ask1 and ask1 >= bid1 else None
+    turnover = finite_float(ticker.get("amount24"))
+    open_interest = finite_float(ticker.get("holdVol"))
+    funding = finite_float(ticker.get("fundingRate"))
+
+    if distance_atr <= 0.25:
+        proximity = "AT_LEVEL"
+    elif distance_atr <= MAX_NEAR_STRONG_LEVEL_ATR:
+        proximity = "NEAR"
+    else:
+        proximity = "FAR"
+
+    return {
+        "symbol": symbol,
+        "side": side,
+        "classification": classification,
+        "strong_level": level,
+        "level_source_timestamp_utc": level_data["source_timestamp_utc"],
+        "swing_bias": levels["swing_bias"],
+        "swing_length": levels["swing_length"],
+        "current_price": current_price,
+        "distance_percent": distance_percent,
+        "distance_atr": distance_atr,
+        "proximity": proximity,
+        "price_on_expected_side": expected_side,
+        "latest_closed_candle_respected_level": latest_closed_respected,
+        "btc_preference": preference,
+        "turnover_24h": turnover,
+        "spread": spread,
+        "open_interest": open_interest,
+        "funding_rate": funding,
+        "level_cancellation_condition": (
+            f"Chiusura 1H sotto {level:.10g}"
+            if side == "LONG"
+            else f"Chiusura 1H sopra {level:.10g}"
+        ),
     }
 
 
@@ -731,7 +961,10 @@ def target_plan(candles: dict[str, Any], indicators: dict[str, Any], ticker: dic
         and 0.30 <= risk_atr <= 2.50
         and late_distance_atr <= 0.75
     )
-    reasons = []
+    reasons = [
+        f"Livello LuxAlgo {'Strong Low' if bullish else 'Strong High'} a "
+        f"{smc_level:.10g}, distanza {smc_level_distance_atr:.2f} ATR"
+    ]
     if tp2 is None or rr_tp2 is None or rr_tp2 < MIN_REWARD_RISK:
         reasons.append("no_structural_target_at_or_above_2R")
     if risk_atr < 0.30:
@@ -927,6 +1160,16 @@ def evaluate_setup(
     slope = indicators["ema50_slope_normalized"]
     bullish = side == "LONG"
 
+    smc_levels = luxalgo_strong_weak_levels(candles)
+    smc_level_data = smc_levels["strong_low"] if bullish else smc_levels["strong_high"]
+    if smc_level_data is None:
+        return None
+    smc_level = float(smc_level_data["level"])
+    smc_level_distance_atr = abs(close[-1] - smc_level) / atr
+    smc_level_distance_percent = 100.0 * abs(close[-1] - smc_level) / close[-1]
+    if smc_level_distance_atr > MAX_NEAR_STRONG_LEVEL_ATR:
+        return None
+
     structural_opposition = (
         indicators["ema20"][-1] < indicators["ema50"][-1] < indicators["ema200"][-1]
         and slope < 0 and structure["lower_high"]
@@ -1076,6 +1319,17 @@ def evaluate_setup(
         "symbol": symbol,
         "side": side,
         "classification": "STRONG_LOW" if bullish else "STRONG_HIGH",
+        "strong_level": smc_level,
+        "strong_level_source_timestamp_utc": smc_level_data["source_timestamp_utc"],
+        "strong_level_distance_percent": smc_level_distance_percent,
+        "strong_level_distance_atr": smc_level_distance_atr,
+        "strong_level_cancellation_condition": (
+            f"Chiusura 1H sotto {smc_level:.10g}"
+            if bullish
+            else f"Chiusura 1H sopra {smc_level:.10g}"
+        ),
+        "smc_swing_bias": smc_levels["swing_bias"],
+        "smc_swing_length": smc_levels["swing_length"],
         "score": final_score,
         "raw_score": raw_score,
         "score_breakdown": breakdown,
@@ -1313,6 +1567,39 @@ def scan_market() -> dict[str, Any]:
         raise ScanError("BTC_USDT does not have at least 720 valid closed 1H candles")
     btc = btc_context(analyzed["BTC_USDT"], eligible["BTC_USDT"][1])
 
+    strong_level_records = []
+    for symbol, candles in analyzed.items():
+        if symbol == "BTC_USDT":
+            continue
+        try:
+            record = strong_level_record(symbol, candles, eligible[symbol][1], btc)
+            if record:
+                strong_level_records.append(record)
+        except Exception:
+            skip("strong_level_calculation_failed", symbol)
+
+    strong_lows = sorted(
+        [item for item in strong_level_records if item["classification"] == "STRONG_LOW"],
+        key=lambda item: (item["distance_atr"], -(item.get("turnover_24h") or 0.0)),
+    )
+    strong_highs = sorted(
+        [item for item in strong_level_records if item["classification"] == "STRONG_HIGH"],
+        key=lambda item: (item["distance_atr"], -(item.get("turnover_24h") or 0.0)),
+    )
+    nearby_strong_levels = sorted(
+        [
+            item for item in strong_level_records
+            if item["distance_atr"] <= MAX_NEAR_STRONG_LEVEL_ATR
+            and item["price_on_expected_side"]
+            and item["latest_closed_candle_respected_level"]
+        ],
+        key=lambda item: (
+            0 if item["btc_preference"] == "PREFERRED" else 1,
+            item["distance_atr"],
+            -(item.get("turnover_24h") or 0.0),
+        ),
+    )[:MAX_REPORTED]
+
     if btc["regime"] == "BULLISH":
         sides = ["LONG"]
     elif btc["regime"] == "BEARISH":
@@ -1369,6 +1656,27 @@ def scan_market() -> dict[str, Any]:
         "contracts_skipped": len(contracts) - len(analyzed),
         "turnover_35th_percentile": turnover_p35,
         "btc": btc_public,
+        "strong_level_engine": {
+            "name": "Smart Money Concepts [LuxAlgo] open-source Pine v5 port",
+            "attribution": "© LuxAlgo",
+            "license": "CC BY-NC-SA 4.0",
+            "swing_length": SMC_SWING_LENGTH,
+            "near_threshold_atr": MAX_NEAR_STRONG_LEVEL_ATR,
+            "btc_usage": "ranking preference only; opposite-side levels remain visible",
+        },
+        "strong_level_counts": {
+            "strong_lows": len(strong_lows),
+            "strong_highs": len(strong_highs),
+            "nearby": sum(
+                1 for item in strong_level_records
+                if item["distance_atr"] <= MAX_NEAR_STRONG_LEVEL_ATR
+                and item["price_on_expected_side"]
+                and item["latest_closed_candle_respected_level"]
+            ),
+        },
+        "nearest_strong_lows": strong_lows[:MAX_REPORTED],
+        "nearest_strong_highs": strong_highs[:MAX_REPORTED],
+        "nearby_strong_levels": nearby_strong_levels,
         "decision": decision,
         "final_statement": final_statement,
         "best_setup": best,
@@ -1404,6 +1712,17 @@ def error_report(exc: Exception) -> dict[str, Any]:
         "best_setup": None,
         "qualified_setups": [],
         "watchlist": [],
+        "strong_level_engine": {
+            "name": "Smart Money Concepts [LuxAlgo] open-source Pine v5 port",
+            "attribution": "© LuxAlgo",
+            "license": "CC BY-NC-SA 4.0",
+            "swing_length": SMC_SWING_LENGTH,
+            "near_threshold_atr": MAX_NEAR_STRONG_LEVEL_ATR,
+        },
+        "strong_level_counts": None,
+        "nearest_strong_lows": [],
+        "nearest_strong_highs": [],
+        "nearby_strong_levels": [],
         "skipped_reasons": {"MEXC_PUBLIC_DATA_UNAVAILABLE": str(exc)},
         "skipped_examples": {},
     }
@@ -1456,6 +1775,52 @@ def report_markdown(report: dict[str, Any]) -> str:
         lines.append("")
     if btc.get("volatility_veto"):
         lines.append("Veto di volatilità BTC attivo: " + ", ".join(btc.get("volatility_veto_reasons", [])))
+        lines.append("")
+
+    lines.extend(["## Livelli Strong/Weak LuxAlgo", ""])
+    counts = report.get("strong_level_counts") or {}
+    lines.append(
+        f"Strong Low rilevati: {counts.get('strong_lows', 0)} | "
+        f"Strong High rilevati: {counts.get('strong_highs', 0)} | "
+        f"Entro {MAX_NEAR_STRONG_LEVEL_ATR:.2f} ATR: {counts.get('nearby', 0)}"
+    )
+    lines.append("")
+    lines.append(
+        "BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): "
+        "non elimina i livelli della direzione opposta."
+    )
+    lines.append("")
+    nearby_levels = report.get("nearby_strong_levels", [])
+    if nearby_levels:
+        lines.append("| Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |")
+        lines.append("|---|---|---:|---:|---:|---:|---|---|")
+        for item in nearby_levels:
+            lines.append(
+                f"| {item['symbol']} | {item['classification']} | {format_price(item['strong_level'])} | "
+                f"{format_price(item['current_price'])} | {item['distance_percent']:.2f}% | "
+                f"{item['distance_atr']:.2f} | {item['btc_preference']} | "
+                f"{item['level_cancellation_condition']} |"
+            )
+        lines.append("")
+    else:
+        lines.extend(["Nessun livello Strong entro la soglia di vicinanza.", ""])
+
+    for title, key in (
+        ("Strong Low più vicini", "nearest_strong_lows"),
+        ("Strong High più vicini", "nearest_strong_highs"),
+    ):
+        nearest = report.get(key, [])
+        lines.append(f"**{title}:**")
+        if nearest:
+            lines.append(
+                "; ".join(
+                    f"{item['symbol']} {format_price(item['strong_level'])} "
+                    f"({item['distance_percent']:.2f}%, {item['distance_atr']:.2f} ATR, {item['btc_preference']})"
+                    for item in nearest
+                )
+            )
+        else:
+            lines.append("nessuno")
         lines.append("")
 
     lines.extend(["## Best Available Opportunity", ""])
@@ -1542,6 +1907,8 @@ def save_outputs(report: dict[str, Any]) -> None:
         "btc_regime": report.get("btc", {}).get("regime"),
         "qualified_count": len(report.get("qualified_setups", [])),
         "watchlist_count": len(report.get("watchlist", [])),
+        "nearby_strong_level_count": len(report.get("nearby_strong_levels", [])),
+        "strong_level_counts": report.get("strong_level_counts"),
     }
     (OUTPUT_DIR / "status.json").write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
