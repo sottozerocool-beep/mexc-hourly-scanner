@@ -1030,7 +1030,10 @@ def evaluate_setup(
             f"almeno {gap} punti aggiuntivi mantenendo tutti i requisiti: "
             + "; ".join(improvements[:3] or ["conferma 1H più forte"])
         )
-    qualification_trigger = "; poi nuova verifica completa. ".join(qualification_steps)
+    qualification_trigger = (
+        "; ".join(qualification_steps) + "; poi nuova verifica completa."
+        if qualification_steps else ""
+    )
 
     reasons = []
     if zone["confluences"] >= 3:
