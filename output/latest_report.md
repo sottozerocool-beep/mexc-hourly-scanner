@@ -1,6 +1,6 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-07-15T16:05:10Z
+**Scan timestamp:** 2026-07-15T16:08:30Z
 **Primary timeframe:** 1H
 **Contracts retrieved:** 771
 **Contracts eligible:** 335
@@ -10,7 +10,7 @@
 
 ## BTC Regime
 
-**BTC_USDT price:** 65,244.20
+**BTC_USDT price:** 65,161.80
 **BTC regime:** BULLISH
 **BTC Regime Score:** 100
 **EMA 20 / EMA 50 / EMA 200:** 64,740.94 / 64,167.74 / 63,464.69
@@ -22,23 +22,23 @@
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 147 | Strong High rilevati: 177 | Entro 1.50 ATR: 6
+Strong Low rilevati: 150 | Strong High rilevati: 174 | Entro 1.50 ATR: 6
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| ZRO_USDT | STRONG_LOW | 0.8373 | 0.841 | 0.44% | 0.28 | PREFERRED | Chiusura 1H sotto 0.8373 |
-| SAFE_USDT | STRONG_LOW | 0.102 | 0.103 | 0.97% | 0.56 | PREFERRED | Chiusura 1H sotto 0.102 |
-| ZBT_USDT | STRONG_LOW | 0.0852 | 0.09 | 5.33% | 1.27 | PREFERRED | Chiusura 1H sotto 0.0852 |
-| ETHFI_USDT | STRONG_HIGH | 0.4405 | 0.4363 | 0.96% | 0.59 | COUNTER_BIAS | Chiusura 1H sopra 0.4405 |
-| PUMPFUN_USDT | STRONG_HIGH | 0.001693 | 0.001661 | 1.93% | 0.83 | COUNTER_BIAS | Chiusura 1H sopra 0.001693 |
+| ZRO_USDT | STRONG_LOW | 0.8373 | 0.8383 | 0.12% | 0.08 | PREFERRED | Chiusura 1H sotto 0.8373 |
+| SAFE_USDT | STRONG_LOW | 0.102 | 0.1029 | 0.87% | 0.51 | PREFERRED | Chiusura 1H sotto 0.102 |
+| ZBT_USDT | STRONG_LOW | 0.0852 | 0.0901 | 5.44% | 1.29 | PREFERRED | Chiusura 1H sotto 0.0852 |
+| ETHFI_USDT | STRONG_HIGH | 0.4405 | 0.4351 | 1.24% | 0.76 | COUNTER_BIAS | Chiusura 1H sopra 0.4405 |
+| PUMPFUN_USDT | STRONG_HIGH | 0.001693 | 0.001655 | 2.30% | 0.99 | COUNTER_BIAS | Chiusura 1H sopra 0.001693 |
 
 **Strong Low più vicini:**
-ZRO_USDT 0.8373 (0.44%, 0.28 ATR, PREFERRED); SAFE_USDT 0.102 (0.97%, 0.56 ATR, PREFERRED); ZBT_USDT 0.0852 (5.33%, 1.27 ATR, PREFERRED); BLEND_USDT 0.05937 (2.37%, 1.91 ATR, PREFERRED); HMSTR_USDT 0.0001836 (3.42%, 2.30 ATR, PREFERRED)
+ZRO_USDT 0.8373 (0.12%, 0.08 ATR, PREFERRED); SAFE_USDT 0.102 (0.87%, 0.51 ATR, PREFERRED); ZBT_USDT 0.0852 (5.44%, 1.29 ATR, PREFERRED); BLEND_USDT 0.05937 (2.32%, 1.87 ATR, PREFERRED); BCH_USDT 229.52 (1.96%, 2.16 ATR, PREFERRED)
 
 **Strong High più vicini:**
-ETHFI_USDT 0.4405 (0.96%, 0.59 ATR, COUNTER_BIAS); PUMPFUN_USDT 0.001693 (1.93%, 0.83 ATR, COUNTER_BIAS); BABY_USDT 0.01367 (1.33%, 1.23 ATR, COUNTER_BIAS); MANTA_USDT 0.06126 (1.66%, 1.60 ATR, COUNTER_BIAS); O_USDT 0.6047 (2.84%, 1.66 ATR, COUNTER_BIAS)
+ETHFI_USDT 0.4405 (1.24%, 0.76 ATR, COUNTER_BIAS); PUMPFUN_USDT 0.001693 (2.30%, 0.99 ATR, COUNTER_BIAS); BABY_USDT 0.01367 (1.48%, 1.36 ATR, COUNTER_BIAS); MANTA_USDT 0.06126 (1.58%, 1.52 ATR, COUNTER_BIAS); XMR_USDT 336.88 (1.31%, 1.65 ATR, COUNTER_BIAS)
 
 ## Best Available Opportunity
 
