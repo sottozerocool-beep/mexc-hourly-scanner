@@ -1,24 +1,44 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-07-15T15:28:12Z
+**Scan timestamp:** 2026-07-15T16:05:10Z
 **Primary timeframe:** 1H
 **Contracts retrieved:** 771
-**Contracts eligible:** 334
-**Contracts analyzed:** 331
-**Contracts skipped:** 440
+**Contracts eligible:** 335
+**Contracts analyzed:** 325
+**Contracts skipped:** 446
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 65,353.50
+**BTC_USDT price:** 65,244.20
 **BTC regime:** BULLISH
 **BTC Regime Score:** 100
-**EMA 20 / EMA 50 / EMA 200:** 64,672.45 / 64,117.79 / 63,445.28
-**ADX / +DI / -DI:** 34.0186 / 31.4829 / 11.44023
-**6H return:** 0.96%
-**24H return:** 1.69%
-**ATR volatility:** 0.5772735482% | veto=False
+**EMA 20 / EMA 50 / EMA 200:** 64,740.94 / 64,167.74 / 63,464.69
+**ADX / +DI / -DI:** 35.05582 / 30.87039 / 10.6948
+**6H return:** 1.16%
+**24H return:** 1.03%
+**ATR volatility:** 0.573167284% | veto=False
 **Permitted direction:** LONG
+
+## Livelli Strong/Weak LuxAlgo
+
+Strong Low rilevati: 147 | Strong High rilevati: 177 | Entro 1.50 ATR: 6
+
+BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
+
+| Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
+|---|---|---:|---:|---:|---:|---|---|
+| ZRO_USDT | STRONG_LOW | 0.8373 | 0.841 | 0.44% | 0.28 | PREFERRED | Chiusura 1H sotto 0.8373 |
+| SAFE_USDT | STRONG_LOW | 0.102 | 0.103 | 0.97% | 0.56 | PREFERRED | Chiusura 1H sotto 0.102 |
+| ZBT_USDT | STRONG_LOW | 0.0852 | 0.09 | 5.33% | 1.27 | PREFERRED | Chiusura 1H sotto 0.0852 |
+| ETHFI_USDT | STRONG_HIGH | 0.4405 | 0.4363 | 0.96% | 0.59 | COUNTER_BIAS | Chiusura 1H sopra 0.4405 |
+| PUMPFUN_USDT | STRONG_HIGH | 0.001693 | 0.001661 | 1.93% | 0.83 | COUNTER_BIAS | Chiusura 1H sopra 0.001693 |
+
+**Strong Low più vicini:**
+ZRO_USDT 0.8373 (0.44%, 0.28 ATR, PREFERRED); SAFE_USDT 0.102 (0.97%, 0.56 ATR, PREFERRED); ZBT_USDT 0.0852 (5.33%, 1.27 ATR, PREFERRED); BLEND_USDT 0.05937 (2.37%, 1.91 ATR, PREFERRED); HMSTR_USDT 0.0001836 (3.42%, 2.30 ATR, PREFERRED)
+
+**Strong High più vicini:**
+ETHFI_USDT 0.4405 (0.96%, 0.59 ATR, COUNTER_BIAS); PUMPFUN_USDT 0.001693 (1.93%, 0.83 ATR, COUNTER_BIAS); BABY_USDT 0.01367 (1.33%, 1.23 ATR, COUNTER_BIAS); MANTA_USDT 0.06126 (1.66%, 1.60 ATR, COUNTER_BIAS); O_USDT 0.6047 (2.84%, 1.66 ATR, COUNTER_BIAS)
 
 ## Best Available Opportunity
 
@@ -30,11 +50,7 @@ Nessun setup qualificato.
 
 ## Watchlist
 
-- **AVNT_USDT LONG — 79/100:** manca `price_location_valid, reward_risk_valid`. Trigger richiesto: ritorno entro 0,50 ATR dalla zona 0.09403492132–0.09514797388; nuovo riferimento d'ingresso con TP2 strutturale almeno 2R e invalidazione tra 0,30 e 2,50 ATR; poi nuova verifica completa.. Score: {'A_btc_alignment': 20, 'B_candidate_structure': 15, 'C_zone_quality': 15, 'D_closed_candle_confirmation': 14, 'E_momentum_divergence': 4, 'F_volume_open_interest': 5, 'G_relative_performance': 4, 'H_execution_quality': 3}
-- **SOL_USDT LONG — 77/100:** manca `price_location_valid, reward_risk_valid`. Trigger richiesto: ritorno entro 0,50 ATR dalla zona 76.80273913–77.47865458; nuovo riferimento d'ingresso con TP2 strutturale almeno 2R e invalidazione tra 0,30 e 2,50 ATR; poi nuova verifica completa.. Score: {'A_btc_alignment': 20, 'B_candidate_structure': 15, 'C_zone_quality': 15, 'D_closed_candle_confirmation': 12, 'E_momentum_divergence': 4, 'F_volume_open_interest': 6, 'G_relative_performance': 0, 'H_execution_quality': 5}
-- **HEMI_USDT LONG — 76/100:** manca `score_below_80`. Trigger richiesto: almeno 4 punti aggiuntivi mantenendo tutti i requisiti: volume di conferma almeno 1,20x la mediana e OI utilizzabile; RSI in rotazione favorevole o divergenza valida; miglioramento della performance relativa contro BTC; poi nuova verifica completa.. Score: {'A_btc_alignment': 20, 'B_candidate_structure': 15, 'C_zone_quality': 18, 'D_closed_candle_confirmation': 12, 'E_momentum_divergence': 4, 'F_volume_open_interest': 3, 'G_relative_performance': 0, 'H_execution_quality': 4}
-- **BICO_USDT LONG — 75/100:** manca `price_location_valid`. Trigger richiesto: ritorno entro 0,50 ATR dalla zona 0.01354827057–0.01372172943; poi nuova verifica completa.. Score: {'A_btc_alignment': 20, 'B_candidate_structure': 10, 'C_zone_quality': 15, 'D_closed_candle_confirmation': 12, 'E_momentum_divergence': 4, 'F_volume_open_interest': 7, 'G_relative_performance': 4, 'H_execution_quality': 3}
-- **DOT_USDT LONG — 75/100:** manca `price_location_valid`. Trigger richiesto: ritorno entro 0,50 ATR dalla zona 0.8446214724–0.8516880549; poi nuova verifica completa.. Score: {'A_btc_alignment': 20, 'B_candidate_structure': 15, 'C_zone_quality': 15, 'D_closed_candle_confirmation': 12, 'E_momentum_divergence': 4, 'F_volume_open_interest': 6, 'G_relative_performance': 0, 'H_execution_quality': 3}
+Nessun candidato utile in watchlist.
 
 ## Final Decision
 

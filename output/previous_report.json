@@ -1,19 +1,19 @@
 {
   "scan_ok": true,
-  "scan_timestamp_utc": "2026-07-15T15:25:46Z",
-  "scan_started_utc": "2026-07-15T15:25:01Z",
-  "scan_duration_seconds": 45.32,
+  "scan_timestamp_utc": "2026-07-15T15:28:12Z",
+  "scan_started_utc": "2026-07-15T15:27:27Z",
+  "scan_duration_seconds": 44.884,
   "timeframe": "1H",
   "closed_candles_only": true,
   "data_source": "Official MEXC Futures public market-data endpoints only",
   "contracts_retrieved": 771,
-  "contracts_eligible": 331,
-  "contracts_analyzed": 327,
-  "contracts_skipped": 444,
-  "turnover_35th_percentile": 137342.72164999996,
+  "contracts_eligible": 334,
+  "contracts_analyzed": 331,
+  "contracts_skipped": 440,
+  "turnover_35th_percentile": 137320.04984,
   "btc": {
     "symbol": "BTC_USDT",
-    "price": 65296.1,
+    "price": 65353.5,
     "close": 65364.9,
     "regime": "BULLISH",
     "regime_score": 100,
@@ -45,7 +45,7 @@
     "return_24h": 0.016922019005183975,
     "higher_low": true,
     "lower_high": true,
-    "fair_index_deviation": 0.00046229395772619285
+    "fair_index_deviation": 0.0004909202690426373
   },
   "decision": "NO_TRADE",
   "final_statement": "NO QUALIFYING SETUP — STAY FLAT AND WAIT FOR A NEW CLOSED-CANDLE CONFIRMATION",
@@ -57,7 +57,7 @@
       "side": "LONG",
       "classification": "STRONG_LOW",
       "score": 79,
-      "raw_score": 79,
+      "raw_score": 80,
       "score_breakdown": {
         "A_btc_alignment": 20,
         "B_candidate_structure": 15,
@@ -66,10 +66,10 @@
         "E_momentum_divergence": 4,
         "F_volume_open_interest": 5,
         "G_relative_performance": 4,
-        "H_execution_quality": 2
+        "H_execution_quality": 3
       },
       "status": "WATCHLIST",
-      "current_price": 0.0966,
+      "current_price": 0.0965,
       "confirmation": "close_above_previous_high, minor_lower_high_break",
       "confirmation_patterns": [
         "close_above_previous_high",
@@ -83,12 +83,12 @@
       "tp1": 0.1012,
       "tp2": 0.1031,
       "reward_risk_tp2": 2.210945651878217,
-      "turnover_24h": 524247.3997,
-      "spread": 0.001034661148473761,
+      "turnover_24h": 524363.4415,
+      "spread": 0.0010368066355624973,
       "open_interest": 5293239.0,
       "open_interest_notional_estimate": 511856.21129999997,
       "funding_rate": 5e-05,
-      "fair_index_deviation": 0.0020661157024792548,
+      "fair_index_deviation": 0.00103519668737063,
       "relative_performance_vs_btc": {
         "3h": {
           "candidate_return": 0.03201707577374591,
@@ -146,7 +146,7 @@
         "price_location_valid",
         "reward_risk_valid"
       ],
-      "qualification_trigger": "ritorno entro 0,50 ATR dalla zona 0.09403492132–0.09514797388; poi nuova verifica completa. nuovo riferimento d'ingresso con TP2 strutturale almeno 2R e invalidazione tra 0,30 e 2,50 ATR",
+      "qualification_trigger": "ritorno entro 0,50 ATR dalla zona 0.09403492132–0.09514797388; nuovo riferimento d'ingresso con TP2 strutturale almeno 2R e invalidazione tra 0,30 e 2,50 ATR; poi nuova verifica completa.",
       "strongest_reasons": [
         "Zona con 5 confluenze: breakout_retest, ema200, ema50, fib_0.5",
         "Conferma 1H chiusa: close_above_previous_high, minor_lower_high_break",
@@ -176,7 +176,7 @@
         "H_execution_quality": 5
       },
       "status": "WATCHLIST",
-      "current_price": 77.94,
+      "current_price": 78.01,
       "confirmation": "strong_lower_wick_rejection",
       "confirmation_patterns": [
         "strong_lower_wick_rejection"
@@ -189,12 +189,12 @@
       "tp1": null,
       "tp2": null,
       "reward_risk_tp2": null,
-      "turnover_24h": 1011652056.855,
-      "spread": 0.0001283120549174428,
-      "open_interest": 24406050.0,
-      "open_interest_notional_estimate": 190806498.9,
-      "funding_rate": -1.5e-05,
-      "fair_index_deviation": 0.0002565747273893011,
+      "turnover_24h": 1013817713.226,
+      "spread": 0.00012821334700948927,
+      "open_interest": 24307302.0,
+      "open_interest_notional_estimate": 190034487.03600004,
+      "funding_rate": -1.4e-05,
+      "fair_index_deviation": 0.000384418247052808,
       "relative_performance_vs_btc": {
         "3h": {
           "candidate_return": 0.009034589571502272,
@@ -252,7 +252,7 @@
         "price_location_valid",
         "reward_risk_valid"
       ],
-      "qualification_trigger": "ritorno entro 0,50 ATR dalla zona 76.80273913–77.47865458; poi nuova verifica completa. nuovo riferimento d'ingresso con TP2 strutturale almeno 2R e invalidazione tra 0,30 e 2,50 ATR",
+      "qualification_trigger": "ritorno entro 0,50 ATR dalla zona 76.80273913–77.47865458; nuovo riferimento d'ingresso con TP2 strutturale almeno 2R e invalidazione tra 0,30 e 2,50 ATR; poi nuova verifica completa.",
       "strongest_reasons": [
         "Zona con 5 confluenze: ema200, ema50, fib_0.382, high_volume_reaction",
         "Conferma 1H chiusa: strong_lower_wick_rejection",
@@ -282,7 +282,7 @@
         "H_execution_quality": 4
       },
       "status": "WATCHLIST",
-      "current_price": 0.004528,
+      "current_price": 0.004525,
       "confirmation": "strong_lower_wick_rejection",
       "confirmation_patterns": [
         "strong_lower_wick_rejection"
@@ -295,12 +295,12 @@
       "tp1": 0.004692,
       "tp2": 0.004789,
       "reward_risk_tp2": 2.286832244576651,
-      "turnover_24h": 213378.8358,
-      "spread": 0.00022082367229769964,
-      "open_interest": 303336.0,
-      "open_interest_notional_estimate": 137411.208,
+      "turnover_24h": 213536.9129,
+      "spread": 0.0004418912947413606,
+      "open_interest": 303006.0,
+      "open_interest_notional_estimate": 137261.718,
       "funding_rate": 5e-05,
-      "fair_index_deviation": 0.0013268465280849024,
+      "fair_index_deviation": 0.0006634232640425472,
       "relative_performance_vs_btc": {
         "3h": {
           "candidate_return": 0.01319615298590926,
@@ -357,7 +357,7 @@
       "missing_requirements": [
         "score_below_80"
       ],
-      "qualification_trigger": "almeno 4 punti aggiuntivi mantenendo tutti i requisiti: volume di conferma almeno 1,20x la mediana e OI utilizzabile; RSI in rotazione favorevole o divergenza valida; miglioramento della performance relativa contro BTC",
+      "qualification_trigger": "almeno 4 punti aggiuntivi mantenendo tutti i requisiti: volume di conferma almeno 1,20x la mediana e OI utilizzabile; RSI in rotazione favorevole o divergenza valida; miglioramento della performance relativa contro BTC; poi nuova verifica completa.",
       "strongest_reasons": [
         "Zona con 5 confluenze: breakout_retest, ema50, fib_0.5, repeated_level",
         "Conferma 1H chiusa: strong_lower_wick_rejection",
@@ -388,7 +388,7 @@
         "H_execution_quality": 3
       },
       "status": "WATCHLIST",
-      "current_price": 0.01386,
+      "current_price": 0.01383,
       "confirmation": "close_above_previous_high, minor_lower_high_break",
       "confirmation_patterns": [
         "close_above_previous_high",
@@ -402,8 +402,8 @@
       "tp1": 0.01446,
       "tp2": 0.01496,
       "reward_risk_tp2": 2.369001267146945,
-      "turnover_24h": 206055.33925,
-      "spread": 0.0007217610970769633,
+      "turnover_24h": 206227.21977,
+      "spread": 0.0007233273056057571,
       "open_interest": 46780854.0,
       "open_interest_notional_estimate": 652125.10476,
       "funding_rate": 0.0001,
@@ -464,7 +464,7 @@
       "missing_requirements": [
         "price_location_valid"
       ],
-      "qualification_trigger": "ritorno entro 0,50 ATR dalla zona 0.01354827057–0.01372172943",
+      "qualification_trigger": "ritorno entro 0,50 ATR dalla zona 0.01354827057–0.01372172943; poi nuova verifica completa.",
       "strongest_reasons": [
         "Zona con 5 confluenze: breakout_retest, ema50, fib_0.382, repeated_level",
         "Conferma 1H chiusa: close_above_previous_high, minor_lower_high_break",
@@ -473,7 +473,7 @@
       "main_risks": [
         "Prezzo non perfettamente aderente alla zona strutturale",
         "Allineamento EMA non completo",
-        "Una chiusura 1H oltre l'invalidazione strutturale cancella il setup"
+        "Prezzo vicino al limite massimo di ingresso tardivo"
       ],
       "cancel_condition": "Chiusura 1H sotto 0.01350300093 oppure ingresso oltre 0,75 ATR dalla conferma",
       "correlation_status": "PRIMARY"
@@ -508,10 +508,10 @@
       "tp1": 0.883,
       "tp2": 0.894,
       "reward_risk_tp2": 2.0077231808246863,
-      "turnover_24h": 2207131.0163,
-      "spread": 0.0011689070718877862,
-      "open_interest": 112360158.0,
-      "open_interest_notional_estimate": 9662973.588000001,
+      "turnover_24h": 2207860.5275,
+      "spread": 0.0011675423234092245,
+      "open_interest": 112384356.0,
+      "open_interest_notional_estimate": 9665054.616,
       "funding_rate": 0.0001,
       "fair_index_deviation": 0.0,
       "relative_performance_vs_btc": {
@@ -571,7 +571,7 @@
       "missing_requirements": [
         "price_location_valid"
       ],
-      "qualification_trigger": "ritorno entro 0,50 ATR dalla zona 0.8446214724–0.8516880549",
+      "qualification_trigger": "ritorno entro 0,50 ATR dalla zona 0.8446214724–0.8516880549; poi nuova verifica completa.",
       "strongest_reasons": [
         "Zona con 6 confluenze: breakout_retest, ema200, ema50, fib_0.382",
         "Conferma 1H chiusa: strong_lower_wick_rejection",
@@ -587,21 +587,21 @@
     }
   ],
   "skipped_reasons": {
-    "spread_above_0_20_percent": 49,
+    "spread_above_0_20_percent": 50,
     "suspended_contract": 41,
     "listing_younger_than_14_days": 13,
-    "fair_index_deviation_above_0_35_percent": 42,
+    "fair_index_deviation_above_0_35_percent": 37,
     "not_usdt_margined_and_settled": 116,
-    "turnover_below_2m_and_35th_percentile": 179,
-    "latest_candle_range_above_3_atr": 4
+    "turnover_below_2m_and_35th_percentile": 180,
+    "latest_candle_range_above_3_atr": 3
   },
   "skipped_examples": {
     "spread_above_0_20_percent": [
+      "AKE_USDT",
       "0G_USDT",
-      "ANSEM_USDT",
       "TJR_USDT",
-      "ESPORTS_USDT",
-      "ASTEROID_USDT"
+      "ASTEROID_USDT",
+      "DSYNC_USDT"
     ],
     "suspended_contract": [
       "USOIL_USDT",
@@ -619,9 +619,9 @@
     ],
     "fair_index_deviation_above_0_35_percent": [
       "BILL_USDT",
-      "VANRY_USDT",
       "B3_USDT",
-      "T_USDT",
+      "ESPORTS_USDT",
+      "APR_USDT",
       "TLM_USDT"
     ],
     "not_usdt_margined_and_settled": [
@@ -634,12 +634,11 @@
     "turnover_below_2m_and_35th_percentile": [
       "1000RATS_USDT",
       "TURTLE_USDT",
+      "STAR_USDT",
       "BEL_USDT",
-      "TRADOOR_USDT",
-      "FRAX_USDT"
+      "TRADOOR_USDT"
     ],
     "latest_candle_range_above_3_atr": [
-      "AKE_USDT",
       "BANK_USDT",
       "FLOCK_USDT",
       "JST_USDT"
