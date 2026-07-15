@@ -940,6 +940,11 @@ def evaluate_setup(
     zone = build_zone(candles, indicators, side)
     if zone is None:
         return None
+    # A watchlist must still be practically relevant. A market already more
+    # than 1.5 ATR from its strongest zone is neither a retest nor a nearby
+    # Strong Low/High candidate and is omitted instead of being advertised.
+    if zone["distance_atr"] > 1.50:
+        return None
     patterns, tested = confirmation_patterns(candles, side, zone, atr)
     range72_low, range72_high = min(low[-72:]), max(high[-72:])
     range_position = (close[-1] - range72_low) / (range72_high - range72_low) if range72_high > range72_low else 0.5
@@ -993,7 +998,8 @@ def evaluate_setup(
     reasons = []
     if zone["confluences"] >= 3:
         reasons.append(f"Zona con {zone['confluences']} confluenze: {', '.join(zone['sources'][:4])}")
-    if patterns:
+    confirmation_valid = bool(patterns) and tested
+    if confirmation_valid:
         reasons.append(f"Conferma 1H chiusa: {', '.join(patterns[:2])}")
     if diagnostics["confirmation_volume_ratio_to_20_median"] >= 1.2:
         reasons.append("Volume di conferma almeno 1,20x la mediana a 20 candele")
@@ -1035,7 +1041,13 @@ def evaluate_setup(
         "score_breakdown": breakdown,
         "status": status,
         "current_price": current_price,
-        "confirmation": ", ".join(patterns) if patterns else "missing_closed_candle_confirmation",
+        "confirmation": (
+            ", ".join(patterns)
+            if confirmation_valid
+            else "pattern_present_but_not_after_zone_test: " + ", ".join(patterns)
+            if patterns
+            else "missing_closed_candle_confirmation"
+        ),
         "confirmation_patterns": patterns,
         "entry_zone_low": targets.get("entry_zone_low"),
         "entry_zone_high": targets.get("entry_zone_high"),
