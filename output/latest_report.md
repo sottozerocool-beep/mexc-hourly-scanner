@@ -1,16 +1,16 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-07-15T15:19:52Z
+**Scan timestamp:** 2026-07-15T15:22:15Z
 **Primary timeframe:** 1H
 **Contracts retrieved:** 771
-**Contracts eligible:** 337
-**Contracts analyzed:** 333
-**Contracts skipped:** 438
+**Contracts eligible:** 333
+**Contracts analyzed:** 329
+**Contracts skipped:** 442
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 65,380.00
+**BTC_USDT price:** 65,323.90
 **BTC regime:** BULLISH
 **BTC Regime Score:** 100
 **EMA 20 / EMA 50 / EMA 200:** 64,672.45 / 64,117.79 / 63,445.28
@@ -31,10 +31,10 @@ Nessun setup qualificato.
 ## Watchlist
 
 - **AVNT_USDT LONG — 79/100:** manca `price_location_valid, reward_risk_valid`. Score: {'A_btc_alignment': 20, 'B_candidate_structure': 15, 'C_zone_quality': 15, 'D_closed_candle_confirmation': 14, 'E_momentum_divergence': 4, 'F_volume_open_interest': 5, 'G_relative_performance': 4, 'H_execution_quality': 3}
-- **FF_USDT LONG — 79/100:** manca `price_location_valid, closed_candle_confirmation, reward_risk_valid`. Score: {'A_btc_alignment': 20, 'B_candidate_structure': 15, 'C_zone_quality': 16, 'D_closed_candle_confirmation': 11, 'E_momentum_divergence': 4, 'F_volume_open_interest': 5, 'G_relative_performance': 7, 'H_execution_quality': 3}
-- **MNT_USDT LONG — 79/100:** manca `price_location_valid, reward_risk_valid`. Score: {'A_btc_alignment': 20, 'B_candidate_structure': 15, 'C_zone_quality': 15, 'D_closed_candle_confirmation': 14, 'E_momentum_divergence': 4, 'F_volume_open_interest': 7, 'G_relative_performance': 6, 'H_execution_quality': 4}
-- **TOWNS_USDT LONG — 79/100:** manca `price_location_valid, closed_candle_confirmation, reward_risk_valid`. Score: {'A_btc_alignment': 20, 'B_candidate_structure': 15, 'C_zone_quality': 15, 'D_closed_candle_confirmation': 12, 'E_momentum_divergence': 4, 'F_volume_open_interest': 3, 'G_relative_performance': 6, 'H_execution_quality': 4}
-- **JCT_USDT LONG — 78/100:** manca `price_location_valid, closed_candle_confirmation, reward_risk_valid`. Score: {'A_btc_alignment': 20, 'B_candidate_structure': 15, 'C_zone_quality': 15, 'D_closed_candle_confirmation': 9, 'E_momentum_divergence': 4, 'F_volume_open_interest': 5, 'G_relative_performance': 6, 'H_execution_quality': 4}
+- **SOL_USDT LONG — 77/100:** manca `price_location_valid, reward_risk_valid`. Score: {'A_btc_alignment': 20, 'B_candidate_structure': 15, 'C_zone_quality': 15, 'D_closed_candle_confirmation': 12, 'E_momentum_divergence': 4, 'F_volume_open_interest': 6, 'G_relative_performance': 0, 'H_execution_quality': 5}
+- **BICO_USDT LONG — 75/100:** manca `price_location_valid`. Score: {'A_btc_alignment': 20, 'B_candidate_structure': 10, 'C_zone_quality': 15, 'D_closed_candle_confirmation': 12, 'E_momentum_divergence': 4, 'F_volume_open_interest': 7, 'G_relative_performance': 4, 'H_execution_quality': 3}
+- **DOT_USDT LONG — 75/100:** manca `price_location_valid`. Score: {'A_btc_alignment': 20, 'B_candidate_structure': 15, 'C_zone_quality': 15, 'D_closed_candle_confirmation': 12, 'E_momentum_divergence': 4, 'F_volume_open_interest': 6, 'G_relative_performance': 0, 'H_execution_quality': 3}
+- **HEMI_USDT LONG — 75/100:** manca ``. Score: {'A_btc_alignment': 20, 'B_candidate_structure': 15, 'C_zone_quality': 18, 'D_closed_candle_confirmation': 12, 'E_momentum_divergence': 4, 'F_volume_open_interest': 3, 'G_relative_performance': 0, 'H_execution_quality': 3}
 
 ## Final Decision
 
