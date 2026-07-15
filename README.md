@@ -1,4 +1,4 @@
-# MEXC Hourly Strong-Level Scanner
+# MEXC 4-Hour Strong-Level Scanner
 
 Scanner automatico dei perpetual Futures lineari USDT su MEXC, timeframe 1H.
 
@@ -18,9 +18,9 @@ Scanner automatico dei perpetual Futures lineari USDT su MEXC, timeframe 1H.
 
 ## Pianificazione
 
-GitHub Actions avvia lo scanner al minuto 7 di ogni ora. GitHub può ritardare leggermente i workflow pianificati nei momenti di carico.
+GitHub Actions avvia lo scanner ogni 4 ore, al minuto 7 (UTC). GitHub può ritardare leggermente i workflow pianificati nei momenti di carico.
 
-È inoltre disponibile l'avvio manuale da **Actions → MEXC Hourly Scan → Run workflow**.
+È inoltre disponibile l'avvio manuale da **Actions → MEXC 4-Hour Scan → Run workflow**.
 
 ## Output
 
