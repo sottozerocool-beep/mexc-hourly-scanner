@@ -1,0 +1,52 @@
+name: MEXC Hourly Scan
+
+on:
+  schedule:
+    - cron: "7 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mexc-hourly-scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run unit tests
+        run: python -m unittest -v
+
+      - name: Run complete MEXC scan
+        run: python scanner.py
+
+      - name: Validate machine-readable output
+        run: |
+          python -m json.tool output/latest_report.json >/dev/null
+          python -m json.tool output/status.json >/dev/null
+
+      - name: Publish latest report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add output/latest_report.json output/latest_report.md output/status.json
+          if [ -f output/previous_report.json ]; then git add output/previous_report.json; fi
+          if git diff --cached --quiet; then
+            echo "No report changes to publish"
+            exit 0
+          fi
+          git commit -m "Hourly MEXC scan $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          git pull --rebase origin main
+          git push origin HEAD:main
