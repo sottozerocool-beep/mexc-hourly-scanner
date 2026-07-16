@@ -2,7 +2,8 @@ name: MEXC 4-Hour Scan
 
 on:
   schedule:
-    - cron: "7 */4 * * *"
+    - cron: "37 2,6,10,14,18,22 * * *"
+      timezone: "Europe/Rome"
   workflow_dispatch:
   push:
     branches:
