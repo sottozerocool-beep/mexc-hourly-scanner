@@ -1,9 +1,6 @@
 name: MEXC 4-Hour Scan
 
 on:
-  schedule:
-    - cron: "37 2,6,10,14,18,22 * * *"
-      timezone: "Europe/Rome"
   workflow_dispatch:
   push:
     branches:
@@ -12,6 +9,7 @@ on:
       - "scanner.py"
       - "test_scanner.py"
       - ".github/workflows/hourly_scan.yml"
+      - "trigger/scan_request.txt"
 
 permissions:
   contents: write
