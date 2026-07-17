@@ -1,2 +1,2 @@
-scan_request_utc=bootstrap
-request_id=initial
+scan_request_utc=2026-07-17T06:27:26.922Z
+request_id=validation-20260717062726922
