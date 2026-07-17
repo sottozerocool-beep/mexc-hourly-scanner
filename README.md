@@ -18,7 +18,7 @@ Scanner automatico dei perpetual Futures lineari USDT su MEXC, timeframe 1H.
 
 ## Pianificazione
 
-GitHub Actions avvia lo scanner ogni 4 ore, al minuto 37, nel fuso `Europe/Rome`. Il controllo automatico del rapporto avviene al minuto 58, lasciando tempo al workflow di completarsi.
+L’automazione ChatGPT, ogni 4 ore, aggiorna `trigger/scan_request.txt`. Questo push avvia immediatamente GitHub Actions; l’automazione attende la pubblicazione di un rapporto nuovo prima di analizzarlo. Il cron interno di GitHub non viene usato, così eventuali ritardi o salti dei workflow pianificati non producono rapporti obsoleti.
 
 È inoltre disponibile l'avvio manuale da **Actions → MEXC 4-Hour Scan → Run workflow**.
 
