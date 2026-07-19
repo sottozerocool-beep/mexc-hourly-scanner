@@ -1,44 +1,44 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-07-19T16:19:22Z
+**Scan timestamp:** 2026-07-19T17:01:34Z
 **Primary timeframe:** 1H
 **Contracts retrieved:** 778
-**Contracts eligible:** 340
-**Contracts analyzed:** 336
-**Contracts skipped:** 442
+**Contracts eligible:** 331
+**Contracts analyzed:** 319
+**Contracts skipped:** 459
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 64,537.70
+**BTC_USDT price:** 64,513.10
 **BTC regime:** BULLISH
-**BTC Regime Score:** 95
-**EMA 20 / EMA 50 / EMA 200:** 64,525.98 / 64,339.95 / 63,914.96
-**ADX / +DI / -DI:** 25.97196 / 21.06273 / 16.59374
-**6H return:** 0.08%
-**24H return:** 0.71%
-**ATR volatility:** 0.2742220305% | veto=False
+**BTC Regime Score:** 80
+**EMA 20 / EMA 50 / EMA 200:** 64,524.53 / 64,346.64 / 63,920.93
+**ADX / +DI / -DI:** 25.15271 / 20.90656 / 15.61068
+**6H return:** -0.08%
+**24H return:** 0.36%
+**ATR volatility:** 0.2708151648% | veto=False
 **Permitted direction:** LONG
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 148 | Strong High rilevati: 187 | Entro 1.50 ATR: 12
+Strong Low rilevati: 140 | Strong High rilevati: 178 | Entro 1.50 ATR: 12
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| ACH_USDT | STRONG_LOW | 0.00425 | 0.004259 | 0.21% | 0.33 | PREFERRED | Chiusura 1H sotto 0.00425 |
-| AR_USDT | STRONG_LOW | 1.873 | 1.88 | 0.37% | 0.68 | PREFERRED | Chiusura 1H sotto 1.873 |
-| NMR_USDT | STRONG_LOW | 9.874 | 9.924 | 0.50% | 0.81 | PREFERRED | Chiusura 1H sotto 9.874 |
-| RIVER_USDT | STRONG_LOW | 3.235 | 3.26 | 0.77% | 0.82 | PREFERRED | Chiusura 1H sotto 3.235 |
-| ESPORTS_USDT | STRONG_LOW | 0.01318 | 0.02037 | 35.30% | 1.03 | PREFERRED | Chiusura 1H sotto 0.01318 |
+| AR_USDT | STRONG_LOW | 1.873 | 1.874 | 0.05% | 0.10 | PREFERRED | Chiusura 1H sotto 1.873 |
+| ETC_USDT | STRONG_LOW | 6.85 | 6.856 | 0.09% | 0.19 | PREFERRED | Chiusura 1H sotto 6.85 |
+| NMR_USDT | STRONG_LOW | 9.874 | 9.897 | 0.23% | 0.36 | PREFERRED | Chiusura 1H sotto 9.874 |
+| RIVER_USDT | STRONG_LOW | 3.235 | 3.254 | 0.58% | 0.62 | PREFERRED | Chiusura 1H sotto 3.235 |
+| STX_USDT | STRONG_LOW | 0.1626 | 0.1633 | 0.43% | 0.78 | PREFERRED | Chiusura 1H sotto 0.1626 |
 
 **Strong Low più vicini:**
-ACH_USDT 0.00425 (0.21%, 0.33 ATR, PREFERRED); AR_USDT 1.873 (0.37%, 0.68 ATR, PREFERRED); NMR_USDT 9.874 (0.50%, 0.81 ATR, PREFERRED); RIVER_USDT 3.235 (0.77%, 0.82 ATR, PREFERRED); ESPORTS_USDT 0.01318 (35.30%, 1.03 ATR, PREFERRED)
+AR_USDT 1.873 (0.05%, 0.10 ATR, PREFERRED); ETC_USDT 6.85 (0.09%, 0.19 ATR, PREFERRED); NMR_USDT 9.874 (0.23%, 0.36 ATR, PREFERRED); RIVER_USDT 3.235 (0.58%, 0.62 ATR, PREFERRED); STX_USDT 0.1626 (0.43%, 0.78 ATR, PREFERRED)
 
 **Strong High più vicini:**
-ALICE_USDT 0.1224 (0.91%, 0.65 ATR, COUNTER_BIAS); CAP_USDT 0.0196 (1.61%, 0.89 ATR, COUNTER_BIAS); SPACE_USDT 0.006092 (1.34%, 1.41 ATR, COUNTER_BIAS); VANRY_USDT 0.006112 (5.65%, 1.61 ATR, COUNTER_BIAS); SCRT_USDT 0.04401 (2.88%, 1.70 ATR, COUNTER_BIAS)
+ALICE_USDT 0.1224 (1.07%, 0.74 ATR, COUNTER_BIAS); OPENLEDGER_USDT 0.1561 (1.17%, 1.17 ATR, COUNTER_BIAS); BASED_USDT 0.09887 (2.21%, 1.18 ATR, COUNTER_BIAS); VANRY_USDT 0.006112 (6.82%, 1.80 ATR, COUNTER_BIAS); MAVIA_USDT 0.02785 (2.84%, 2.01 ATR, COUNTER_BIAS)
 
 ## Best Available Opportunity
 
