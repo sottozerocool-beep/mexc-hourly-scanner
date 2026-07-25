@@ -1,44 +1,44 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-07-24T22:58:23Z
+**Scan timestamp:** 2026-07-25T02:01:55Z
 **Primary timeframe:** 1H
 **Contracts retrieved:** 783
-**Contracts eligible:** 333
-**Contracts analyzed:** 332
-**Contracts skipped:** 451
+**Contracts eligible:** 329
+**Contracts analyzed:** 328
+**Contracts skipped:** 455
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 64,145.00
+**BTC_USDT price:** 64,044.70
 **BTC regime:** BEARISH
-**BTC Regime Score:** -70
-**EMA 20 / EMA 50 / EMA 200:** 64,538.76 / 64,969.34 / 64,913.55
-**ADX / +DI / -DI:** 30.8312 / 11.91945 / 26.52493
-**6H return:** 0.07%
-**24H return:** -1.57%
-**ATR volatility:** 0.4541693427% | veto=False
+**BTC Regime Score:** -100
+**EMA 20 / EMA 50 / EMA 200:** 64,387.47 / 64,838.24 / 64,880.73
+**ADX / +DI / -DI:** 33.34392 / 10.53271 / 26.80465
+**6H return:** -0.24%
+**24H return:** -1.56%
+**ATR volatility:** 0.3825515519% | veto=False
 **Permitted direction:** SHORT
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 136 | Strong High rilevati: 195 | Entro 1.50 ATR: 9
+Strong Low rilevati: 131 | Strong High rilevati: 196 | Entro 1.50 ATR: 10
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| BANANAS31_USDT | STRONG_HIGH | 0.007438 | 0.007348 | 1.22% | 0.89 | PREFERRED | Chiusura 1H sopra 0.007438 |
-| MAGIC_USDT | STRONG_HIGH | 0.04402 | 0.04341 | 1.41% | 1.16 | PREFERRED | Chiusura 1H sopra 0.04402 |
-| GIGGLE_USDT | STRONG_LOW | 25.4 | 25.52 | 0.47% | 0.63 | COUNTER_BIAS | Chiusura 1H sotto 25.4 |
-| SUSHI_USDT | STRONG_LOW | 0.1635 | 0.165 | 0.91% | 0.79 | COUNTER_BIAS | Chiusura 1H sotto 0.1635 |
-| RESOLV_USDT | STRONG_LOW | 0.01837 | 0.01857 | 1.08% | 0.84 | COUNTER_BIAS | Chiusura 1H sotto 0.01837 |
+| BAN_USDT | STRONG_HIGH | 0.07617 | 0.076 | 0.22% | 0.22 | PREFERRED | Chiusura 1H sopra 0.07617 |
+| SAHARA_USDT | STRONG_HIGH | 0.00922 | 0.00907 | 1.65% | 1.49 | PREFERRED | Chiusura 1H sopra 0.00922 |
+| TRUMPOFFICIAL_USDT | STRONG_LOW | 1.546 | 1.551 | 0.32% | 0.39 | COUNTER_BIAS | Chiusura 1H sotto 1.546 |
+| GIGGLE_USDT | STRONG_LOW | 25.4 | 25.48 | 0.31% | 0.46 | COUNTER_BIAS | Chiusura 1H sotto 25.4 |
+| SUSHI_USDT | STRONG_LOW | 0.1635 | 0.1645 | 0.61% | 0.60 | COUNTER_BIAS | Chiusura 1H sotto 0.1635 |
 
 **Strong Low più vicini:**
-GIGGLE_USDT 25.4 (0.47%, 0.63 ATR, COUNTER_BIAS); SUSHI_USDT 0.1635 (0.91%, 0.79 ATR, COUNTER_BIAS); RESOLV_USDT 0.01837 (1.08%, 0.84 ATR, COUNTER_BIAS); TOSHI_USDT 0.0001071 (0.93%, 1.00 ATR, COUNTER_BIAS); TRUMPOFFICIAL_USDT 1.546 (0.96%, 1.11 ATR, COUNTER_BIAS)
+TRUMPOFFICIAL_USDT 1.546 (0.32%, 0.39 ATR, COUNTER_BIAS); GIGGLE_USDT 25.4 (0.31%, 0.46 ATR, COUNTER_BIAS); SUSHI_USDT 0.1635 (0.61%, 0.60 ATR, COUNTER_BIAS); ZEREBRO_USDT 0.034893 (1.02%, 0.93 ATR, COUNTER_BIAS); TOSHI_USDT 0.0001071 (0.83%, 0.96 ATR, COUNTER_BIAS)
 
 **Strong High più vicini:**
-BANANAS31_USDT 0.007438 (1.22%, 0.89 ATR, PREFERRED); MAGIC_USDT 0.04402 (1.41%, 1.16 ATR, PREFERRED); BAN_USDT 0.07617 (1.59%, 1.67 ATR, PREFERRED); TAC_USDT 0.003705 (5.14%, 2.23 ATR, PREFERRED); BASED_USDT 0.08789 (4.63%, 2.38 ATR, PREFERRED)
+BAN_USDT 0.07617 (0.22%, 0.22 ATR, PREFERRED); SAHARA_USDT 0.00922 (1.65%, 1.49 ATR, PREFERRED); BASED_USDT 0.08789 (3.11%, 1.62 ATR, PREFERRED); CVX_USDT 1.295 (2.78%, 1.75 ATR, PREFERRED); TNSR_USDT 0.0349 (4.12%, 2.05 ATR, PREFERRED)
 
 ## Best Available Opportunity
 
