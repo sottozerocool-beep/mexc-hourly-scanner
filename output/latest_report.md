@@ -1,46 +1,42 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-07-25T20:01:15Z
+**Scan timestamp:** 2026-07-25T23:04:29Z
 **Primary timeframe:** 1H
 **Contracts retrieved:** 783
-**Contracts eligible:** 339
-**Contracts analyzed:** 337
-**Contracts skipped:** 446
+**Contracts eligible:** 342
+**Contracts analyzed:** 340
+**Contracts skipped:** 443
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 64,359.60
-**BTC regime:** NEUTRAL
-**BTC Regime Score:** -40
-**EMA 20 / EMA 50 / EMA 200:** 64,193.48 / 64,469.45 / 64,752.80
-**ADX / +DI / -DI:** 25.19477 / 23.2852 / 19.01097
-**6H return:** 0.35%
-**24H return:** 0.26%
-**ATR volatility:** 0.239532453% | veto=False
-**Permitted direction:** NONE
-
-NO QUALIFYING DIRECTIONAL SETUP — BTC REGIME IS NEUTRAL.
+**BTC_USDT price:** 64,372.10
+**BTC regime:** BEARISH
+**BTC Regime Score:** -65
+**EMA 20 / EMA 50 / EMA 200:** 64,230.42 / 64,454.18 / 64,740.36
+**ADX / +DI / -DI:** 20.81493 / 19.80103 / 21.39193
+**6H return:** 0.31%
+**24H return:** 0.38%
+**ATR volatility:** 0.2254660016% | veto=False
+**Permitted direction:** SHORT
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 141 | Strong High rilevati: 195 | Entro 1.50 ATR: 5
+Strong Low rilevati: 147 | Strong High rilevati: 192 | Entro 1.50 ATR: 3
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| XTZ_USDT | STRONG_LOW | 0.2233 | 0.2239 | 0.27% | 0.53 | NEUTRAL | Chiusura 1H sotto 0.2233 |
-| XEC_USDT | STRONG_LOW | 0.000006841 | 0.000006892 | 0.74% | 0.57 | NEUTRAL | Chiusura 1H sotto 6.841e-06 |
-| BASED_USDT | STRONG_HIGH | 0.08805 | 0.08616 | 2.19% | 1.09 | NEUTRAL | Chiusura 1H sopra 0.08805 |
-| OPN_USDT | STRONG_LOW | 0.05974 | 0.06091 | 1.92% | 1.40 | NEUTRAL | Chiusura 1H sotto 0.05974 |
-| SPK_USDT | STRONG_LOW | 0.01651 | 0.0167 | 1.14% | 1.45 | NEUTRAL | Chiusura 1H sotto 0.01651 |
+| FET_USDT | STRONG_HIGH | 0.1605 | 0.1593 | 0.75% | 0.93 | PREFERRED | Chiusura 1H sopra 0.1605 |
+| BASED_USDT | STRONG_HIGH | 0.08805 | 0.08564 | 2.81% | 1.33 | PREFERRED | Chiusura 1H sopra 0.08805 |
+| XEC_USDT | STRONG_LOW | 0.000006834 | 0.000006857 | 0.34% | 0.28 | COUNTER_BIAS | Chiusura 1H sotto 6.834e-06 |
 
 **Strong Low più vicini:**
-XTZ_USDT 0.2233 (0.27%, 0.53 ATR, NEUTRAL); XEC_USDT 0.000006841 (0.74%, 0.57 ATR, NEUTRAL); OPN_USDT 0.05974 (1.92%, 1.40 ATR, NEUTRAL); SPK_USDT 0.01651 (1.14%, 1.45 ATR, NEUTRAL); SAHARA_USDT 0.00868 (2.36%, 1.70 ATR, NEUTRAL)
+XEC_USDT 0.000006834 (0.34%, 0.28 ATR, COUNTER_BIAS); OPN_USDT 0.05974 (2.13%, 1.77 ATR, COUNTER_BIAS); SPK_USDT 0.01651 (1.26%, 1.78 ATR, COUNTER_BIAS); WET_USDT 0.06432 (3.03%, 2.14 ATR, COUNTER_BIAS); SAHARA_USDT 0.00868 (2.80%, 2.29 ATR, COUNTER_BIAS)
 
 **Strong High più vicini:**
-BASED_USDT 0.08805 (2.19%, 1.09 ATR, NEUTRAL); DOGE_USDT 0.07387 (1.37%, 1.69 ATR, NEUTRAL); GMT_USDT 0.007429 (2.23%, 2.22 ATR, NEUTRAL); MEME_USDT 0.0005401 (1.92%, 2.24 ATR, NEUTRAL); THETA_USDT 0.1399 (2.19%, 2.53 ATR, NEUTRAL)
+FET_USDT 0.1605 (0.75%, 0.93 ATR, PREFERRED); BASED_USDT 0.08805 (2.81%, 1.33 ATR, PREFERRED); 1000BTT_USDT 0.0002752 (0.99%, 1.95 ATR, PREFERRED); MEME_USDT 0.0005401 (1.68%, 1.97 ATR, PREFERRED); THETA_USDT 0.1399 (1.60%, 1.98 ATR, PREFERRED)
 
 ## Best Available Opportunity
 
