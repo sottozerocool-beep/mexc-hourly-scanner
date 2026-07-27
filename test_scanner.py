@@ -114,7 +114,81 @@ class ScannerTests(unittest.TestCase):
         self.assertEqual(report["contracts_retrieved"], 2)
         self.assertEqual(report["contracts_analyzed"], 2)
         self.assertIn(report["decision"], {"NO_TRADE", "QUALIFIED_LONG"})
+        self.assertTrue(report["nearby_strong_levels_complete"])
+        self.assertEqual(
+            report["strong_level_counts"]["nearby"],
+            len(report["nearby_strong_levels"]),
+        )
+        scanner.validate_report(report)
         json.dumps(report)
+
+    def test_report_validation_accepts_more_than_display_limit(self):
+        report = scanner.error_report(RuntimeError("fixture"))
+        nearby = []
+        for index in range(scanner.MAX_REPORTED + 1):
+            nearby.append({
+                "symbol": f"ASSET{index}_USDT",
+                "side": "LONG",
+                "classification": "STRONG_LOW",
+                "distance_atr": 0.5 + index * 0.1,
+                "proximity": "NEAR",
+                "price_on_expected_side": True,
+                "latest_closed_candle_respected_level": True,
+            })
+        report.update({
+            "scan_ok": True,
+            "strong_level_counts": {
+                "strong_lows": len(nearby),
+                "strong_highs": 0,
+                "nearby": len(nearby),
+            },
+            "nearby_strong_levels": nearby,
+        })
+        scanner.validate_report(report)
+        self.assertGreater(
+            len(report["nearby_strong_levels"]),
+            scanner.MAX_REPORTED,
+        )
+
+    def test_report_validation_rejects_truncated_nearby_array(self):
+        report = scanner.error_report(RuntimeError("fixture"))
+        report.update({
+            "scan_ok": True,
+            "strong_level_counts": {
+                "strong_lows": 1,
+                "strong_highs": 0,
+                "nearby": 1,
+            },
+            "nearby_strong_levels": [],
+        })
+        with self.assertRaisesRegex(scanner.ScanError, "nearby count mismatch"):
+            scanner.validate_report(report)
+
+    def test_invalid_report_is_not_published(self):
+        report = scanner.error_report(RuntimeError("fixture"))
+        report.update({
+            "scan_ok": True,
+            "strong_level_counts": {
+                "strong_lows": 1,
+                "strong_highs": 0,
+                "nearby": 1,
+            },
+            "nearby_strong_levels": [],
+        })
+        with tempfile.TemporaryDirectory() as tmp:
+            output_dir = Path(tmp)
+            previous_contents = '{"sentinel": true}\n'
+            (output_dir / "latest_report.json").write_text(
+                previous_contents,
+                encoding="utf-8",
+            )
+            with patch.object(scanner, "OUTPUT_DIR", output_dir):
+                with self.assertRaises(scanner.ScanError):
+                    scanner.save_outputs(report)
+            self.assertEqual(
+                (output_dir / "latest_report.json").read_text(encoding="utf-8"),
+                previous_contents,
+            )
 
     def test_error_report_never_fabricates_market_values(self):
         report = scanner.error_report(RuntimeError("network unavailable"))
@@ -122,6 +196,12 @@ class ScannerTests(unittest.TestCase):
         self.assertIsNone(report["btc"]["price"])
         self.assertEqual(report["qualified_setups"], [])
         self.assertEqual(report["decision"], "NO_TRADE")
+        self.assertEqual(
+            report["report_schema_version"],
+            scanner.REPORT_SCHEMA_VERSION,
+        )
+        self.assertTrue(report["nearby_strong_levels_complete"])
+        scanner.validate_report(report)
 
     def test_outputs_are_valid(self):
         report = scanner.error_report(RuntimeError("test"))
