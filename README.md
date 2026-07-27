@@ -37,6 +37,13 @@ L’automazione ChatGPT, ogni 4 ore, aggiorna `trigger/scan_request.txt`. Questo
 la completezza dei confronti tra rapporti. I livelli restano distinti dai setup
 qualificati: un livello trovato non costituisce automaticamente un ingresso.
 
+Il rapporto usa `report_schema_version=3`. Ogni livello Strong vicino e ogni
+setup qualificato include `asset_identity`, ricavata esclusivamente dai metadati
+ufficiali del contratto MEXC (`contract_symbol`, ID e campi base coin/display
+quando disponibili). Le integrazioni esterne non devono identificare un asset dal
+ticker soltanto: se i metadati non permettono un abbinamento univoco, il dato va
+marcato come non verificabile.
+
 Prima di pubblicare, lo scanner valida schema, conteggi, classificazione/lato,
 distanza/prossimità e rispetto dell'ultima candela 1H. Un rapporto incoerente non
 sovrascrive l'ultimo rapporto valido. Un errore dei dati pubblici produce sempre
