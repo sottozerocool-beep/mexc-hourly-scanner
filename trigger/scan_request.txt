@@ -1,3 +1,3 @@
-requested_at_utc=2026-07-27T15:06:38.602Z
-request_id=repair-baseline-1785164798602-mzjxbjmcbl
-purpose=establish-schema-v3-comparison-baseline
+requested_at_utc=2026-07-27T17:00:56.410Z
+request_id=mexc-1785171656410-k4fmsge05j
+purpose=scheduled-fresh-mexc-strong-level-scan
