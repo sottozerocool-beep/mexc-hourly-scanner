@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - "scanner.py"
-      - "test_scanner.py"
+      - "test_*.py"
       - ".github/workflows/hourly_scan.yml"
       - "trigger/scan_request.txt"
 
