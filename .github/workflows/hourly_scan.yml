@@ -42,6 +42,24 @@ jobs:
         run: |
           python -m json.tool output/latest_report.json >/dev/null
           python -m json.tool output/status.json >/dev/null
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          import scanner
+
+          report = json.loads(Path("output/latest_report.json").read_text(encoding="utf-8"))
+          status = json.loads(Path("output/status.json").read_text(encoding="utf-8"))
+          scanner.validate_report(report)
+
+          expected_nearby = report["strong_level_counts"]["nearby"]
+          if status["nearby_strong_level_count"] != expected_nearby:
+              raise SystemExit("status/latest nearby count mismatch")
+          if status["scan_timestamp_utc"] != report["scan_timestamp_utc"]:
+              raise SystemExit("status/latest timestamp mismatch")
+          if status["decision"] != report["decision"]:
+              raise SystemExit("status/latest decision mismatch")
+          PY
 
       - name: Publish latest report
         run: |
