@@ -41,6 +41,7 @@ MAX_TICKER_AGE_SECONDS = 15 * 60
 MIN_QUALIFIED_SCORE = 80
 MIN_WATCHLIST_SCORE = 72
 MAX_REPORTED = 5
+REPORT_SCHEMA_VERSION = 2
 MIN_REWARD_RISK = 2.0
 SMC_SWING_LENGTH = 50
 MAX_NEAR_STRONG_LEVEL_ATR = 1.50
@@ -1586,6 +1587,8 @@ def scan_market() -> dict[str, Any]:
         [item for item in strong_level_records if item["classification"] == "STRONG_HIGH"],
         key=lambda item: (item["distance_atr"], -(item.get("turnover_24h") or 0.0)),
     )
+    # Keep the complete nearby set in JSON. Presentation layers may show only
+    # MAX_REPORTED items, but comparisons must never run on a truncated array.
     nearby_strong_levels = sorted(
         [
             item for item in strong_level_records
@@ -1598,7 +1601,7 @@ def scan_market() -> dict[str, Any]:
             item["distance_atr"],
             -(item.get("turnover_24h") or 0.0),
         ),
-    )[:MAX_REPORTED]
+    )
 
     if btc["regime"] == "BULLISH":
         sides = ["LONG"]
@@ -1649,6 +1652,7 @@ def scan_market() -> dict[str, Any]:
     btc_public = {key: value for key, value in btc.items() if key not in ("indicators", "candles")}
     report = {
         "scan_ok": True,
+        "report_schema_version": REPORT_SCHEMA_VERSION,
         "scan_timestamp_utc": utc_iso(completed),
         "scan_started_utc": utc_iso(started),
         "scan_duration_seconds": round((completed - started).total_seconds(), 3),
@@ -1672,15 +1676,11 @@ def scan_market() -> dict[str, Any]:
         "strong_level_counts": {
             "strong_lows": len(strong_lows),
             "strong_highs": len(strong_highs),
-            "nearby": sum(
-                1 for item in strong_level_records
-                if item["distance_atr"] <= MAX_NEAR_STRONG_LEVEL_ATR
-                and item["price_on_expected_side"]
-                and item["latest_closed_candle_respected_level"]
-            ),
+            "nearby": len(nearby_strong_levels),
         },
         "nearest_strong_lows": strong_lows[:MAX_REPORTED],
         "nearest_strong_highs": strong_highs[:MAX_REPORTED],
+        "nearby_strong_levels_complete": True,
         "nearby_strong_levels": nearby_strong_levels,
         "decision": decision,
         "final_statement": final_statement,
@@ -1690,12 +1690,134 @@ def scan_market() -> dict[str, Any]:
         "skipped_reasons": dict(skip_counts),
         "skipped_examples": skip_examples,
     }
+    validate_report(report)
     return report
+
+
+
+def validate_report(report: dict[str, Any]) -> None:
+    """Reject incomplete or internally inconsistent reports before publication."""
+
+    if not isinstance(report, dict):
+        raise ScanError("Report must be a JSON object")
+
+    required_arrays = (
+        "nearby_strong_levels",
+        "nearest_strong_lows",
+        "nearest_strong_highs",
+        "qualified_setups",
+    )
+    required_keys = (
+        "scan_ok",
+        "report_schema_version",
+        "scan_timestamp_utc",
+        "timeframe",
+        "closed_candles_only",
+        "strong_level_engine",
+        "strong_level_counts",
+        "nearby_strong_levels_complete",
+        *required_arrays,
+    )
+    missing = [key for key in required_keys if key not in report]
+    if missing:
+        raise ScanError("Report schema missing required keys: " + ", ".join(missing))
+
+    if report["report_schema_version"] != REPORT_SCHEMA_VERSION:
+        raise ScanError(
+            "Unsupported report schema version: "
+            f"{report['report_schema_version']!r}"
+        )
+    if report["timeframe"] != "1H" or report["closed_candles_only"] is not True:
+        raise ScanError("Report must use completed 1H candles only")
+    try:
+        datetime.strptime(report["scan_timestamp_utc"], "%Y-%m-%dT%H:%M:%SZ")
+    except (TypeError, ValueError) as exc:
+        raise ScanError("Invalid scan_timestamp_utc") from exc
+    if not isinstance(report["strong_level_engine"], dict):
+        raise ScanError("Report field strong_level_engine must be an object")
+    for key in required_arrays:
+        if not isinstance(report[key], list):
+            raise ScanError(f"Report field {key} must be a list")
+
+    if report["scan_ok"] is False:
+        return
+    if report["scan_ok"] is not True:
+        raise ScanError("Report field scan_ok must be boolean")
+    if report["nearby_strong_levels_complete"] is not True:
+        raise ScanError("nearby_strong_levels must be explicitly complete")
+
+    counts = report["strong_level_counts"]
+    if not isinstance(counts, dict):
+        raise ScanError("Report field strong_level_counts must be an object")
+    for key in ("strong_lows", "strong_highs", "nearby"):
+        value = counts.get(key)
+        if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+            raise ScanError(f"Invalid strong_level_counts.{key}: {value!r}")
+
+    if counts["strong_lows"] < len(report["nearest_strong_lows"]):
+        raise ScanError("Strong Low count is smaller than the nearest list")
+    if counts["strong_highs"] < len(report["nearest_strong_highs"]):
+        raise ScanError("Strong High count is smaller than the nearest list")
+    if len(report["nearest_strong_lows"]) > MAX_REPORTED:
+        raise ScanError("nearest_strong_lows exceeds the report limit")
+    if len(report["nearest_strong_highs"]) > MAX_REPORTED:
+        raise ScanError("nearest_strong_highs exceeds the report limit")
+    if len(report["qualified_setups"]) > MAX_REPORTED:
+        raise ScanError("qualified_setups exceeds the report limit")
+
+    nearby = report["nearby_strong_levels"]
+    if counts["nearby"] != len(nearby):
+        raise ScanError(
+            "Report nearby count mismatch: "
+            f"strong_level_counts.nearby={counts['nearby']} "
+            f"but nearby_strong_levels has {len(nearby)} records"
+        )
+
+    seen_symbols: set[str] = set()
+    for item in nearby:
+        if not isinstance(item, dict):
+            raise ScanError("Nearby Strong level records must be objects")
+        symbol = item.get("symbol")
+        if not isinstance(symbol, str) or not symbol:
+            raise ScanError("Nearby Strong levels require a non-empty symbol")
+        if symbol in seen_symbols:
+            raise ScanError(f"Duplicate nearby Strong level for {symbol}")
+        seen_symbols.add(symbol)
+
+        classification = item.get("classification")
+        if classification not in {"STRONG_LOW", "STRONG_HIGH"}:
+            raise ScanError(f"{symbol}: invalid Strong classification")
+        expected_side = "LONG" if classification == "STRONG_LOW" else "SHORT"
+        if item.get("side") != expected_side:
+            raise ScanError(f"{symbol}: side/classification mismatch")
+
+        distance_atr = finite_float(item.get("distance_atr"))
+        if (
+            distance_atr is None
+            or distance_atr < 0
+            or distance_atr > MAX_NEAR_STRONG_LEVEL_ATR
+        ):
+            raise ScanError(f"{symbol}: nearby level exceeds the ATR threshold")
+        expected_proximity = "AT_LEVEL" if distance_atr <= 0.25 else "NEAR"
+        if item.get("proximity") != expected_proximity:
+            raise ScanError(f"{symbol}: proximity/distance mismatch")
+        if item.get("price_on_expected_side") is not True:
+            raise ScanError(f"{symbol}: price is not on the expected side")
+        if item.get("latest_closed_candle_respected_level") is not True:
+            raise ScanError(f"{symbol}: latest closed 1H candle broke the level")
+
+    qualified = report["qualified_setups"]
+    decision = report.get("decision")
+    if qualified and decision not in {"QUALIFIED_LONG", "QUALIFIED_SHORT"}:
+        raise ScanError("Qualified setups require a qualified decision")
+    if not qualified and decision != "NO_TRADE":
+        raise ScanError("An empty qualified_setups array requires NO_TRADE")
 
 
 def error_report(exc: Exception) -> dict[str, Any]:
     return {
         "scan_ok": False,
+        "report_schema_version": REPORT_SCHEMA_VERSION,
         "scan_timestamp_utc": utc_iso(),
         "timeframe": "1H",
         "closed_candles_only": True,
@@ -1727,6 +1849,7 @@ def error_report(exc: Exception) -> dict[str, Any]:
         "strong_level_counts": None,
         "nearest_strong_lows": [],
         "nearest_strong_highs": [],
+        "nearby_strong_levels_complete": True,
         "nearby_strong_levels": [],
         "skipped_reasons": {"MEXC_PUBLIC_DATA_UNAVAILABLE": str(exc)},
         "skipped_examples": {},
@@ -1899,6 +2022,7 @@ def report_markdown(report: dict[str, Any]) -> str:
 
 
 def save_outputs(report: dict[str, Any]) -> None:
+    validate_report(report)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     latest_json = OUTPUT_DIR / "latest_report.json"
     if latest_json.exists():
