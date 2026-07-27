@@ -1,55 +1,50 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-07-27T15:10:45Z
+**Scan timestamp:** 2026-07-27T17:02:13Z
 **Primary timeframe:** 1H
 **Contracts retrieved:** 784
-**Contracts eligible:** 329
-**Contracts analyzed:** 173
-**Contracts skipped:** 611
+**Contracts eligible:** 337
+**Contracts analyzed:** 329
+**Contracts skipped:** 455
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 64,577.10
-**BTC regime:** NEUTRAL
-**BTC Regime Score:** 20
-**EMA 20 / EMA 50 / EMA 200:** 65,043.44 / 64,846.87 / 64,776.44
-**ADX / +DI / -DI:** 30.47908 / 26.71192 / 25.62476
-**6H return:** -0.73%
-**24H return:** -0.04%
-**ATR volatility:** 0.5039640955% | veto=True
-**Permitted direction:** NONE
-
-NO QUALIFYING DIRECTIONAL SETUP — BTC REGIME IS NEUTRAL.
-
-Veto di volatilità BTC attivo: latest_completed_candle_range_above_2_5_atr, two_normalized_recovery_candles_not_completed
+**BTC_USDT price:** 64,920.50
+**BTC regime:** BULLISH
+**BTC Regime Score:** 90
+**EMA 20 / EMA 50 / EMA 200:** 64,981.67 / 64,835.39 / 64,774.65
+**ADX / +DI / -DI:** 26.88743 / 26.19336 / 22.12784
+**6H return:** -0.68%
+**24H return:** 0.26%
+**ATR volatility:** 0.5219245337% | veto=False
+**Permitted direction:** LONG
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 104 | Strong High rilevati: 68 | Entro 1.50 ATR: 12
+Strong Low rilevati: 142 | Strong High rilevati: 186 | Entro 1.50 ATR: 11
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| MEGA_USDT | STRONG_LOW | 0.04089 | 0.04098 | 0.22% | 0.15 | NEUTRAL | Chiusura 1H sotto 0.04089 |
-| MAGMA_USDT | STRONG_LOW | 0.2934 | 0.2955 | 0.71% | 0.36 | NEUTRAL | Chiusura 1H sotto 0.2934 |
-| XMR_USDT | STRONG_LOW | 345 | 346.57 | 0.45% | 0.54 | NEUTRAL | Chiusura 1H sotto 345 |
-| POL_USDT | STRONG_LOW | 0.07592 | 0.07621 | 0.38% | 0.70 | NEUTRAL | Chiusura 1H sotto 0.07592 |
-| US_USDT | STRONG_LOW | 0.042875 | 0.044429 | 3.50% | 0.76 | NEUTRAL | Chiusura 1H sotto 0.042875 |
-| LPT_USDT | STRONG_LOW | 1.398 | 1.42 | 1.55% | 0.92 | NEUTRAL | Chiusura 1H sotto 1.398 |
-| ASTER_USDT | STRONG_LOW | 0.6206 | 0.6232 | 0.42% | 1.05 | NEUTRAL | Chiusura 1H sotto 0.6206 |
-| JCT_USDT | STRONG_LOW | 0.004085 | 0.004171 | 2.06% | 1.07 | NEUTRAL | Chiusura 1H sotto 0.004085 |
-| RSR_USDT | STRONG_HIGH | 0.001312 | 0.00129 | 1.71% | 1.22 | NEUTRAL | Chiusura 1H sopra 0.001312 |
-| HEMI_USDT | STRONG_LOW | 0.004514 | 0.004613 | 2.15% | 1.23 | NEUTRAL | Chiusura 1H sotto 0.004514 |
-| AIGENSYN_USDT | STRONG_LOW | 0.02337 | 0.02386 | 2.05% | 1.32 | NEUTRAL | Chiusura 1H sotto 0.02337 |
-| ZKP_USDT | STRONG_LOW | 0.04451 | 0.04569 | 2.58% | 1.40 | NEUTRAL | Chiusura 1H sotto 0.04451 |
+| MEGA_USDT | STRONG_LOW | 0.04058 | 0.04101 | 1.05% | 0.72 | PREFERRED | Chiusura 1H sotto 0.04058 |
+| SUN_USDT | STRONG_LOW | 0.017901 | 0.017958 | 0.32% | 0.97 | PREFERRED | Chiusura 1H sotto 0.017901 |
+| PENGU_USDT | STRONG_LOW | 0.005939 | 0.006029 | 1.49% | 0.99 | PREFERRED | Chiusura 1H sotto 0.005939 |
+| US_USDT | STRONG_LOW | 0.042875 | 0.044883 | 4.47% | 1.00 | PREFERRED | Chiusura 1H sotto 0.042875 |
+| AVNT_USDT | STRONG_LOW | 0.0877 | 0.0887 | 1.13% | 1.06 | PREFERRED | Chiusura 1H sotto 0.0877 |
+| AIN_USDT | STRONG_LOW | 0.08016 | 0.08175 | 1.94% | 1.14 | PREFERRED | Chiusura 1H sotto 0.08016 |
+| LIGHT_USDT | STRONG_LOW | 0.1252 | 0.1309 | 4.35% | 1.19 | PREFERRED | Chiusura 1H sotto 0.1252 |
+| LPT_USDT | STRONG_LOW | 1.398 | 1.428 | 2.10% | 1.31 | PREFERRED | Chiusura 1H sotto 1.398 |
+| JCT_USDT | STRONG_LOW | 0.004085 | 0.004191 | 2.53% | 1.36 | PREFERRED | Chiusura 1H sotto 0.004085 |
+| XRP_USDT | STRONG_LOW | 1.084 | 1.0935 | 0.87% | 1.40 | PREFERRED | Chiusura 1H sotto 1.084 |
+| COTI_USDT | STRONG_HIGH | 0.007905 | 0.007744 | 2.08% | 1.43 | COUNTER_BIAS | Chiusura 1H sopra 0.007905 |
 
 **Strong Low più vicini:**
-XDC_USDT 0.02748 (0.07%, 0.14 ATR, NEUTRAL); MEGA_USDT 0.04089 (0.22%, 0.15 ATR, NEUTRAL); MAGMA_USDT 0.2934 (0.71%, 0.36 ATR, NEUTRAL); XMR_USDT 345 (0.45%, 0.54 ATR, NEUTRAL); POL_USDT 0.07592 (0.38%, 0.70 ATR, NEUTRAL)
+MEGA_USDT 0.04058 (1.05%, 0.72 ATR, PREFERRED); SUN_USDT 0.017901 (0.32%, 0.97 ATR, PREFERRED); PENGU_USDT 0.005939 (1.49%, 0.99 ATR, PREFERRED); US_USDT 0.042875 (4.47%, 1.00 ATR, PREFERRED); AVNT_USDT 0.0877 (1.13%, 1.06 ATR, PREFERRED)
 
 **Strong High più vicini:**
-RSR_USDT 0.001312 (1.71%, 1.22 ATR, NEUTRAL); SXT_USDT 0.007371 (4.15%, 2.17 ATR, NEUTRAL); CLANKER_USDT 14.36 (5.36%, 3.29 ATR, NEUTRAL); EVAA_USDT 0.9776 (11.47%, 4.25 ATR, NEUTRAL); SKY_USDT 0.05931 (4.36%, 4.26 ATR, NEUTRAL)
+COTI_USDT 0.007905 (2.08%, 1.43 ATR, COUNTER_BIAS); FORM_USDT 0.2 (2.62%, 2.05 ATR, COUNTER_BIAS); RSR_USDT 0.001312 (3.39%, 2.20 ATR, COUNTER_BIAS); SXT_USDT 0.007371 (4.78%, 2.35 ATR, COUNTER_BIAS); 0G_USDT 0.1814 (3.19%, 2.40 ATR, COUNTER_BIAS)
 
 ## Best Available Opportunity
 
@@ -61,7 +56,7 @@ Nessun setup qualificato.
 
 ## Watchlist
 
-Nessun candidato utile in watchlist.
+- **US_USDT LONG — 72/100:** manca `closed_candle_confirmation`. Trigger richiesto: test della zona seguito da engulfing/rejection/reclaim o rottura strutturale su candela 1H chiusa; poi nuova verifica completa.. Score: {'A_btc_alignment': 20, 'B_candidate_structure': 10, 'C_zone_quality': 19, 'D_closed_candle_confirmation': 3, 'E_momentum_divergence': 7, 'F_volume_open_interest': 4, 'G_relative_performance': 6, 'H_execution_quality': 3}
 
 ## Final Decision
 
