@@ -41,7 +41,7 @@ MAX_TICKER_AGE_SECONDS = 15 * 60
 MIN_QUALIFIED_SCORE = 80
 MIN_WATCHLIST_SCORE = 72
 MAX_REPORTED = 5
-REPORT_SCHEMA_VERSION = 2
+REPORT_SCHEMA_VERSION = 3
 MIN_REWARD_RISK = 2.0
 SMC_SWING_LENGTH = 50
 MAX_NEAR_STRONG_LEVEL_ATR = 1.50
@@ -419,9 +419,24 @@ def luxalgo_strong_weak_levels(
     }
 
 
+def contract_asset_identity(contract: dict[str, Any]) -> dict[str, Any]:
+    """Preserve official MEXC identifiers; never infer an asset from its ticker."""
+
+    return {
+        "source": "Official MEXC Futures contract metadata",
+        "contract_symbol": contract.get("symbol"),
+        "contract_id": contract.get("id"),
+        "base_coin": contract.get("baseCoin"),
+        "base_coin_name": contract.get("baseCoinName"),
+        "base_coin_id": contract.get("baseCoinId"),
+        "display_name_en": contract.get("displayNameEn"),
+    }
+
+
 def strong_level_record(
     symbol: str,
     candles: dict[str, Any],
+    contract: dict[str, Any],
     ticker: dict[str, Any],
     btc: dict[str, Any],
 ) -> dict[str, Any] | None:
@@ -482,6 +497,7 @@ def strong_level_record(
 
     return {
         "symbol": symbol,
+        "asset_identity": contract_asset_identity(contract),
         "side": side,
         "classification": classification,
         "strong_level": level,
@@ -1318,6 +1334,7 @@ def evaluate_setup(
     )
     return {
         "symbol": symbol,
+        "asset_identity": contract_asset_identity(contract),
         "side": side,
         "classification": "STRONG_LOW" if bullish else "STRONG_HIGH",
         "strong_level": smc_level,
@@ -1573,7 +1590,13 @@ def scan_market() -> dict[str, Any]:
         if symbol == "BTC_USDT":
             continue
         try:
-            record = strong_level_record(symbol, candles, eligible[symbol][1], btc)
+            record = strong_level_record(
+                symbol,
+                candles,
+                eligible[symbol][0],
+                eligible[symbol][1],
+                btc,
+            )
             if record:
                 strong_level_records.append(record)
         except Exception:
@@ -1784,6 +1807,14 @@ def validate_report(report: dict[str, Any]) -> None:
             raise ScanError(f"Duplicate nearby Strong level for {symbol}")
         seen_symbols.add(symbol)
 
+        identity = item.get("asset_identity")
+        if not isinstance(identity, dict):
+            raise ScanError(f"{symbol}: missing official MEXC asset identity")
+        if identity.get("source") != "Official MEXC Futures contract metadata":
+            raise ScanError(f"{symbol}: invalid asset identity source")
+        if identity.get("contract_symbol") != symbol:
+            raise ScanError(f"{symbol}: asset identity/contract symbol mismatch")
+
         classification = item.get("classification")
         if classification not in {"STRONG_LOW", "STRONG_HIGH"}:
             raise ScanError(f"{symbol}: invalid Strong classification")
@@ -1807,6 +1838,20 @@ def validate_report(report: dict[str, Any]) -> None:
             raise ScanError(f"{symbol}: latest closed 1H candle broke the level")
 
     qualified = report["qualified_setups"]
+    for setup in qualified:
+        if not isinstance(setup, dict):
+            raise ScanError("Qualified setup records must be objects")
+        symbol = setup.get("symbol")
+        identity = setup.get("asset_identity")
+        if not isinstance(symbol, str) or not symbol:
+            raise ScanError("Qualified setups require a non-empty symbol")
+        if not isinstance(identity, dict):
+            raise ScanError(f"{symbol}: missing official MEXC asset identity")
+        if identity.get("source") != "Official MEXC Futures contract metadata":
+            raise ScanError(f"{symbol}: invalid asset identity source")
+        if identity.get("contract_symbol") != symbol:
+            raise ScanError(f"{symbol}: asset identity/contract symbol mismatch")
+
     decision = report.get("decision")
     if qualified and decision not in {"QUALIFIED_LONG", "QUALIFIED_SHORT"}:
         raise ScanError("Qualified setups require a qualified decision")
