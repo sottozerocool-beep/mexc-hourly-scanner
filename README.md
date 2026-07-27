@@ -29,11 +29,19 @@ L’automazione ChatGPT, ogni 4 ore, aggiorna `trigger/scan_request.txt`. Questo
 - `output/status.json`: stato compatto per le automazioni.
 - `output/previous_report.json`: scansione precedente, quando disponibile.
 
-`nearby_strong_levels` contiene esclusivamente livelli Strong entro 1,50 ATR;
-`nearest_strong_lows` e `nearest_strong_highs` restano distinti dai setup
-qualificati. Un livello trovato non costituisce automaticamente un ingresso.
+`nearby_strong_levels` contiene l'insieme completo dei livelli Strong entro
+1,50 ATR; non viene troncato. Il limite di cinque si applica soltanto alle liste
+`nearest_strong_lows`, `nearest_strong_highs` e alla presentazione utente.
+`nearby_strong_levels_complete=true` e
+`strong_level_counts.nearby == len(nearby_strong_levels)` rendono verificabile
+la completezza dei confronti tra rapporti. I livelli restano distinti dai setup
+qualificati: un livello trovato non costituisce automaticamente un ingresso.
 
-Un errore dei dati pubblici produce sempre `NO_TRADE` con valori di mercato mancanti impostati a `null`: lo scanner non inventa dati.
+Prima di pubblicare, lo scanner valida schema, conteggi, classificazione/lato,
+distanza/prossimità e rispetto dell'ultima candela 1H. Un rapporto incoerente non
+sovrascrive l'ultimo rapporto valido. Un errore dei dati pubblici produce sempre
+`NO_TRADE` con valori di mercato mancanti impostati a `null`: lo scanner non
+inventa dati.
 
 ## Sicurezza
 
