@@ -64,11 +64,26 @@ class LuxAlgoStrongWeakTests(unittest.TestCase):
             "fundingRate": 0.0001,
         }
 
-        record = strong_level_record("TEST_USDT", data, ticker, {"regime": "BULLISH"})
+        contract = {
+            "symbol": "TEST_USDT",
+            "id": 99,
+            "baseCoin": "TEST",
+            "baseCoinName": "Test Asset",
+            "baseCoinId": "test-asset",
+            "displayNameEn": "Test Asset Perpetual",
+        }
+        record = strong_level_record(
+            "TEST_USDT",
+            data,
+            contract,
+            ticker,
+            {"regime": "BULLISH"},
+        )
 
         self.assertIsNotNone(record)
         self.assertEqual(record["classification"], "STRONG_HIGH")
         self.assertEqual(record["btc_preference"], "COUNTER_BIAS")
+        self.assertEqual(record["asset_identity"]["contract_symbol"], "TEST_USDT")
 
 
 if __name__ == "__main__":
