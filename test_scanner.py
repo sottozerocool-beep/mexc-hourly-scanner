@@ -39,8 +39,14 @@ def synthetic_kline(symbol: str, count: int = 760, bearish: bool = False):
 
 
 def contract(symbol: str):
+    base_coin = symbol.split("_", 1)[0]
     return {
         "symbol": symbol,
+        "id": 42,
+        "displayNameEn": f"{symbol} PERPETUAL",
+        "baseCoin": base_coin,
+        "baseCoinName": f"{base_coin} Asset",
+        "baseCoinId": f"mexc-{base_coin.lower()}",
         "quoteCoin": "USDT",
         "settleCoin": "USDT",
         "futureType": 1,
@@ -89,6 +95,16 @@ class ScannerTests(unittest.TestCase):
         self.assertEqual(context["regime"], "BULLISH")
         self.assertGreaterEqual(context["regime_score"], 55)
 
+    def test_contract_asset_identity_preserves_official_fields(self):
+        identity = scanner.contract_asset_identity(contract("ETH_USDT"))
+        self.assertEqual(identity["source"], "Official MEXC Futures contract metadata")
+        self.assertEqual(identity["contract_symbol"], "ETH_USDT")
+        self.assertEqual(identity["contract_id"], 42)
+        self.assertEqual(identity["base_coin"], "ETH")
+        self.assertEqual(identity["base_coin_name"], "ETH Asset")
+        self.assertEqual(identity["base_coin_id"], "mexc-eth")
+        self.assertEqual(identity["display_name_en"], "ETH_USDT PERPETUAL")
+
     def test_full_scan_with_mocked_public_api(self):
         btc_payload = synthetic_kline("BTC_USDT")
         eth_payload = synthetic_kline("ETH_USDT")
@@ -126,8 +142,13 @@ class ScannerTests(unittest.TestCase):
         report = scanner.error_report(RuntimeError("fixture"))
         nearby = []
         for index in range(scanner.MAX_REPORTED + 1):
+            symbol = f"ASSET{index}_USDT"
             nearby.append({
-                "symbol": f"ASSET{index}_USDT",
+                "symbol": symbol,
+                "asset_identity": {
+                    "source": "Official MEXC Futures contract metadata",
+                    "contract_symbol": symbol,
+                },
                 "side": "LONG",
                 "classification": "STRONG_LOW",
                 "distance_atr": 0.5 + index * 0.1,
