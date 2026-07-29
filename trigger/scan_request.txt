@@ -1,3 +1,3 @@
-requested_at_utc=2026-07-28T22:59:25.396Z
-request_id=mexc-1785279579982-7h745q0whd
+requested_at_utc=2026-07-29T01:57:54.960Z
+request_id=mexc-1785290281650-3e7jxmkx30
 purpose=scheduled-fresh-mexc-strong-level-scan
