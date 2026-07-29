@@ -1,50 +1,52 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-07-29T14:00:26Z
+**Scan timestamp:** 2026-07-29T17:02:17Z
 **Primary timeframe:** 1H
-**Contracts retrieved:** 783
-**Contracts eligible:** 326
-**Contracts analyzed:** 324
-**Contracts skipped:** 459
+**Contracts retrieved:** 785
+**Contracts eligible:** 337
+**Contracts analyzed:** 328
+**Contracts skipped:** 457
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 64,599.20
+**BTC_USDT price:** 63,805.00
 **BTC regime:** NEUTRAL
-**BTC Regime Score:** 5
-**EMA 20 / EMA 50 / EMA 200:** 64,139.09 / 64,120.79 / 64,468.24
-**ADX / +DI / -DI:** 16.60557 / 21.77666 / 21.00592
-**6H return:** -0.25%
-**24H return:** 1.14%
-**ATR volatility:** 0.4865989047% | veto=False
+**BTC Regime Score:** -15
+**EMA 20 / EMA 50 / EMA 200:** 64,118.76 / 64,117.29 / 64,454.09
+**ADX / +DI / -DI:** 14.69331 / 16.52699 / 23.17647
+**6H return:** -1.02%
+**24H return:** -0.36%
+**ATR volatility:** 0.566660361% | veto=False
 **Permitted direction:** NONE
 
 NO QUALIFYING DIRECTIONAL SETUP — BTC REGIME IS NEUTRAL.
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 84 | Strong High rilevati: 239 | Entro 1.50 ATR: 9
+Strong Low rilevati: 90 | Strong High rilevati: 237 | Entro 1.50 ATR: 11
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| HOLO_USDT | STRONG_HIGH | 0.07469 | 0.07407 | 0.84% | 0.48 | NEUTRAL | Chiusura 1H sopra 0.07469 |
-| IOST_USDT | STRONG_LOW | 0.0005922 | 0.0005969 | 0.79% | 0.60 | NEUTRAL | Chiusura 1H sotto 0.0005922 |
-| XPT_USDT | STRONG_LOW | 1,583.50 | 1,591.10 | 0.48% | 0.85 | NEUTRAL | Chiusura 1H sotto 1583.5 |
-| XPD_USDT | STRONG_LOW | 1,244.92 | 1,253.61 | 0.69% | 1.15 | NEUTRAL | Chiusura 1H sotto 1244.92 |
-| AGT_USDT | STRONG_LOW | 0.013667 | 0.014078 | 2.92% | 1.24 | NEUTRAL | Chiusura 1H sotto 0.013667 |
-| MAVIA_USDT | STRONG_LOW | 0.0244 | 0.02486 | 1.85% | 1.25 | NEUTRAL | Chiusura 1H sotto 0.0244 |
-| NIL_USDT | STRONG_LOW | 0.03327 | 0.03434 | 3.12% | 1.34 | NEUTRAL | Chiusura 1H sotto 0.03327 |
-| KAS_USDT | STRONG_LOW | 0.02743 | 0.0277 | 0.97% | 1.48 | NEUTRAL | Chiusura 1H sotto 0.02743 |
-| APE_USDT | STRONG_LOW | 0.1416 | 0.1448 | 2.21% | 1.48 | NEUTRAL | Chiusura 1H sotto 0.1416 |
+| UMA_USDT | STRONG_LOW | 0.3297 | 0.3299 | 0.06% | 0.05 | NEUTRAL | Chiusura 1H sotto 0.3297 |
+| APE_USDT | STRONG_LOW | 0.1415 | 0.1423 | 0.56% | 0.39 | NEUTRAL | Chiusura 1H sotto 0.1415 |
+| IOST_USDT | STRONG_LOW | 0.000592 | 0.0005966 | 0.77% | 0.62 | NEUTRAL | Chiusura 1H sotto 0.000592 |
+| KAS_USDT | STRONG_LOW | 0.02743 | 0.02757 | 0.51% | 0.75 | NEUTRAL | Chiusura 1H sotto 0.02743 |
+| MAVIA_USDT | STRONG_LOW | 0.02406 | 0.02435 | 1.19% | 0.79 | NEUTRAL | Chiusura 1H sotto 0.02406 |
+| PLAY_USDT | STRONG_LOW | 0.03607 | 0.03646 | 1.07% | 0.97 | NEUTRAL | Chiusura 1H sotto 0.03607 |
+| IOTX_USDT | STRONG_LOW | 0.002052 | 0.002089 | 1.77% | 1.04 | NEUTRAL | Chiusura 1H sotto 0.002052 |
+| ENA_USDT | STRONG_LOW | 0.0783 | 0.07937 | 1.35% | 1.08 | NEUTRAL | Chiusura 1H sotto 0.0783 |
+| NIL_USDT | STRONG_LOW | 0.03327 | 0.0343 | 3.00% | 1.23 | NEUTRAL | Chiusura 1H sotto 0.03327 |
+| GIGGLE_USDT | STRONG_LOW | 25.02 | 25.37 | 1.38% | 1.37 | NEUTRAL | Chiusura 1H sotto 25.02 |
+| ALCH_USDT | STRONG_LOW | 0.02611 | 0.02658 | 1.77% | 1.42 | NEUTRAL | Chiusura 1H sotto 0.02611 |
 
 **Strong Low più vicini:**
-IOST_USDT 0.0005922 (0.79%, 0.60 ATR, NEUTRAL); XPT_USDT 1,583.50 (0.48%, 0.85 ATR, NEUTRAL); XPD_USDT 1,244.92 (0.69%, 1.15 ATR, NEUTRAL); AGT_USDT 0.013667 (2.92%, 1.24 ATR, NEUTRAL); MAVIA_USDT 0.0244 (1.85%, 1.25 ATR, NEUTRAL)
+UMA_USDT 0.3297 (0.06%, 0.05 ATR, NEUTRAL); APE_USDT 0.1415 (0.56%, 0.39 ATR, NEUTRAL); IOST_USDT 0.000592 (0.77%, 0.62 ATR, NEUTRAL); KAS_USDT 0.02743 (0.51%, 0.75 ATR, NEUTRAL); MAVIA_USDT 0.02406 (1.19%, 0.79 ATR, NEUTRAL)
 
 **Strong High più vicini:**
-HOLO_USDT 0.07469 (0.84%, 0.48 ATR, NEUTRAL); UAI_USDT 0.3952 (1.40%, 0.51 ATR, NEUTRAL); ADA_USDT 0.1671 (1.52%, 1.54 ATR, NEUTRAL); SKY_USDT 0.05931 (1.78%, 1.83 ATR, NEUTRAL); AGLD_USDT 0.1595 (3.77%, 2.29 ATR, NEUTRAL)
+TAKE_USDT 0.02369 (4.09%, 2.14 ATR, NEUTRAL); ADA_USDT 0.1671 (2.20%, 2.17 ATR, NEUTRAL); MANA_USDT 0.06985 (2.71%, 2.27 ATR, NEUTRAL); JCT_USDT 0.004453 (7.25%, 2.94 ATR, NEUTRAL); SKY_USDT 0.05931 (3.38%, 3.12 ATR, NEUTRAL)
 
 ## Best Available Opportunity
 
