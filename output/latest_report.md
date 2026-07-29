@@ -1,48 +1,49 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-07-29T05:00:27Z
+**Scan timestamp:** 2026-07-29T08:00:16Z
 **Primary timeframe:** 1H
-**Contracts retrieved:** 782
-**Contracts eligible:** 329
-**Contracts analyzed:** 318
-**Contracts skipped:** 464
+**Contracts retrieved:** 783
+**Contracts eligible:** 332
+**Contracts analyzed:** 330
+**Contracts skipped:** 453
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 63,938.40
-**BTC regime:** BEARISH
-**BTC Regime Score:** -70
-**EMA 20 / EMA 50 / EMA 200:** 63,793.81 / 64,016.46 / 64,479.20
-**ADX / +DI / -DI:** 22.2317 / 18.68295 / 23.38809
-**6H return:** -0.35%
-**24H return:** 0.66%
-**ATR volatility:** 0.5305674036% | veto=False
-**Permitted direction:** SHORT
+**BTC_USDT price:** 64,523.00
+**BTC regime:** NEUTRAL
+**BTC Regime Score:** -30
+**EMA 20 / EMA 50 / EMA 200:** 63,885.60 / 64,030.24 / 64,469.19
+**ADX / +DI / -DI:** 20.09121 / 25.1495 / 20.72887
+**6H return:** 0.75%
+**24H return:** 1.26%
+**ATR volatility:** 0.5262514933% | veto=False
+**Permitted direction:** NONE
+
+NO QUALIFYING DIRECTIONAL SETUP — BTC REGIME IS NEUTRAL.
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 85 | Strong High rilevati: 232 | Entro 1.50 ATR: 9
+Strong Low rilevati: 90 | Strong High rilevati: 239 | Entro 1.50 ATR: 8
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| FLOW_USDT | STRONG_HIGH | 0.02673 | 0.02657 | 0.60% | 0.35 | PREFERRED | Chiusura 1H sopra 0.02673 |
-| IOST_USDT | STRONG_LOW | 0.0006043 | 0.0006048 | 0.08% | 0.05 | COUNTER_BIAS | Chiusura 1H sotto 0.0006043 |
-| ZRO_USDT | STRONG_LOW | 0.7853 | 0.7909 | 0.71% | 0.34 | COUNTER_BIAS | Chiusura 1H sotto 0.7853 |
-| NIL_USDT | STRONG_LOW | 0.03352 | 0.03393 | 1.21% | 0.43 | COUNTER_BIAS | Chiusura 1H sotto 0.03352 |
-| MAVIA_USDT | STRONG_LOW | 0.0244 | 0.02473 | 1.33% | 0.67 | COUNTER_BIAS | Chiusura 1H sotto 0.0244 |
-| IOTX_USDT | STRONG_LOW | 0.002063 | 0.002102 | 1.86% | 0.99 | COUNTER_BIAS | Chiusura 1H sotto 0.002063 |
-| XPT_USDT | STRONG_LOW | 1,589.27 | 1,600.33 | 0.69% | 1.27 | COUNTER_BIAS | Chiusura 1H sotto 1589.27 |
-| BANK_USDT | STRONG_LOW | 0.11843 | 0.17169 | 31.02% | 1.42 | COUNTER_BIAS | Chiusura 1H sotto 0.11843 |
-| KAS_USDT | STRONG_LOW | 0.02743 | 0.02773 | 1.08% | 1.49 | COUNTER_BIAS | Chiusura 1H sotto 0.02743 |
+| ZRO_USDT | STRONG_LOW | 0.7853 | 0.7921 | 0.86% | 0.45 | NEUTRAL | Chiusura 1H sotto 0.7853 |
+| TLM_USDT | STRONG_LOW | 0.001609 | 0.001624 | 0.92% | 0.46 | NEUTRAL | Chiusura 1H sotto 0.001609 |
+| UMA_USDT | STRONG_LOW | 0.3457 | 0.3497 | 1.14% | 0.82 | NEUTRAL | Chiusura 1H sotto 0.3457 |
+| IOST_USDT | STRONG_LOW | 0.0005997 | 0.0006071 | 1.22% | 0.82 | NEUTRAL | Chiusura 1H sotto 0.0005997 |
+| MAVIA_USDT | STRONG_LOW | 0.0244 | 0.02478 | 1.53% | 0.84 | NEUTRAL | Chiusura 1H sotto 0.0244 |
+| NIL_USDT | STRONG_LOW | 0.03327 | 0.03419 | 2.69% | 0.98 | NEUTRAL | Chiusura 1H sotto 0.03327 |
+| SKY_USDT | STRONG_HIGH | 0.05931 | 0.05841 | 1.54% | 1.43 | NEUTRAL | Chiusura 1H sopra 0.05931 |
+| APE_USDT | STRONG_LOW | 0.1416 | 0.145 | 2.34% | 1.49 | NEUTRAL | Chiusura 1H sotto 0.1416 |
 
 **Strong Low più vicini:**
-UMA_USDT 0.3492 (0.03%, 0.02 ATR, COUNTER_BIAS); IOST_USDT 0.0006043 (0.08%, 0.05 ATR, COUNTER_BIAS); ZRO_USDT 0.7853 (0.71%, 0.34 ATR, COUNTER_BIAS); NIL_USDT 0.03352 (1.21%, 0.43 ATR, COUNTER_BIAS); MAVIA_USDT 0.0244 (1.33%, 0.67 ATR, COUNTER_BIAS)
+ZRO_USDT 0.7853 (0.86%, 0.45 ATR, NEUTRAL); TLM_USDT 0.001609 (0.92%, 0.46 ATR, NEUTRAL); UMA_USDT 0.3457 (1.14%, 0.82 ATR, NEUTRAL); IOST_USDT 0.0005997 (1.22%, 0.82 ATR, NEUTRAL); MAVIA_USDT 0.0244 (1.53%, 0.84 ATR, NEUTRAL)
 
 **Strong High più vicini:**
-FLOW_USDT 0.02673 (0.60%, 0.35 ATR, PREFERRED); B2_USDT 0.4551 (0.72%, 0.54 ATR, PREFERRED); HOLO_USDT 0.07469 (4.00%, 2.19 ATR, PREFERRED); LIT_USDT 2.4184 (4.10%, 2.22 ATR, PREFERRED); PROM_USDT 2.175 (6.41%, 2.30 ATR, PREFERRED)
+SKY_USDT 0.05931 (1.54%, 1.43 ATR, NEUTRAL); BNB_USDT 577.6 (0.94%, 2.01 ATR, NEUTRAL); HOLO_USDT 0.07469 (4.68%, 2.54 ATR, NEUTRAL); LIT_USDT 2.4184 (6.26%, 2.94 ATR, NEUTRAL); TAKE_USDT 0.02369 (6.14%, 3.00 ATR, NEUTRAL)
 
 ## Best Available Opportunity
 
