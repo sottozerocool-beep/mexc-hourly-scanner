@@ -1,14 +1,14 @@
 {
   "scan_ok": true,
-  "scan_timestamp_utc": "2026-07-30T04:58:42Z",
+  "scan_timestamp_utc": "2026-07-30T08:00:06Z",
   "decision": "NO_TRADE",
-  "btc_regime": "NEUTRAL",
+  "btc_regime": "BEARISH",
   "qualified_count": 0,
   "watchlist_count": 0,
   "nearby_strong_level_count": 6,
   "strong_level_counts": {
-    "strong_lows": 80,
-    "strong_highs": 244,
+    "strong_lows": 85,
+    "strong_highs": 242,
     "nearby": 6
   }
 }
