@@ -1,51 +1,45 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-07-29T23:02:39Z
+**Scan timestamp:** 2026-07-30T01:59:03Z
 **Primary timeframe:** 1H
 **Contracts retrieved:** 785
-**Contracts eligible:** 333
-**Contracts analyzed:** 332
-**Contracts skipped:** 453
+**Contracts eligible:** 325
+**Contracts analyzed:** 323
+**Contracts skipped:** 462
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 63,897.40
-**BTC regime:** NEUTRAL
-**BTC Regime Score:** -45
-**EMA 20 / EMA 50 / EMA 200:** 64,016.29 / 64,072.60 / 64,422.79
-**ADX / +DI / -DI:** 11.79069 / 20.67165 / 17.04735
-**6H return:** 0.20%
-**24H return:** 0.25%
-**ATR volatility:** 0.7076835947% | veto=False
-**Permitted direction:** NONE
-
-NO QUALIFYING DIRECTIONAL SETUP — BTC REGIME IS NEUTRAL.
+**BTC_USDT price:** 64,264.60
+**BTC regime:** BEARISH
+**BTC Regime Score:** -85
+**EMA 20 / EMA 50 / EMA 200:** 63,978.72 / 64,052.67 / 64,410.78
+**ADX / +DI / -DI:** 11.09632 / 18.38091 / 19.9508
+**6H return:** -1.24%
+**24H return:** -0.40%
+**ATR volatility:** 0.68886522% | veto=False
+**Permitted direction:** SHORT
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 87 | Strong High rilevati: 244 | Entro 1.50 ATR: 10
+Strong Low rilevati: 82 | Strong High rilevati: 240 | Entro 1.50 ATR: 6
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| ESPORTS_USDT | STRONG_LOW | 0.0232 | 0.0235 | 1.28% | 0.28 | NEUTRAL | Chiusura 1H sotto 0.0232 |
-| MAVIA_USDT | STRONG_LOW | 0.02406 | 0.02423 | 0.70% | 0.49 | NEUTRAL | Chiusura 1H sotto 0.02406 |
-| XAU_USDT | STRONG_HIGH | 4,120.17 | 4,095.36 | 0.61% | 1.20 | NEUTRAL | Chiusura 1H sopra 4120.17 |
-| PI_USDT | STRONG_HIGH | 0.08363 | 0.08188 | 2.14% | 1.20 | NEUTRAL | Chiusura 1H sopra 0.08363 |
-| COPPER_USDT | STRONG_HIGH | 6.432 | 6.394 | 0.59% | 1.24 | NEUTRAL | Chiusura 1H sopra 6.432 |
-| XAUT_USDT | STRONG_HIGH | 4,103.40 | 4,076.50 | 0.66% | 1.38 | NEUTRAL | Chiusura 1H sopra 4103.4 |
-| UMA_USDT | STRONG_LOW | 0.3197 | 0.3262 | 1.99% | 1.40 | NEUTRAL | Chiusura 1H sotto 0.3197 |
-| PLAY_USDT | STRONG_LOW | 0.03607 | 0.03663 | 1.53% | 1.42 | NEUTRAL | Chiusura 1H sotto 0.03607 |
-| XPT_USDT | STRONG_HIGH | 1,648.31 | 1,630.73 | 1.08% | 1.44 | NEUTRAL | Chiusura 1H sopra 1648.31 |
-| CVX_USDT | STRONG_LOW | 1.31 | 1.335 | 1.87% | 1.49 | NEUTRAL | Chiusura 1H sotto 1.31 |
+| COPPER_USDT | STRONG_HIGH | 6.432 | 6.425 | 0.11% | 0.24 | PREFERRED | Chiusura 1H sopra 6.432 |
+| BNB_USDT | STRONG_HIGH | 577.6 | 576.6 | 0.17% | 0.36 | PREFERRED | Chiusura 1H sopra 577.6 |
+| PI_USDT | STRONG_HIGH | 0.08363 | 0.08239 | 1.51% | 0.83 | PREFERRED | Chiusura 1H sopra 0.08363 |
+| JUP_USDT | STRONG_HIGH | 0.2023 | 0.199 | 1.66% | 1.18 | PREFERRED | Chiusura 1H sopra 0.2023 |
+| XAU_USDT | STRONG_HIGH | 4,120.17 | 4,093.77 | 0.64% | 1.31 | PREFERRED | Chiusura 1H sopra 4120.17 |
+| PAXG_USDT | STRONG_HIGH | 4,106.33 | 4,081.59 | 0.61% | 1.48 | PREFERRED | Chiusura 1H sopra 4106.33 |
 
 **Strong Low più vicini:**
-ESPORTS_USDT 0.0232 (1.28%, 0.28 ATR, NEUTRAL); MAVIA_USDT 0.02406 (0.70%, 0.49 ATR, NEUTRAL); UMA_USDT 0.3197 (1.99%, 1.40 ATR, NEUTRAL); PLAY_USDT 0.03607 (1.53%, 1.42 ATR, NEUTRAL); CVX_USDT 1.31 (1.87%, 1.49 ATR, NEUTRAL)
+PLAY_USDT 0.03607 (1.85%, 1.70 ATR, COUNTER_BIAS); AGT_USDT 0.013667 (3.67%, 1.73 ATR, COUNTER_BIAS); NIL_USDT 0.03327 (3.82%, 1.79 ATR, COUNTER_BIAS); RECALL_USDT 0.03613 (3.19%, 2.21 ATR, COUNTER_BIAS); ZAMA_USDT 0.0488 (9.06%, 2.23 ATR, COUNTER_BIAS)
 
 **Strong High più vicini:**
-XAU_USDT 4,120.17 (0.61%, 1.20 ATR, NEUTRAL); PI_USDT 0.08363 (2.14%, 1.20 ATR, NEUTRAL); COPPER_USDT 6.432 (0.59%, 1.24 ATR, NEUTRAL); XAUT_USDT 4,103.40 (0.66%, 1.38 ATR, NEUTRAL); XPT_USDT 1,648.31 (1.08%, 1.44 ATR, NEUTRAL)
+COPPER_USDT 6.432 (0.11%, 0.24 ATR, PREFERRED); BNB_USDT 577.6 (0.17%, 0.36 ATR, PREFERRED); PI_USDT 0.08363 (1.51%, 0.83 ATR, PREFERRED); JUP_USDT 0.2023 (1.66%, 1.18 ATR, PREFERRED); XAU_USDT 4,120.17 (0.64%, 1.31 ATR, PREFERRED)
 
 ## Best Available Opportunity
 
