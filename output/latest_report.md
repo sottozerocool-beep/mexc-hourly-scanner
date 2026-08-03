@@ -1,49 +1,47 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-08-03T20:01:48Z
+**Scan timestamp:** 2026-08-03T23:03:05Z
 **Primary timeframe:** 1H
 **Contracts retrieved:** 794
-**Contracts eligible:** 333
-**Contracts analyzed:** 330
-**Contracts skipped:** 464
+**Contracts eligible:** 334
+**Contracts analyzed:** 333
+**Contracts skipped:** 461
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 63,796.10
-**BTC regime:** BULLISH
-**BTC Regime Score:** 80
-**EMA 20 / EMA 50 / EMA 200:** 63,328.59 / 63,235.87 / 63,695.07
-**ADX / +DI / -DI:** 25.89004 / 28.63292 / 12.81819
-**6H return:** 0.82%
-**24H return:** 0.64%
-**ATR volatility:** 0.5033080415% | veto=False
-**Permitted direction:** LONG
+**BTC_USDT price:** 63,548.40
+**BTC regime:** NEUTRAL
+**BTC Regime Score:** 20
+**EMA 20 / EMA 50 / EMA 200:** 63,406.84 / 63,280.84 / 63,693.45
+**ADX / +DI / -DI:** 24.42424 / 23.72998 / 20.48784
+**6H return:** -0.23%
+**24H return:** 0.30%
+**ATR volatility:** 0.4881249801% | veto=False
+**Permitted direction:** NONE
+
+NO QUALIFYING DIRECTIONAL SETUP — BTC REGIME IS NEUTRAL.
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 133 | Strong High rilevati: 196 | Entro 1.50 ATR: 10
+Strong Low rilevati: 132 | Strong High rilevati: 200 | Entro 1.50 ATR: 6
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| ZBT_USDT | STRONG_LOW | 0.11297 | 0.11342 | 0.40% | 0.29 | PREFERRED | Chiusura 1H sotto 0.11297 |
-| GIGGLE_USDT | STRONG_LOW | 37.16 | 38.15 | 2.60% | 0.57 | PREFERRED | Chiusura 1H sotto 37.16 |
-| ICNT_USDT | STRONG_LOW | 0.1067 | 0.1129 | 5.49% | 0.67 | PREFERRED | Chiusura 1H sotto 0.1067 |
-| UAI_USDT | STRONG_LOW | 0.3424 | 0.3623 | 5.49% | 0.80 | PREFERRED | Chiusura 1H sotto 0.3424 |
-| KMNO_USDT | STRONG_LOW | 0.01778 | 0.01792 | 0.78% | 1.26 | PREFERRED | Chiusura 1H sotto 0.01778 |
-| RESOLV_USDT | STRONG_HIGH | 0.01622 | 0.01605 | 1.06% | 0.74 | COUNTER_BIAS | Chiusura 1H sopra 0.01622 |
-| TRX_USDT | STRONG_HIGH | 0.32959 | 0.32888 | 0.22% | 1.08 | COUNTER_BIAS | Chiusura 1H sopra 0.32959 |
-| EGLD_USDT | STRONG_HIGH | 2.76 | 2.733 | 0.99% | 1.18 | COUNTER_BIAS | Chiusura 1H sopra 2.76 |
-| KITE_USDT | STRONG_HIGH | 0.09661 | 0.09546 | 1.20% | 1.21 | COUNTER_BIAS | Chiusura 1H sopra 0.09661 |
-| DOT_USDT | STRONG_HIGH | 0.832 | 0.8229 | 1.11% | 1.31 | COUNTER_BIAS | Chiusura 1H sopra 0.832 |
+| KITE_USDT | STRONG_HIGH | 0.09661 | 0.09614 | 0.49% | 0.53 | NEUTRAL | Chiusura 1H sopra 0.09661 |
+| ICNT_USDT | STRONG_LOW | 0.1067 | 0.1131 | 5.66% | 0.79 | NEUTRAL | Chiusura 1H sotto 0.1067 |
+| FET_USDT | STRONG_HIGH | 0.1464 | 0.145 | 0.97% | 1.03 | NEUTRAL | Chiusura 1H sopra 0.1464 |
+| RESOLV_USDT | STRONG_HIGH | 0.01622 | 0.01598 | 1.50% | 1.07 | NEUTRAL | Chiusura 1H sopra 0.01622 |
+| GIGGLE_USDT | STRONG_LOW | 37.16 | 38.95 | 4.60% | 1.11 | NEUTRAL | Chiusura 1H sotto 37.16 |
+| ACX_USDT | STRONG_HIGH | 0.04272 | 0.04107 | 4.02% | 1.30 | NEUTRAL | Chiusura 1H sopra 0.04272 |
 
 **Strong Low più vicini:**
-ZBT_USDT 0.11297 (0.40%, 0.29 ATR, PREFERRED); GIGGLE_USDT 37.16 (2.60%, 0.57 ATR, PREFERRED); ICNT_USDT 0.1067 (5.49%, 0.67 ATR, PREFERRED); UAI_USDT 0.3424 (5.49%, 0.80 ATR, PREFERRED); KMNO_USDT 0.01778 (0.78%, 1.26 ATR, PREFERRED)
+ICNT_USDT 0.1067 (5.66%, 0.79 ATR, NEUTRAL); GIGGLE_USDT 37.16 (4.60%, 1.11 ATR, NEUTRAL); UAI_USDT 0.3424 (9.75%, 1.59 ATR, NEUTRAL); TWT_USDT 0.363 (0.93%, 1.68 ATR, NEUTRAL); KMNO_USDT 0.01778 (1.06%, 1.83 ATR, NEUTRAL)
 
 **Strong High più vicini:**
-RESOLV_USDT 0.01622 (1.06%, 0.74 ATR, COUNTER_BIAS); TRX_USDT 0.32959 (0.22%, 1.08 ATR, COUNTER_BIAS); EGLD_USDT 2.76 (0.99%, 1.18 ATR, COUNTER_BIAS); KITE_USDT 0.09661 (1.20%, 1.21 ATR, COUNTER_BIAS); DOT_USDT 0.832 (1.11%, 1.31 ATR, COUNTER_BIAS)
+KITE_USDT 0.09661 (0.49%, 0.53 ATR, NEUTRAL); FET_USDT 0.1464 (0.97%, 1.03 ATR, NEUTRAL); RESOLV_USDT 0.01622 (1.50%, 1.07 ATR, NEUTRAL); ACX_USDT 0.04272 (4.02%, 1.30 ATR, NEUTRAL); TRX_USDT 0.32959 (0.27%, 1.50 ATR, NEUTRAL)
 
 ## Best Available Opportunity
 
