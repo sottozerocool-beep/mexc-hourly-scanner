@@ -1,47 +1,51 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-08-04T17:00:56Z
+**Scan timestamp:** 2026-08-04T19:59:45Z
 **Primary timeframe:** 1H
 **Contracts retrieved:** 795
-**Contracts eligible:** 336
-**Contracts analyzed:** 328
-**Contracts skipped:** 467
+**Contracts eligible:** 339
+**Contracts analyzed:** 335
+**Contracts skipped:** 460
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 63,935.00
+**BTC_USDT price:** 64,244.00
 **BTC regime:** BULLISH
 **BTC Regime Score:** 80
-**EMA 20 / EMA 50 / EMA 200:** 63,753.62 / 63,541.15 / 63,706.49
-**ADX / +DI / -DI:** 22.42897 / 21.65413 / 12.60904
-**6H return:** 0.29%
-**24H return:** 0.30%
-**ATR volatility:** 0.4993529534% | veto=False
+**EMA 20 / EMA 50 / EMA 200:** 63,818.68 / 63,584.68 / 63,714.46
+**ADX / +DI / -DI:** 24.02947 / 23.97996 / 10.62646
+**6H return:** 0.62%
+**24H return:** 0.68%
+**ATR volatility:** 0.5081933096% | veto=False
 **Permitted direction:** LONG
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 131 | Strong High rilevati: 196 | Entro 1.50 ATR: 8
+Strong Low rilevati: 139 | Strong High rilevati: 195 | Entro 1.50 ATR: 12
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| BEAT_USDT | STRONG_LOW | 2.418 | 2.433 | 0.62% | 0.08 | PREFERRED | Chiusura 1H sotto 2.418 |
-| IRYS_USDT | STRONG_LOW | 0.01416 | 0.01436 | 1.39% | 0.94 | PREFERRED | Chiusura 1H sotto 0.01416 |
-| AKE_USDT | STRONG_LOW | 0.0038613 | 0.0041229 | 6.35% | 1.38 | PREFERRED | Chiusura 1H sotto 0.0038613 |
-| XPT_USDT | STRONG_HIGH | 1,749.33 | 1,747.02 | 0.13% | 0.18 | COUNTER_BIAS | Chiusura 1H sopra 1749.33 |
-| SUN_USDT | STRONG_HIGH | 0.01803 | 0.018 | 0.17% | 0.83 | COUNTER_BIAS | Chiusura 1H sopra 0.01803 |
-| ASTER_USDT | STRONG_HIGH | 0.6109 | 0.6087 | 0.36% | 0.94 | COUNTER_BIAS | Chiusura 1H sopra 0.6109 |
-| BRETT_USDT | STRONG_HIGH | 0.004091 | 0.00403 | 1.51% | 1.21 | COUNTER_BIAS | Chiusura 1H sopra 0.004091 |
-| RIVER_USDT | STRONG_HIGH | 2.576 | 2.534 | 1.66% | 1.50 | COUNTER_BIAS | Chiusura 1H sopra 2.576 |
+| KOMA_USDT | STRONG_LOW | 0.01311 | 0.013286 | 1.32% | 0.25 | PREFERRED | Chiusura 1H sotto 0.01311 |
+| FOLKS_USDT | STRONG_LOW | 1.984 | 2.004 | 1.00% | 0.77 | PREFERRED | Chiusura 1H sotto 1.984 |
+| IRYS_USDT | STRONG_LOW | 0.01416 | 0.0144 | 1.67% | 1.22 | PREFERRED | Chiusura 1H sotto 0.01416 |
+| UB_USDT | STRONG_LOW | 0.11332 | 0.1318 | 14.02% | 1.39 | PREFERRED | Chiusura 1H sotto 0.11332 |
+| ENJ_USDT | STRONG_LOW | 0.02412 | 0.02438 | 1.07% | 1.40 | PREFERRED | Chiusura 1H sotto 0.02412 |
+| RAY_USDT | STRONG_HIGH | 0.6215 | 0.6196 | 0.31% | 0.45 | COUNTER_BIAS | Chiusura 1H sopra 0.6215 |
+| MOODENG_USDT | STRONG_HIGH | 0.03651 | 0.03628 | 0.63% | 0.90 | COUNTER_BIAS | Chiusura 1H sopra 0.03651 |
+| APT_USDT | STRONG_HIGH | 0.5833 | 0.5792 | 0.71% | 1.03 | COUNTER_BIAS | Chiusura 1H sopra 0.5833 |
+| XPT_USDT | STRONG_HIGH | 1,752.38 | 1,737.69 | 0.85% | 1.20 | COUNTER_BIAS | Chiusura 1H sopra 1752.38 |
+| DASH_USDT | STRONG_HIGH | 31.72 | 31.49 | 0.73% | 1.37 | COUNTER_BIAS | Chiusura 1H sopra 31.72 |
+| SUN_USDT | STRONG_HIGH | 0.01803 | 0.01798 | 0.28% | 1.40 | COUNTER_BIAS | Chiusura 1H sopra 0.01803 |
+| FLOKI_USDT | STRONG_HIGH | 0.00002081 | 0.00002063 | 0.87% | 1.44 | COUNTER_BIAS | Chiusura 1H sopra 2.081e-05 |
 
 **Strong Low più vicini:**
-BEAT_USDT 2.418 (0.62%, 0.08 ATR, PREFERRED); IRYS_USDT 0.01416 (1.39%, 0.94 ATR, PREFERRED); AKE_USDT 0.0038613 (6.35%, 1.38 ATR, PREFERRED); FOLKS_USDT 1.984 (2.27%, 1.65 ATR, PREFERRED); WLFI_USDT 0.05379 (0.85%, 1.73 ATR, PREFERRED)
+KOMA_USDT 0.01311 (1.32%, 0.25 ATR, PREFERRED); FOLKS_USDT 1.984 (1.00%, 0.77 ATR, PREFERRED); IRYS_USDT 0.01416 (1.67%, 1.22 ATR, PREFERRED); UB_USDT 0.11332 (14.02%, 1.39 ATR, PREFERRED); ENJ_USDT 0.02412 (1.07%, 1.40 ATR, PREFERRED)
 
 **Strong High più vicini:**
-XPT_USDT 1,749.33 (0.13%, 0.18 ATR, COUNTER_BIAS); SUN_USDT 0.01803 (0.17%, 0.83 ATR, COUNTER_BIAS); ASTER_USDT 0.6109 (0.36%, 0.94 ATR, COUNTER_BIAS); BRETT_USDT 0.004091 (1.51%, 1.21 ATR, COUNTER_BIAS); RIVER_USDT 2.576 (1.66%, 1.50 ATR, COUNTER_BIAS)
+FARTCOIN_USDT 0.135 (0.55%, 0.42 ATR, COUNTER_BIAS); RAY_USDT 0.6215 (0.31%, 0.45 ATR, COUNTER_BIAS); MOODENG_USDT 0.03651 (0.63%, 0.90 ATR, COUNTER_BIAS); APT_USDT 0.5833 (0.71%, 1.03 ATR, COUNTER_BIAS); XPT_USDT 1,752.38 (0.85%, 1.20 ATR, COUNTER_BIAS)
 
 ## Best Available Opportunity
 
