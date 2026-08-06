@@ -1,54 +1,47 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-08-06T08:59:42Z
+**Scan timestamp:** 2026-08-06T10:59:59Z
 **Primary timeframe:** 1H
 **Contracts retrieved:** 798
-**Contracts eligible:** 330
-**Contracts analyzed:** 325
-**Contracts skipped:** 473
+**Contracts eligible:** 333
+**Contracts analyzed:** 321
+**Contracts skipped:** 477
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 64,916.20
+**BTC_USDT price:** 64,580.00
 **BTC regime:** BULLISH
 **BTC Regime Score:** 100
-**EMA 20 / EMA 50 / EMA 200:** 64,597.09 / 64,299.03 / 63,939.15
-**ADX / +DI / -DI:** 26.00733 / 28.48516 / 12.68514
-**6H return:** 0.36%
-**24H return:** 1.01%
-**ATR volatility:** 0.3540201598% | veto=False
+**EMA 20 / EMA 50 / EMA 200:** 64,629.35 / 64,335.93 / 63,955.91
+**ADX / +DI / -DI:** 26.86036 / 24.55837 / 14.64269
+**6H return:** 0.24%
+**24H return:** 0.81%
+**ATR volatility:** 0.3655236091% | veto=False
 **Permitted direction:** LONG
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 161 | Strong High rilevati: 163 | Entro 1.50 ATR: 15
+Strong Low rilevati: 158 | Strong High rilevati: 162 | Entro 1.50 ATR: 8
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| KGEN_USDT | STRONG_LOW | 0.1821 | 0.1832 | 0.60% | 0.47 | PREFERRED | Chiusura 1H sotto 0.1821 |
-| AKE_USDT | STRONG_LOW | 0.0038531 | 0.0039462 | 2.36% | 0.75 | PREFERRED | Chiusura 1H sotto 0.0038531 |
-| EIGEN_USDT | STRONG_LOW | 0.1825 | 0.1837 | 0.65% | 0.78 | PREFERRED | Chiusura 1H sotto 0.1825 |
-| CAKE_USDT | STRONG_LOW | 1.3936 | 1.4026 | 0.64% | 1.35 | PREFERRED | Chiusura 1H sotto 1.3936 |
-| MYX_USDT | STRONG_LOW | 0.06685 | 0.07235 | 7.60% | 1.46 | PREFERRED | Chiusura 1H sotto 0.06685 |
-| PHA_USDT | STRONG_HIGH | 0.02163 | 0.02155 | 0.37% | 0.30 | COUNTER_BIAS | Chiusura 1H sopra 0.02163 |
-| IOTA_USDT | STRONG_HIGH | 0.03449 | 0.03431 | 0.52% | 0.76 | COUNTER_BIAS | Chiusura 1H sopra 0.03449 |
-| RAVE_USDT | STRONG_HIGH | 0.2992 | 0.2953 | 1.32% | 0.96 | COUNTER_BIAS | Chiusura 1H sopra 0.2992 |
-| BLUAI_USDT | STRONG_HIGH | 0.012774 | 0.01253 | 1.95% | 0.96 | COUNTER_BIAS | Chiusura 1H sopra 0.012774 |
-| FLOKI_USDT | STRONG_HIGH | 0.00002081 | 0.00002069 | 0.58% | 1.09 | COUNTER_BIAS | Chiusura 1H sopra 2.081e-05 |
-| DOGS_USDT | STRONG_HIGH | 0.0000358 | 0.00003549 | 0.87% | 1.10 | COUNTER_BIAS | Chiusura 1H sopra 3.58e-05 |
-| AVNT_USDT | STRONG_HIGH | 0.085 | 0.0841 | 1.07% | 1.13 | COUNTER_BIAS | Chiusura 1H sopra 0.085 |
-| MANTA_USDT | STRONG_HIGH | 0.0602 | 0.05952 | 1.14% | 1.30 | COUNTER_BIAS | Chiusura 1H sopra 0.0602 |
-| PYTH_USDT | STRONG_HIGH | 0.04033 | 0.03978 | 1.38% | 1.48 | COUNTER_BIAS | Chiusura 1H sopra 0.04033 |
-| SUN_USDT | STRONG_HIGH | 0.01803 | 0.017973 | 0.32% | 1.50 | COUNTER_BIAS | Chiusura 1H sopra 0.01803 |
+| KGEN_USDT | STRONG_LOW | 0.1821 | 0.1821 | 0.00% | 0.00 | PREFERRED | Chiusura 1H sotto 0.1821 |
+| CAKE_USDT | STRONG_LOW | 1.3936 | 1.3957 | 0.15% | 0.32 | PREFERRED | Chiusura 1H sotto 1.3936 |
+| ZEN_USDT | STRONG_LOW | 4.044 | 4.057 | 0.32% | 0.41 | PREFERRED | Chiusura 1H sotto 4.044 |
+| FET_USDT | STRONG_LOW | 0.1368 | 0.1375 | 0.51% | 0.43 | PREFERRED | Chiusura 1H sotto 0.1368 |
+| MYX_USDT | STRONG_LOW | 0.06685 | 0.07153 | 6.54% | 1.37 | PREFERRED | Chiusura 1H sotto 0.06685 |
+| VET_USDT | STRONG_LOW | 0.004587 | 0.004624 | 0.80% | 1.49 | PREFERRED | Chiusura 1H sotto 0.004587 |
+| RAVE_USDT | STRONG_HIGH | 0.2992 | 0.2965 | 0.91% | 0.65 | COUNTER_BIAS | Chiusura 1H sopra 0.2992 |
+| SPX_USDT | STRONG_HIGH | 0.34 | 0.3367 | 0.98% | 0.82 | COUNTER_BIAS | Chiusura 1H sopra 0.34 |
 
 **Strong Low più vicini:**
-KGEN_USDT 0.1821 (0.60%, 0.47 ATR, PREFERRED); AKE_USDT 0.0038531 (2.36%, 0.75 ATR, PREFERRED); EIGEN_USDT 0.1825 (0.65%, 0.78 ATR, PREFERRED); CAKE_USDT 1.3936 (0.64%, 1.35 ATR, PREFERRED); MYX_USDT 0.06685 (7.60%, 1.46 ATR, PREFERRED)
+KGEN_USDT 0.1821 (0.00%, 0.00 ATR, PREFERRED); CAKE_USDT 1.3936 (0.15%, 0.32 ATR, PREFERRED); ZEN_USDT 4.044 (0.32%, 0.41 ATR, PREFERRED); FET_USDT 0.1368 (0.51%, 0.43 ATR, PREFERRED); MYX_USDT 0.06685 (6.54%, 1.37 ATR, PREFERRED)
 
 **Strong High più vicini:**
-PHA_USDT 0.02163 (0.37%, 0.30 ATR, COUNTER_BIAS); IOTA_USDT 0.03449 (0.52%, 0.76 ATR, COUNTER_BIAS); RAVE_USDT 0.2992 (1.32%, 0.96 ATR, COUNTER_BIAS); BLUAI_USDT 0.012774 (1.95%, 0.96 ATR, COUNTER_BIAS); FLOKI_USDT 0.00002081 (0.58%, 1.09 ATR, COUNTER_BIAS)
+RAVE_USDT 0.2992 (0.91%, 0.65 ATR, COUNTER_BIAS); SPX_USDT 0.34 (0.98%, 0.82 ATR, COUNTER_BIAS); PLAY_USDT 0.03556 (1.69%, 1.59 ATR, COUNTER_BIAS); LYN_USDT 0.03628 (2.00%, 1.73 ATR, COUNTER_BIAS); LIGHT_USDT 0.1574 (4.45%, 1.78 ATR, COUNTER_BIAS)
 
 ## Best Available Opportunity
 
