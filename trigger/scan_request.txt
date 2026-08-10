@@ -1,3 +1,3 @@
-scan_requested_utc=2026-08-10T15:02:19.444Z
-request_id=req-20260810T150219444Z-5c920b2c
+scan_requested_utc=2026-08-10T17:01:26.582Z
+request_id=req-20260810T170126582Z-1cbe4065
 purpose=fresh_mexc_strong_levels_scan
