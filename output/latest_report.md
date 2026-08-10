@@ -1,16 +1,16 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-08-10T12:34:04Z
+**Scan timestamp:** 2026-08-10T12:59:53Z
 **Primary timeframe:** 1H
-**Contracts retrieved:** 798
-**Contracts eligible:** 324
-**Contracts analyzed:** 315
-**Contracts skipped:** 483
+**Contracts retrieved:** 795
+**Contracts eligible:** 327
+**Contracts analyzed:** 319
+**Contracts skipped:** 476
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 64,996.20
+**BTC_USDT price:** 64,859.20
 **BTC regime:** BULLISH
 **BTC Regime Score:** 90
 **EMA 20 / EMA 50 / EMA 200:** 65,068.06 / 64,996.74 / 64,548.24
@@ -22,26 +22,29 @@
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 206 | Strong High rilevati: 108 | Entro 1.50 ATR: 8
+Strong Low rilevati: 207 | Strong High rilevati: 111 | Entro 1.50 ATR: 11
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| EVAA_USDT | STRONG_LOW | 0.8307 | 0.837 | 0.75% | 0.49 | PREFERRED | Chiusura 1H sotto 0.8307 |
-| NEO_USDT | STRONG_LOW | 1.817 | 1.826 | 0.49% | 0.97 | PREFERRED | Chiusura 1H sotto 1.817 |
-| TLM_USDT | STRONG_LOW | 0.001554 | 0.001576 | 1.40% | 1.08 | PREFERRED | Chiusura 1H sotto 0.001554 |
-| ETH_USDT | STRONG_LOW | 1,904.09 | 1,914.59 | 0.55% | 1.23 | PREFERRED | Chiusura 1H sotto 1904.09 |
-| SOONNETWORK_USDT | STRONG_HIGH | 0.2317 | 0.2295 | 0.96% | 0.48 | COUNTER_BIAS | Chiusura 1H sopra 0.2317 |
-| FET_USDT | STRONG_HIGH | 0.1397 | 0.1384 | 0.94% | 1.10 | COUNTER_BIAS | Chiusura 1H sopra 0.1397 |
-| AR_USDT | STRONG_HIGH | 1.862 | 1.845 | 0.92% | 1.25 | COUNTER_BIAS | Chiusura 1H sopra 1.862 |
-| BABY_USDT | STRONG_HIGH | 0.01346 | 0.01312 | 2.59% | 1.40 | COUNTER_BIAS | Chiusura 1H sopra 0.01346 |
+| EVAA_USDT | STRONG_LOW | 0.8307 | 0.8311 | 0.05% | 0.03 | PREFERRED | Chiusura 1H sotto 0.8307 |
+| ETH_USDT | STRONG_LOW | 1,904.09 | 1,905.03 | 0.05% | 0.11 | PREFERRED | Chiusura 1H sotto 1904.09 |
+| TLM_USDT | STRONG_LOW | 0.001554 | 0.001572 | 1.15% | 0.88 | PREFERRED | Chiusura 1H sotto 0.001554 |
+| AKE_USDT | STRONG_LOW | 0.0038308 | 0.0039487 | 2.99% | 1.17 | PREFERRED | Chiusura 1H sotto 0.0038308 |
+| XAN_USDT | STRONG_LOW | 0.010621 | 0.012314 | 13.75% | 1.35 | PREFERRED | Chiusura 1H sotto 0.010621 |
+| NEO_USDT | STRONG_LOW | 1.817 | 1.83 | 0.71% | 1.41 | PREFERRED | Chiusura 1H sotto 1.817 |
+| UNI_USDT | STRONG_LOW | 3.936 | 3.996 | 1.50% | 1.49 | PREFERRED | Chiusura 1H sotto 3.936 |
+| SOONNETWORK_USDT | STRONG_HIGH | 0.2317 | 0.2294 | 1.00% | 0.51 | COUNTER_BIAS | Chiusura 1H sopra 0.2317 |
+| BABY_USDT | STRONG_HIGH | 0.01346 | 0.0132 | 1.97% | 1.07 | COUNTER_BIAS | Chiusura 1H sopra 0.01346 |
+| AR_USDT | STRONG_HIGH | 1.862 | 1.846 | 0.87% | 1.18 | COUNTER_BIAS | Chiusura 1H sopra 1.862 |
+| FET_USDT | STRONG_HIGH | 0.1397 | 0.138 | 1.23% | 1.44 | COUNTER_BIAS | Chiusura 1H sopra 0.1397 |
 
 **Strong Low più vicini:**
-EVAA_USDT 0.8307 (0.75%, 0.49 ATR, PREFERRED); NEO_USDT 1.817 (0.49%, 0.97 ATR, PREFERRED); TLM_USDT 0.001554 (1.40%, 1.08 ATR, PREFERRED); ETH_USDT 1,904.09 (0.55%, 1.23 ATR, PREFERRED); AKE_USDT 0.0038308 (3.91%, 1.54 ATR, PREFERRED)
+EVAA_USDT 0.8307 (0.05%, 0.03 ATR, PREFERRED); ETH_USDT 1,904.09 (0.05%, 0.11 ATR, PREFERRED); TLM_USDT 0.001554 (1.15%, 0.88 ATR, PREFERRED); AKE_USDT 0.0038308 (2.99%, 1.17 ATR, PREFERRED); XAN_USDT 0.010621 (13.75%, 1.35 ATR, PREFERRED)
 
 **Strong High più vicini:**
-SOONNETWORK_USDT 0.2317 (0.96%, 0.48 ATR, COUNTER_BIAS); FET_USDT 0.1397 (0.94%, 1.10 ATR, COUNTER_BIAS); AR_USDT 1.862 (0.92%, 1.25 ATR, COUNTER_BIAS); BABY_USDT 0.01346 (2.59%, 1.40 ATR, COUNTER_BIAS); MANA_USDT 0.06743 (0.94%, 1.58 ATR, COUNTER_BIAS)
+SOONNETWORK_USDT 0.2317 (1.00%, 0.51 ATR, COUNTER_BIAS); BABY_USDT 0.01346 (1.97%, 1.07 ATR, COUNTER_BIAS); AR_USDT 1.862 (0.87%, 1.18 ATR, COUNTER_BIAS); FET_USDT 0.1397 (1.23%, 1.44 ATR, COUNTER_BIAS); MANA_USDT 0.06743 (0.93%, 1.55 ATR, COUNTER_BIAS)
 
 ## Best Available Opportunity
 
