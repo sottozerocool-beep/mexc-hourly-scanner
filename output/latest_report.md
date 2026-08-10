@@ -1,51 +1,50 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-08-10T05:03:30Z
+**Scan timestamp:** 2026-08-10T07:01:08Z
 **Primary timeframe:** 1H
-**Contracts retrieved:** 796
-**Contracts eligible:** 320
-**Contracts analyzed:** 317
-**Contracts skipped:** 479
+**Contracts retrieved:** 798
+**Contracts eligible:** 326
+**Contracts analyzed:** 324
+**Contracts skipped:** 474
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 64,982.40
+**BTC_USDT price:** 65,264.30
 **BTC regime:** BULLISH
-**BTC Regime Score:** 90
-**EMA 20 / EMA 50 / EMA 200:** 65,030.57 / 64,959.37 / 64,506.91
-**ADX / +DI / -DI:** 30.90643 / 22.08632 / 8.94833
-**6H return:** -0.10%
-**24H return:** 0.34%
-**ATR volatility:** 0.3091405738% | veto=True
+**BTC Regime Score:** 100
+**EMA 20 / EMA 50 / EMA 200:** 65,061.13 / 64,977.62 / 64,520.46
+**ADX / +DI / -DI:** 33.72606 / 27.34548 / 7.72705
+**6H return:** 0.51%
+**24H return:** 0.69%
+**ATR volatility:** 0.3072998555% | veto=False
 **Permitted direction:** LONG
-
-Veto di volatilità BTC attivo: two_normalized_recovery_candles_not_completed
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 210 | Strong High rilevati: 106 | Entro 1.50 ATR: 10
+Strong Low rilevati: 216 | Strong High rilevati: 107 | Entro 1.50 ATR: 11
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| ESPORTS_USDT | STRONG_LOW | 0.01717 | 0.01752 | 2.00% | 0.90 | PREFERRED | Chiusura 1H sotto 0.01717 |
-| NEO_USDT | STRONG_LOW | 1.817 | 1.828 | 0.60% | 1.14 | PREFERRED | Chiusura 1H sotto 1.817 |
-| BB_USDT | STRONG_LOW | 0.01334 | 0.01382 | 3.47% | 1.17 | PREFERRED | Chiusura 1H sotto 0.01334 |
-| XAN_USDT | STRONG_LOW | 0.010621 | 0.012826 | 17.19% | 1.23 | PREFERRED | Chiusura 1H sotto 0.010621 |
-| BASED_USDT | STRONG_LOW | 0.07278 | 0.07396 | 1.60% | 1.25 | PREFERRED | Chiusura 1H sotto 0.07278 |
-| ETH_USDT | STRONG_LOW | 1,904.09 | 1,915.83 | 0.61% | 1.26 | PREFERRED | Chiusura 1H sotto 1904.09 |
-| EVAA_USDT | STRONG_LOW | 0.8359 | 0.8541 | 2.13% | 1.39 | PREFERRED | Chiusura 1H sotto 0.8359 |
-| JUP_USDT | STRONG_LOW | 0.1783 | 0.1807 | 1.33% | 1.49 | PREFERRED | Chiusura 1H sotto 0.1783 |
-| WLD_USDT | STRONG_HIGH | 0.3318 | 0.3273 | 1.37% | 0.97 | COUNTER_BIAS | Chiusura 1H sopra 0.3318 |
-| XPL_USDT | STRONG_HIGH | 0.07981 | 0.07864 | 1.49% | 1.41 | COUNTER_BIAS | Chiusura 1H sopra 0.07981 |
+| ESPORTS_USDT | STRONG_LOW | 0.01717 | 0.0174 | 1.32% | 0.61 | PREFERRED | Chiusura 1H sotto 0.01717 |
+| EVAA_USDT | STRONG_LOW | 0.8359 | 0.8518 | 1.87% | 1.28 | PREFERRED | Chiusura 1H sotto 0.8359 |
+| BB_USDT | STRONG_LOW | 0.01334 | 0.01385 | 3.68% | 1.32 | PREFERRED | Chiusura 1H sotto 0.01334 |
+| 2Z_USDT | STRONG_LOW | 0.05434 | 0.05512 | 1.42% | 1.41 | PREFERRED | Chiusura 1H sotto 0.05434 |
+| DEEP_USDT | STRONG_LOW | 0.01494 | 0.01542 | 3.11% | 1.50 | PREFERRED | Chiusura 1H sotto 0.01494 |
+| XPL_USDT | STRONG_HIGH | 0.07981 | 0.0795 | 0.39% | 0.37 | COUNTER_BIAS | Chiusura 1H sopra 0.07981 |
+| XAUT_USDT | STRONG_HIGH | 4,346.80 | 4,336.20 | 0.24% | 0.93 | COUNTER_BIAS | Chiusura 1H sopra 4346.8 |
+| PAXG_USDT | STRONG_HIGH | 4,362.51 | 4,351.83 | 0.25% | 1.05 | COUNTER_BIAS | Chiusura 1H sopra 4362.51 |
+| MONAD_USDT | STRONG_HIGH | 0.02182 | 0.02161 | 0.97% | 1.10 | COUNTER_BIAS | Chiusura 1H sopra 0.02182 |
+| XAU_USDT | STRONG_HIGH | 4,376.50 | 4,362.83 | 0.31% | 1.15 | COUNTER_BIAS | Chiusura 1H sopra 4376.5 |
+| ARKM_USDT | STRONG_HIGH | 0.0993 | 0.0981 | 1.22% | 1.21 | COUNTER_BIAS | Chiusura 1H sopra 0.0993 |
 
 **Strong Low più vicini:**
-ESPORTS_USDT 0.01717 (2.00%, 0.90 ATR, PREFERRED); NEO_USDT 1.817 (0.60%, 1.14 ATR, PREFERRED); BB_USDT 0.01334 (3.47%, 1.17 ATR, PREFERRED); XAN_USDT 0.010621 (17.19%, 1.23 ATR, PREFERRED); BASED_USDT 0.07278 (1.60%, 1.25 ATR, PREFERRED)
+ESPORTS_USDT 0.01717 (1.32%, 0.61 ATR, PREFERRED); EVAA_USDT 0.8359 (1.87%, 1.28 ATR, PREFERRED); BB_USDT 0.01334 (3.68%, 1.32 ATR, PREFERRED); 2Z_USDT 0.05434 (1.42%, 1.41 ATR, PREFERRED); DEEP_USDT 0.01494 (3.11%, 1.50 ATR, PREFERRED)
 
 **Strong High più vicini:**
-WLD_USDT 0.3318 (1.37%, 0.97 ATR, COUNTER_BIAS); XPL_USDT 0.07981 (1.49%, 1.41 ATR, COUNTER_BIAS); MANA_USDT 0.06743 (1.28%, 2.00 ATR, COUNTER_BIAS); ZKSYNC_USDT 0.00817 (2.25%, 2.32 ATR, COUNTER_BIAS); MONAD_USDT 0.02173 (1.97%, 2.38 ATR, COUNTER_BIAS)
+XPL_USDT 0.07981 (0.39%, 0.37 ATR, COUNTER_BIAS); XAUT_USDT 4,346.80 (0.24%, 0.93 ATR, COUNTER_BIAS); PAXG_USDT 4,362.51 (0.25%, 1.05 ATR, COUNTER_BIAS); MONAD_USDT 0.02182 (0.97%, 1.10 ATR, COUNTER_BIAS); XAU_USDT 4,376.50 (0.31%, 1.15 ATR, COUNTER_BIAS)
 
 ## Best Available Opportunity
 
