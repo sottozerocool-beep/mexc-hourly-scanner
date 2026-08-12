@@ -185,6 +185,63 @@ class ScannerTests(unittest.TestCase):
         with self.assertRaisesRegex(scanner.ScanError, "nearby count mismatch"):
             scanner.validate_report(report)
 
+    def test_report_validation_accepts_approaching_level_at_3_5_atr(self):
+        report = scanner.error_report(RuntimeError("fixture"))
+        symbol = "APPROACH_USDT"
+        report.update({
+            "scan_ok": True,
+            "strong_level_counts": {
+                "strong_lows": 0,
+                "strong_highs": 1,
+                "nearby": 1,
+            },
+            "nearby_strong_levels": [{
+                "symbol": symbol,
+                "asset_identity": {
+                    "source": "Official MEXC Futures contract metadata",
+                    "contract_symbol": symbol,
+                },
+                "side": "SHORT",
+                "classification": "STRONG_HIGH",
+                "distance_atr": 3.5,
+                "proximity": "APPROACHING",
+                "price_on_expected_side": True,
+                "latest_closed_candle_respected_level": True,
+            }],
+        })
+        scanner.validate_report(report)
+
+    def test_report_validation_rejects_level_above_3_5_atr(self):
+        report = scanner.error_report(RuntimeError("fixture"))
+        symbol = "TOO_FAR_USDT"
+        report.update({
+            "scan_ok": True,
+            "strong_level_counts": {
+                "strong_lows": 0,
+                "strong_highs": 1,
+                "nearby": 1,
+            },
+            "nearby_strong_levels": [{
+                "symbol": symbol,
+                "asset_identity": {
+                    "source": "Official MEXC Futures contract metadata",
+                    "contract_symbol": symbol,
+                },
+                "side": "SHORT",
+                "classification": "STRONG_HIGH",
+                "distance_atr": 3.5000001,
+                "proximity": "APPROACHING",
+                "price_on_expected_side": True,
+                "latest_closed_candle_respected_level": True,
+            }],
+        })
+        with self.assertRaisesRegex(scanner.ScanError, "exceeds the ATR threshold"):
+            scanner.validate_report(report)
+
+    def test_radar_expansion_does_not_expand_setup_threshold(self):
+        self.assertEqual(scanner.MAX_NEAR_STRONG_LEVEL_ATR, 3.5)
+        self.assertEqual(scanner.MAX_SETUP_STRONG_LEVEL_ATR, 1.5)
+
     def test_invalid_report_is_not_published(self):
         report = scanner.error_report(RuntimeError("fixture"))
         report.update({
