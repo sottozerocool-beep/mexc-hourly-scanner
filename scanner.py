@@ -41,10 +41,13 @@ MAX_TICKER_AGE_SECONDS = 15 * 60
 MIN_QUALIFIED_SCORE = 80
 MIN_WATCHLIST_SCORE = 72
 MAX_REPORTED = 5
-REPORT_SCHEMA_VERSION = 3
+REPORT_SCHEMA_VERSION = 4
 MIN_REWARD_RISK = 2.0
 SMC_SWING_LENGTH = 50
-MAX_NEAR_STRONG_LEVEL_ATR = 1.50
+MAX_AT_LEVEL_STRONG_LEVEL_ATR = 0.25
+MAX_PROXIMITY_NEAR_ATR = 1.50
+MAX_NEAR_STRONG_LEVEL_ATR = 3.50
+MAX_SETUP_STRONG_LEVEL_ATR = 1.50
 HTTP_TIMEOUT = 40
 HTTP_ATTEMPTS = 5
 OUTPUT_DIR = Path(os.getenv("OUTPUT_DIR", "output"))
@@ -488,10 +491,12 @@ def strong_level_record(
     open_interest = finite_float(ticker.get("holdVol"))
     funding = finite_float(ticker.get("fundingRate"))
 
-    if distance_atr <= 0.25:
+    if distance_atr <= MAX_AT_LEVEL_STRONG_LEVEL_ATR:
         proximity = "AT_LEVEL"
-    elif distance_atr <= MAX_NEAR_STRONG_LEVEL_ATR:
+    elif distance_atr <= MAX_PROXIMITY_NEAR_ATR:
         proximity = "NEAR"
+    elif distance_atr <= MAX_NEAR_STRONG_LEVEL_ATR:
+        proximity = "APPROACHING"
     else:
         proximity = "FAR"
 
@@ -1181,7 +1186,7 @@ def evaluate_setup(
     smc_level = float(smc_level_data["level"])
     smc_level_distance_atr = abs(close[-1] - smc_level) / atr
     smc_level_distance_percent = 100.0 * abs(close[-1] - smc_level) / close[-1]
-    if smc_level_distance_atr > MAX_NEAR_STRONG_LEVEL_ATR:
+    if smc_level_distance_atr > MAX_SETUP_STRONG_LEVEL_ATR:
         return None
 
     structural_opposition = (
@@ -1198,9 +1203,10 @@ def evaluate_setup(
     if zone is None:
         return None
     # A watchlist must still be practically relevant. A market already more
-    # than 1.5 ATR from its strongest zone is neither a retest nor a nearby
-    # Strong Low/High candidate and is omitted instead of being advertised.
-    if zone["distance_atr"] > 1.50:
+    # than the setup threshold from its strongest zone is neither a retest nor
+    # a setup candidate. The wider 3.5 ATR publication radar must not weaken
+    # this qualification rule.
+    if zone["distance_atr"] > MAX_SETUP_STRONG_LEVEL_ATR:
         return None
     patterns, tested = confirmation_patterns(candles, side, zone, atr)
     range72_low, range72_high = min(low[-72:]), max(high[-72:])
@@ -1694,6 +1700,9 @@ def scan_market() -> dict[str, Any]:
             "license": "CC BY-NC-SA 4.0",
             "swing_length": SMC_SWING_LENGTH,
             "near_threshold_atr": MAX_NEAR_STRONG_LEVEL_ATR,
+            "strict_near_threshold_atr": MAX_PROXIMITY_NEAR_ATR,
+            "at_level_threshold_atr": MAX_AT_LEVEL_STRONG_LEVEL_ATR,
+            "setup_threshold_atr": MAX_SETUP_STRONG_LEVEL_ATR,
             "btc_usage": "ranking preference only; opposite-side levels remain visible",
         },
         "strong_level_counts": {
@@ -1758,6 +1767,20 @@ def validate_report(report: dict[str, Any]) -> None:
         raise ScanError("Invalid scan_timestamp_utc") from exc
     if not isinstance(report["strong_level_engine"], dict):
         raise ScanError("Report field strong_level_engine must be an object")
+    engine = report["strong_level_engine"]
+    expected_engine_values = {
+        "swing_length": SMC_SWING_LENGTH,
+        "near_threshold_atr": MAX_NEAR_STRONG_LEVEL_ATR,
+        "strict_near_threshold_atr": MAX_PROXIMITY_NEAR_ATR,
+        "at_level_threshold_atr": MAX_AT_LEVEL_STRONG_LEVEL_ATR,
+        "setup_threshold_atr": MAX_SETUP_STRONG_LEVEL_ATR,
+    }
+    for key, expected in expected_engine_values.items():
+        if engine.get(key) != expected:
+            raise ScanError(
+                f"Invalid strong_level_engine.{key}: {engine.get(key)!r}; "
+                f"expected {expected!r}"
+            )
     for key in required_arrays:
         if not isinstance(report[key], list):
             raise ScanError(f"Report field {key} must be a list")
@@ -1829,7 +1852,12 @@ def validate_report(report: dict[str, Any]) -> None:
             or distance_atr > MAX_NEAR_STRONG_LEVEL_ATR
         ):
             raise ScanError(f"{symbol}: nearby level exceeds the ATR threshold")
-        expected_proximity = "AT_LEVEL" if distance_atr <= 0.25 else "NEAR"
+        if distance_atr <= MAX_AT_LEVEL_STRONG_LEVEL_ATR:
+            expected_proximity = "AT_LEVEL"
+        elif distance_atr <= MAX_PROXIMITY_NEAR_ATR:
+            expected_proximity = "NEAR"
+        else:
+            expected_proximity = "APPROACHING"
         if item.get("proximity") != expected_proximity:
             raise ScanError(f"{symbol}: proximity/distance mismatch")
         if item.get("price_on_expected_side") is not True:
@@ -1890,6 +1918,9 @@ def error_report(exc: Exception) -> dict[str, Any]:
             "license": "CC BY-NC-SA 4.0",
             "swing_length": SMC_SWING_LENGTH,
             "near_threshold_atr": MAX_NEAR_STRONG_LEVEL_ATR,
+            "strict_near_threshold_atr": MAX_PROXIMITY_NEAR_ATR,
+            "at_level_threshold_atr": MAX_AT_LEVEL_STRONG_LEVEL_ATR,
+            "setup_threshold_atr": MAX_SETUP_STRONG_LEVEL_ATR,
         },
         "strong_level_counts": None,
         "nearest_strong_lows": [],
