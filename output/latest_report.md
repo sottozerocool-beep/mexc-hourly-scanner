@@ -1,16 +1,16 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-08-12T08:02:00Z
+**Scan timestamp:** 2026-08-12T09:00:15Z
 **Primary timeframe:** 1H
-**Contracts retrieved:** 797
-**Contracts eligible:** 333
-**Contracts analyzed:** 329
-**Contracts skipped:** 468
+**Contracts retrieved:** 796
+**Contracts eligible:** 331
+**Contracts analyzed:** 330
+**Contracts skipped:** 466
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 63,764.00
+**BTC_USDT price:** 63,769.90
 **BTC regime:** BEARISH
 **BTC Regime Score:** -80
 **EMA 20 / EMA 50 / EMA 200:** 63,786.36 / 64,046.91 / 64,323.54
@@ -22,30 +22,31 @@
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 179 | Strong High rilevati: 149 | Entro 1.50 ATR: 12
+Strong Low rilevati: 176 | Strong High rilevati: 153 | Entro 1.50 ATR: 13
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| OPENLEDGER_USDT | STRONG_HIGH | 0.2142 | 0.2139 | 0.14% | 0.09 | PREFERRED | Chiusura 1H sopra 0.2142 |
-| GRAM_USDT | STRONG_HIGH | 1.373 | 1.367 | 0.44% | 0.55 | PREFERRED | Chiusura 1H sopra 1.373 |
-| SKR_USDT | STRONG_LOW | 0.00712 | 0.00717 | 0.70% | 0.46 | COUNTER_BIAS | Chiusura 1H sotto 0.00712 |
-| SANTOS_USDT | STRONG_LOW | 0.47 | 0.4722 | 0.47% | 0.50 | COUNTER_BIAS | Chiusura 1H sotto 0.47 |
-| PARTI_USDT | STRONG_LOW | 0.02361 | 0.02384 | 0.96% | 0.69 | COUNTER_BIAS | Chiusura 1H sotto 0.02361 |
-| ENSO_USDT | STRONG_LOW | 0.9407 | 0.9513 | 1.11% | 0.88 | COUNTER_BIAS | Chiusura 1H sotto 0.9407 |
-| LA_USDT | STRONG_LOW | 0.0494 | 0.05018 | 1.55% | 1.04 | COUNTER_BIAS | Chiusura 1H sotto 0.0494 |
-| THETA_USDT | STRONG_LOW | 0.1326 | 0.1341 | 1.12% | 1.21 | COUNTER_BIAS | Chiusura 1H sotto 0.1326 |
-| SENT_USDT | STRONG_LOW | 0.01295 | 0.0131 | 1.15% | 1.31 | COUNTER_BIAS | Chiusura 1H sotto 0.01295 |
-| TURBO_USDT | STRONG_LOW | 0.000797 | 0.000811 | 1.73% | 1.44 | COUNTER_BIAS | Chiusura 1H sotto 0.000797 |
-| TRUMPOFFICIAL_USDT | STRONG_LOW | 1.459 | 1.475 | 1.08% | 1.46 | COUNTER_BIAS | Chiusura 1H sotto 1.459 |
-| LIT_USDT | STRONG_LOW | 2.2487 | 2.3088 | 2.60% | 1.50 | COUNTER_BIAS | Chiusura 1H sotto 2.2487 |
+| LA_USDT | STRONG_LOW | 0.0494 | 0.04956 | 0.32% | 0.21 | COUNTER_BIAS | Chiusura 1H sotto 0.0494 |
+| ENSO_USDT | STRONG_LOW | 0.9407 | 0.9442 | 0.37% | 0.29 | COUNTER_BIAS | Chiusura 1H sotto 0.9407 |
+| PARTI_USDT | STRONG_LOW | 0.02361 | 0.02371 | 0.42% | 0.30 | COUNTER_BIAS | Chiusura 1H sotto 0.02361 |
+| SANTOS_USDT | STRONG_LOW | 0.47 | 0.4715 | 0.32% | 0.34 | COUNTER_BIAS | Chiusura 1H sotto 0.47 |
+| THETA_USDT | STRONG_LOW | 0.1326 | 0.1332 | 0.45% | 0.48 | COUNTER_BIAS | Chiusura 1H sotto 0.1326 |
+| TRUMPOFFICIAL_USDT | STRONG_LOW | 1.459 | 1.468 | 0.61% | 0.82 | COUNTER_BIAS | Chiusura 1H sotto 1.459 |
+| COMP_USDT | STRONG_LOW | 16.09 | 16.16 | 0.43% | 0.92 | COUNTER_BIAS | Chiusura 1H sotto 16.09 |
+| LIT_USDT | STRONG_LOW | 2.2487 | 2.2927 | 1.92% | 1.09 | COUNTER_BIAS | Chiusura 1H sotto 2.2487 |
+| TURBO_USDT | STRONG_LOW | 0.000797 | 0.000808 | 1.36% | 1.13 | COUNTER_BIAS | Chiusura 1H sotto 0.000797 |
+| SENT_USDT | STRONG_LOW | 0.01295 | 0.01309 | 1.07% | 1.22 | COUNTER_BIAS | Chiusura 1H sotto 0.01295 |
+| XPL_USDT | STRONG_LOW | 0.07466 | 0.0757 | 1.37% | 1.23 | COUNTER_BIAS | Chiusura 1H sotto 0.07466 |
+| MITO_USDT | STRONG_LOW | 0.02308 | 0.02424 | 4.79% | 1.27 | COUNTER_BIAS | Chiusura 1H sotto 0.02308 |
+| STAR_USDT | STRONG_LOW | 0.08854 | 0.0922 | 3.97% | 1.47 | COUNTER_BIAS | Chiusura 1H sotto 0.08854 |
 
 **Strong Low più vicini:**
-SKR_USDT 0.00712 (0.70%, 0.46 ATR, COUNTER_BIAS); SANTOS_USDT 0.47 (0.47%, 0.50 ATR, COUNTER_BIAS); PARTI_USDT 0.02361 (0.96%, 0.69 ATR, COUNTER_BIAS); ENSO_USDT 0.9407 (1.11%, 0.88 ATR, COUNTER_BIAS); LA_USDT 0.0494 (1.55%, 1.04 ATR, COUNTER_BIAS)
+SKR_USDT 0.00712 (0.14%, 0.09 ATR, COUNTER_BIAS); LA_USDT 0.0494 (0.32%, 0.21 ATR, COUNTER_BIAS); ENSO_USDT 0.9407 (0.37%, 0.29 ATR, COUNTER_BIAS); PARTI_USDT 0.02361 (0.42%, 0.30 ATR, COUNTER_BIAS); SANTOS_USDT 0.47 (0.32%, 0.34 ATR, COUNTER_BIAS)
 
 **Strong High più vicini:**
-OPENLEDGER_USDT 0.2142 (0.14%, 0.09 ATR, PREFERRED); GRAM_USDT 1.373 (0.44%, 0.55 ATR, PREFERRED); AKE_USDT 0.004484 (6.14%, 2.46 ATR, PREFERRED); GRASS_USDT 0.3219 (3.70%, 2.55 ATR, PREFERRED); B2_USDT 0.5062 (4.22%, 2.66 ATR, PREFERRED)
+OPENLEDGER_USDT 0.2142 (1.06%, 0.68 ATR, PREFERRED); GRASS_USDT 0.3219 (3.87%, 2.66 ATR, PREFERRED); GRAM_USDT 1.373 (2.54%, 3.13 ATR, PREFERRED); AKE_USDT 0.004484 (8.09%, 3.18 ATR, PREFERRED); XPT_USDT 1,786.92 (1.63%, 3.24 ATR, PREFERRED)
 
 ## Best Available Opportunity
 
