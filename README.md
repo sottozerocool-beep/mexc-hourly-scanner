@@ -30,14 +30,18 @@ L’automazione ChatGPT, ogni 4 ore, aggiorna `trigger/scan_request.txt`. Questo
 - `output/previous_report.json`: scansione precedente, quando disponibile.
 
 `nearby_strong_levels` contiene l'insieme completo dei livelli Strong entro
-1,50 ATR; non viene troncato. Il limite di cinque si applica soltanto alle liste
+3,50 ATR; non viene troncato. La prossimità è `AT_LEVEL` fino a 0,25 ATR,
+`NEAR` fino a 1,50 ATR e `APPROACHING` oltre 1,50 e fino a 3,50 ATR. Il limite
+di cinque si applica soltanto alle liste
 `nearest_strong_lows`, `nearest_strong_highs` e alla presentazione utente.
 `nearby_strong_levels_complete=true` e
 `strong_level_counts.nearby == len(nearby_strong_levels)` rendono verificabile
 la completezza dei confronti tra rapporti. I livelli restano distinti dai setup
-qualificati: un livello trovato non costituisce automaticamente un ingresso.
+qualificati: il radar pubblica fino a 3,50 ATR, mentre la soglia massima del
+livello Strong per un setup resta 1,50 ATR. Un livello trovato non costituisce
+automaticamente un ingresso.
 
-Il rapporto usa `report_schema_version=3`. Ogni livello Strong vicino e ogni
+Il rapporto usa `report_schema_version=4`. Ogni livello Strong pubblicato e ogni
 setup qualificato include `asset_identity`, ricavata esclusivamente dai metadati
 ufficiali del contratto MEXC (`contract_symbol`, ID e campi base coin/display
 quando disponibili). Le integrazioni esterne non devono identificare un asset dal
