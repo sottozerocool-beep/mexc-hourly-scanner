@@ -16,6 +16,11 @@ on:
         required: false
         default: false
         type: boolean
+  push:
+    branches:
+      - main
+    paths:
+      - "trigger/pce_live_request.txt"
   schedule:
     - cron: "30 10 26 8 *"
 
