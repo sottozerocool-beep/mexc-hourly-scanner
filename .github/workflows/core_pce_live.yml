@@ -60,7 +60,15 @@ jobs:
           set -euo pipefail
           args=(live --config pce_watcher/config.json --output-dir output/pce_live)
           if [[ -n "${INPUT_RELEASE_AT:-}" ]]; then args+=(--release-at "$INPUT_RELEASE_AT"); fi
-          if [[ -n "${INPUT_TEST_ACTUAL:-}" ]]; then args+=(--test-actual "$INPUT_TEST_ACTUAL"); fi
+          confirmed_actual=""
+          if [[ "${GITHUB_EVENT_NAME}" == "push" && -f trigger/pce_live_request.txt ]]; then
+            confirmed_actual=$(sed -n 's/^CONFIRMED_ACTUAL=//p' trigger/pce_live_request.txt | tail -n 1)
+          fi
+          if [[ -n "${confirmed_actual:-}" ]]; then
+            args+=(--confirmed-actual "$confirmed_actual")
+          elif [[ -n "${INPUT_TEST_ACTUAL:-}" ]]; then
+            args+=(--test-actual "$INPUT_TEST_ACTUAL")
+          fi
           python pce_watcher/watcher.py "${args[@]}"
           if [[ -f output/pce_live/latest.json ]]; then
             echo "has_result=true" >> "$GITHUB_OUTPUT"
