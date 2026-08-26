@@ -1,2 +1,2 @@
 Start the Core PCE live watcher for the 2026-08-26 release.
-Restart requested at 2026-08-26T09:15:30Z using pre-created PR #2.
+Restart requested at 2026-08-26T10:17:32Z with immediate Telegram flash alerts.
