@@ -60,17 +60,32 @@ class Telegram:
                 "disable_web_page_preview": "true",
             }
         ).encode("utf-8")
-        status, _, response = http_request(
-            f"https://api.telegram.org/bot{self.token}/sendMessage",
-            method="POST",
-            body=payload,
-            headers={"Content-Type": "application/x-www-form-urlencoded"},
-            timeout=15,
-        )
-        if status != 200:
-            LOGGER.error("Telegram HTTP %s: %s", status, response[:250])
-            return False
-        return True
+        attempts = 2
+        for attempt in range(1, attempts + 1):
+            try:
+                status, _, _ = http_request(
+                    f"https://api.telegram.org/bot{self.token}/sendMessage",
+                    method="POST",
+                    body=payload,
+                    headers={"Content-Type": "application/x-www-form-urlencoded"},
+                    timeout=5,
+                )
+            except WatcherError:
+                # The underlying exception includes the request URL, which embeds the
+                # bot token. Never copy it into the GitHub Actions log.
+                LOGGER.warning(
+                    "Telegram non raggiungibile (tentativo %d/%d)", attempt, attempts
+                )
+            else:
+                if status == 200:
+                    LOGGER.info("Messaggio Telegram inviato")
+                    return True
+                LOGGER.warning(
+                    "Telegram HTTP %s (tentativo %d/%d)", status, attempt, attempts
+                )
+            if attempt < attempts:
+                time.sleep(0.5)
+        return False
 
 
 def parse_iso(value: str) -> dt.datetime:
@@ -133,7 +148,55 @@ def activation_message(config: Mapping[str, Any], release_at: dt.datetime) -> st
         lines.append(
             f"Previous: <b>{format_it(float(config['previous_core_pce_mom']), 1)}%</b>"
         )
-    lines.append("Dal rilascio controllerò la fonte ogni pochi secondi.")
+    poll_seconds = float(config["poll_seconds"])
+    lines.append(
+        "Dal rilascio controllerò la fonte ogni "
+        f"{format_it(poll_seconds, 1)} secondi."
+    )
+    return "\n".join(lines)
+
+
+def flash_message(
+    *,
+    config: Mapping[str, Any],
+    release_at: dt.datetime,
+    actual: float,
+    source_url: str,
+    source_name: str,
+    detected_at: dt.datetime,
+) -> str:
+    """Build the lowest-latency alert without waiting for any market request."""
+
+    forecast = config.get("forecast_core_pce_mom")
+    previous = config.get("previous_core_pce_mom")
+    forecast = float(forecast) if forecast is not None else None
+    previous = float(previous) if previous is not None else None
+    scenario = scenario_for_actual(actual)
+    bullish, bearish = probability_lines(actual)
+    lag = max(0.0, (detected_at - release_at).total_seconds())
+
+    lines = [
+        "🚨 <b>FLASH CORE PCE USA</b>",
+        "",
+        f"Actual: <b>{format_it(actual, 1)}%</b>",
+        (
+            f"Forecast: <b>{format_it(forecast, 1)}%</b>"
+            if forecast is not None else "Forecast: non configurato"
+        ),
+        (
+            f"Previous: <b>{format_it(previous, 1)}%</b>"
+            if previous is not None else "Previous: non configurato"
+        ),
+        f"Sorpresa: <b>{html.escape(surprise_text(actual, forecast))}</b>",
+        "",
+        f"Lettura: <b>{html.escape(scenario.label)}</b>",
+        f"BTC rialzista: <b>{bullish}</b>",
+        f"BTC ribassista: <b>{bearish}</b>",
+        f"Rilevato dopo circa <b>{format_it(lag, 1)} secondi</b>.",
+        f'<a href="{html.escape(source_url)}">Fonte: {html.escape(source_name)}</a>',
+        "",
+        "Prezzo e reazione BTC in arrivo subito dopo.",
+    ]
     return "\n".join(lines)
 
 
@@ -299,10 +362,12 @@ def run_live(args: argparse.Namespace) -> int:
         return 0
 
     telegram = Telegram()
+    # Send this immediately when the job starts. Besides informing the user, it
+    # verifies the Telegram path while there is still time to intervene.
+    telegram.send(activation_message(config, release_at))
     notice_minutes = int(config.get("pre_release_notice_minutes", 5))
     if utc_now() < release_at - dt.timedelta(minutes=notice_minutes):
         sleep_until(release_at - dt.timedelta(minutes=notice_minutes))
-    telegram.send(activation_message(config, release_at))
 
     if utc_now() < release_at - dt.timedelta(seconds=10):
         sleep_until(release_at - dt.timedelta(seconds=10), heartbeat=10)
@@ -330,6 +395,19 @@ def run_live(args: argparse.Namespace) -> int:
             deadline=release_at + dt.timedelta(minutes=int(config["max_wait_minutes"])),
             api_key=os.getenv("BEA_API_KEY") or None,
         )
+
+    # This is deliberately before get_btc_price(): the official number and its
+    # scenario must reach Telegram without waiting for any exchange feed.
+    telegram.send(
+        flash_message(
+            config=config,
+            release_at=release_at,
+            actual=actual,
+            source_url=source_url,
+            source_name=source_name,
+            detected_at=detected_at,
+        )
+    )
 
     try:
         current = get_btc_price()
