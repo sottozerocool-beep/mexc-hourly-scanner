@@ -2,6 +2,20 @@ name: Core PCE Live Watcher
 
 on:
   workflow_dispatch:
+    inputs:
+      release_at_utc:
+        description: "Override ISO-8601, es. 2026-08-26T12:30:00Z"
+        required: false
+        type: string
+      test_actual:
+        description: "Solo test: simula Actual (vuoto = dato BEA live)"
+        required: false
+        type: string
+      skip_followups:
+        description: "Salta verifiche BTC a +5 e +15 minuti"
+        required: false
+        default: false
+        type: boolean
   schedule:
     - cron: "30 10 26 8 *"
 
@@ -9,14 +23,103 @@ permissions:
   contents: write
   pull-requests: write
 
+concurrency:
+  group: core-pce-live-watcher
+  cancel-in-progress: false
+
 jobs:
   watch:
     runs-on: ubuntu-latest
     timeout-minutes: 180
+
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
-      - name: Run tests
+
+      - name: Run watcher tests
         run: python -m unittest discover -s pce_watcher -p "test_*.py" -v
+
+      - name: Wait for official BEA release
+        id: live
+        env:
+          INPUT_RELEASE_AT: ${{ inputs.release_at_utc }}
+          INPUT_TEST_ACTUAL: ${{ inputs.test_actual }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=(live --config pce_watcher/config.json --output-dir output/pce_live)
+          if [[ -n "${INPUT_RELEASE_AT:-}" ]]; then args+=(--release-at "$INPUT_RELEASE_AT"); fi
+          if [[ -n "${INPUT_TEST_ACTUAL:-}" ]]; then args+=(--test-actual "$INPUT_TEST_ACTUAL"); fi
+          python pce_watcher/watcher.py "${args[@]}"
+          if [[ -f output/pce_live/latest.json ]]; then
+            echo "has_result=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_result=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish immediate result as pull request
+        if: steps.live.outputs.has_result == 'true'
+        id: publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          release_date=$(python -c 'import json; print(json.load(open("output/pce_live/latest.json"))["release_at_utc"][:10])')
+          branch="pce-live/${release_date}-${GITHUB_RUN_ID}"
+          title=$(cat output/pce_live/title.txt)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add output/pce_live
+          git commit -m "Core PCE live ${release_date}"
+          git push -u origin "$branch"
+          echo "branch=$branch" >> "$GITHUB_OUTPUT"
+          if pr_url=$(gh pr create --base main --head "$branch" --title "$title" --body-file output/pce_live/initial.md); then
+            pr_number=${pr_url##*/}
+            echo "pr_number=$pr_number" >> "$GITHUB_OUTPUT"
+          else
+            echo "pr_number=" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: BTC confirmation at +5 minutes
+        if: steps.live.outputs.has_result == 'true' && inputs.skip_followups != true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.publish.outputs.pr_number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python pce_watcher/watcher.py followup --output-dir output/pce_live --minutes 5
+          git add output/pce_live
+          git commit -m "BTC reaction +5m" || true
+          git push origin HEAD
+          if [[ -n "${PR_NUMBER:-}" ]]; then gh pr comment "$PR_NUMBER" --body-file output/pce_live/followup_5.md; fi
+
+      - name: BTC confirmation at +15 minutes
+        if: steps.live.outputs.has_result == 'true' && inputs.skip_followups != true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.publish.outputs.pr_number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python pce_watcher/watcher.py followup --output-dir output/pce_live --minutes 15
+          git add output/pce_live
+          git commit -m "BTC reaction +15m" || true
+          git push origin HEAD
+          if [[ -n "${PR_NUMBER:-}" ]]; then gh pr comment "$PR_NUMBER" --body-file output/pce_live/followup_15.md; fi
+
+      - name: Upload complete result
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: core-pce-live-result
+          path: output/pce_live/
+          if-no-files-found: ignore
+          retention-days: 30
