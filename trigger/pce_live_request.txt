@@ -1,3 +1,3 @@
 Start the Core PCE live watcher for the 2026-08-26 release.
-Emergency confirmed-result delivery requested at 2026-08-26T12:35:00Z.
+Emergency confirmed-result delivery requested at 2026-08-26T12:37:00Z.
 CONFIRMED_ACTUAL=0.2
