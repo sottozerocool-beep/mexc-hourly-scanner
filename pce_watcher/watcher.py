@@ -350,6 +350,7 @@ def run_live(args: argparse.Namespace) -> int:
     config = load_config(Path(args.config))
     release_at = parse_iso(args.release_at or config["release_at_utc"])
     release_date = dt.date.fromisoformat(config["release_date"])
+    confirmed_actual = getattr(args, "confirmed_actual", None)
     if release_at.astimezone(NEW_YORK).date() != release_date:
         raise WatcherError("release_date e release_at_utc non coincidono")
 
@@ -357,7 +358,7 @@ def run_live(args: argparse.Namespace) -> int:
     if (
         today_ny != release_date
         and args.test_actual is None
-        and args.confirmed_actual is None
+        and confirmed_actual is None
     ):
         LOGGER.info("Oggi non è il giorno configurato: uscita senza errore")
         return 0
@@ -385,8 +386,8 @@ def run_live(args: argparse.Namespace) -> int:
     if utc_now() < release_at:
         sleep_until(release_at, heartbeat=2)
 
-    if args.confirmed_actual is not None:
-        actual = float(args.confirmed_actual)
+    if confirmed_actual is not None:
+        actual = float(confirmed_actual)
         source_url = str(config["release_url"])
         source_name = "BEA ufficiale (valore confermato)"
         detected_at = utc_now()
