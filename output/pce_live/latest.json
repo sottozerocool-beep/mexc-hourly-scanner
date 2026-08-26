@@ -31,5 +31,17 @@
     "source": "Binance Market Data"
   },
   "btc_initial_move_pct": -0.40543127747377783,
-  "followups": []
+  "followups": [
+    {
+      "minutes": 5,
+      "captured_at_utc": "2026-08-26T12:37:21.906175+00:00",
+      "btc_price": 78395.92,
+      "btc_source": "Binance Market Data",
+      "btc_move_pct": -0.40372890567603736,
+      "volume_ratio": 8.905630540690641,
+      "volume_source": "Binance Market Data",
+      "confirmation": "SMENTITA / WHIPSAW",
+      "detail": "BTC si muove nella direzione opposta alla reazione teorica. Volume molto forte (8,9× la media)."
+    }
+  ]
 }
