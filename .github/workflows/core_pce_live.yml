@@ -53,6 +53,8 @@ jobs:
         env:
           INPUT_RELEASE_AT: ${{ inputs.release_at_utc }}
           INPUT_TEST_ACTUAL: ${{ inputs.test_actual }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         shell: bash
         run: |
           set -euo pipefail
@@ -96,6 +98,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ steps.publish.outputs.pr_number }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         shell: bash
         run: |
           set -euo pipefail
@@ -110,6 +114,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ steps.publish.outputs.pr_number }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         shell: bash
         run: |
           set -euo pipefail
