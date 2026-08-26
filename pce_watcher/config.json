@@ -1,0 +1,12 @@
+{
+  "release_date": "2026-08-26",
+  "release_title": "Personal Income and Outlays, July 2026",
+  "release_at_utc": "2026-08-26T12:30:00Z",
+  "release_url": "https://www.bea.gov/news/2026/personal-income-and-outlays-july-2026",
+  "forecast_core_pce_mom": 0.2,
+  "previous_core_pce_mom": 0.1,
+  "poll_seconds": 2.0,
+  "max_wait_minutes": 20,
+  "followup_minutes": [5, 15],
+  "pre_release_notice_minutes": 5
+}
