@@ -1,0 +1,22 @@
+name: Core PCE Live Watcher
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 10 26 8 *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Run tests
+        run: python -m unittest discover -s pce_watcher -p "test_*.py" -v
