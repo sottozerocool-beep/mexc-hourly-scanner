@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "release_title": "Personal Income and Outlays, July 2026",
+  "release_at_utc": "2026-08-26T12:30:00+00:00",
+  "release_at_italy": "2026-08-26T14:30:00+02:00",
+  "detected_at_utc": "2026-08-26T12:37:14.988837+00:00",
+  "detection_lag_seconds": 434.988837,
+  "source_url": "https://www.bea.gov/news/2026/personal-income-and-outlays-july-2026",
+  "source_name": "BEA ufficiale (valore confermato)",
+  "actual_core_pce_mom": 0.2,
+  "forecast_core_pce_mom": 0.2,
+  "previous_core_pce_mom": 0.1,
+  "scenario": {
+    "label": "IN LINEA / alto rischio di falso movimento",
+    "bias": "LIEVE RIALZISTA, QUASI NEUTRALE",
+    "bullish_low": 52,
+    "bullish_high": 52,
+    "bearish_low": 48,
+    "bearish_high": 48,
+    "expected_direction": "up",
+    "explanation": "Dato vicino al consenso: la prima candela può essere riassorbita. Revisioni e flussi di mercato diventano decisivi."
+  },
+  "btc_pre_release": {
+    "captured_at_utc": "2026-08-26T12:29:59.999000+00:00",
+    "price": 78713.71,
+    "source": "Binance Market Data"
+  },
+  "btc_at_detection": {
+    "captured_at_utc": "2026-08-26T12:37:16.017791+00:00",
+    "price": 78394.58,
+    "source": "Binance Market Data"
+  },
+  "btc_initial_move_pct": -0.40543127747377783,
+  "followups": [
+    {
+      "minutes": 5,
+      "captured_at_utc": "2026-08-26T12:37:21.906175+00:00",
+      "btc_price": 78395.92,
+      "btc_source": "Binance Market Data",
+      "btc_move_pct": -0.40372890567603736,
+      "volume_ratio": 8.905630540690641,
+      "volume_source": "Binance Market Data",
+      "confirmation": "SMENTITA / WHIPSAW",
+      "detail": "BTC si muove nella direzione opposta alla reazione teorica. Volume molto forte (8,9× la media)."
+    },
+    {
+      "minutes": 15,
+      "captured_at_utc": "2026-08-26T12:45:00.636171+00:00",
+      "btc_price": 78265.98,
+      "btc_source": "Binance Market Data",
+      "btc_move_pct": -0.5688081529888644,
+      "volume_ratio": 5.090982299258356,
+      "volume_source": "Binance Market Data",
+      "confirmation": "SMENTITA / WHIPSAW",
+      "detail": "BTC si muove nella direzione opposta alla reazione teorica. Volume molto forte (5,1× la media)."
+    }
+  ]
+}
