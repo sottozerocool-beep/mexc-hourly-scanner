@@ -354,7 +354,11 @@ def run_live(args: argparse.Namespace) -> int:
         raise WatcherError("release_date e release_at_utc non coincidono")
 
     today_ny = utc_now().astimezone(NEW_YORK).date()
-    if today_ny != release_date and args.test_actual is None:
+    if (
+        today_ny != release_date
+        and args.test_actual is None
+        and args.confirmed_actual is None
+    ):
         LOGGER.info("Oggi non è il giorno configurato: uscita senza errore")
         return 0
     if release_at - utc_now() > dt.timedelta(hours=4):
@@ -381,7 +385,12 @@ def run_live(args: argparse.Namespace) -> int:
     if utc_now() < release_at:
         sleep_until(release_at, heartbeat=2)
 
-    if args.test_actual is not None:
+    if args.confirmed_actual is not None:
+        actual = float(args.confirmed_actual)
+        source_url = str(config["release_url"])
+        source_name = "BEA ufficiale (valore confermato)"
+        detected_at = utc_now()
+    elif args.test_actual is not None:
         actual = float(args.test_actual)
         source_url = str(config["release_url"])
         source_name = "simulazione controllata"
@@ -492,6 +501,7 @@ def build_parser() -> argparse.ArgumentParser:
     live.add_argument("--output-dir", default="output/pce_live")
     live.add_argument("--release-at")
     live.add_argument("--test-actual", type=float)
+    live.add_argument("--confirmed-actual", type=float)
 
     follow = sub.add_parser("followup")
     follow.add_argument("--output-dir", default="output/pce_live")
