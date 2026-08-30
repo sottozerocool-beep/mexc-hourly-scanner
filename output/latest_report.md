@@ -1,16 +1,16 @@
 # MEXC Futures Scan
 
-**Scan timestamp:** 2026-08-30T12:10:15Z
+**Scan timestamp:** 2026-08-30T12:24:45Z
 **Primary timeframe:** 1H
 **Contracts retrieved:** 793
-**Contracts eligible:** 337
-**Contracts analyzed:** 332
-**Contracts skipped:** 461
+**Contracts eligible:** 346
+**Contracts analyzed:** 341
+**Contracts skipped:** 452
 **Data freshness:** Valida
 
 ## BTC Regime
 
-**BTC_USDT price:** 78,473.80
+**BTC_USDT price:** 78,493.20
 **BTC regime:** NEUTRAL
 **BTC Regime Score:** 20
 **EMA 20 / EMA 50 / EMA 200:** 78,066.29 / 78,201.13 / 77,117.69
@@ -24,46 +24,53 @@ NO QUALIFYING DIRECTIONAL SETUP — BTC REGIME IS NEUTRAL.
 
 ## Livelli Strong/Weak LuxAlgo
 
-Strong Low rilevati: 198 | Strong High rilevati: 133 | Entro 3.50 ATR: 28
+Strong Low rilevati: 203 | Strong High rilevati: 137 | Entro 3.50 ATR: 35
 
 BTC determina soltanto la priorità (`PREFERRED`/`COUNTER_BIAS`): non elimina i livelli della direzione opposta.
 
 | Symbol | Tipo | Livello | Prezzo | Distanza | ATR | BTC | Cancellazione |
 |---|---|---:|---:|---:|---:|---|---|
-| ESPORTS_USDT | STRONG_HIGH | 0.01713 | 0.01661 | 3.13% | 1.07 | NEUTRAL | Chiusura 1H sopra 0.01713 |
-| BR_USDT | STRONG_LOW | 0.21541 | 0.21962 | 1.92% | 1.21 | NEUTRAL | Chiusura 1H sotto 0.21541 |
-| BTW_USDT | STRONG_LOW | 0.37898 | 0.40173 | 5.66% | 1.30 | NEUTRAL | Chiusura 1H sotto 0.37898 |
-| SLX_USDT | STRONG_HIGH | 0.0736 | 0.0722 | 1.94% | 1.63 | NEUTRAL | Chiusura 1H sopra 0.0736 |
-| QTUM_USDT | STRONG_LOW | 0.8026 | 0.8124 | 1.21% | 1.68 | NEUTRAL | Chiusura 1H sotto 0.8026 |
-| SUSHI_USDT | STRONG_HIGH | 0.2046 | 0.1997 | 2.45% | 1.69 | NEUTRAL | Chiusura 1H sopra 0.2046 |
-| NAORIS_USDT | STRONG_LOW | 0.02799 | 0.02854 | 1.93% | 1.76 | NEUTRAL | Chiusura 1H sotto 0.02799 |
-| XAI_USDT | STRONG_HIGH | 0.007814 | 0.007668 | 1.90% | 1.80 | NEUTRAL | Chiusura 1H sopra 0.007814 |
-| CLO_USDT | STRONG_HIGH | 0.128 | 0.121 | 5.79% | 1.84 | NEUTRAL | Chiusura 1H sopra 0.128 |
-| ROBO_USDT | STRONG_LOW | 0.01278 | 0.01323 | 3.40% | 1.99 | NEUTRAL | Chiusura 1H sotto 0.01278 |
-| SHELL_USDT | STRONG_HIGH | 0.02322 | 0.02277 | 1.98% | 2.02 | NEUTRAL | Chiusura 1H sopra 0.02322 |
-| KOMA_USDT | STRONG_LOW | 0.012708 | 0.01349 | 5.80% | 2.07 | NEUTRAL | Chiusura 1H sotto 0.012708 |
-| RSR_USDT | STRONG_LOW | 0.001373 | 0.001396 | 1.65% | 2.22 | NEUTRAL | Chiusura 1H sotto 0.001373 |
-| CROSS_USDT | STRONG_LOW | 0.10666 | 0.10914 | 2.27% | 2.35 | NEUTRAL | Chiusura 1H sotto 0.10666 |
-| PIEVERSE_USDT | STRONG_LOW | 0.9897 | 1.0393 | 4.77% | 2.39 | NEUTRAL | Chiusura 1H sotto 0.9897 |
-| YFI_USDT | STRONG_LOW | 2,236.00 | 2,272.00 | 1.58% | 2.39 | NEUTRAL | Chiusura 1H sotto 2236 |
-| LINEA_USDT | STRONG_HIGH | 0.002587 | 0.002541 | 1.81% | 2.41 | NEUTRAL | Chiusura 1H sopra 0.002587 |
-| LISTA_USDT | STRONG_LOW | 0.06526 | 0.07133 | 8.51% | 2.48 | NEUTRAL | Chiusura 1H sotto 0.06526 |
-| EDGE_USDT | STRONG_LOW | 0.3585 | 0.3724 | 3.73% | 2.55 | NEUTRAL | Chiusura 1H sotto 0.3585 |
-| NIGHT_USDT | STRONG_LOW | 0.01883 | 0.01915 | 1.67% | 2.56 | NEUTRAL | Chiusura 1H sotto 0.01883 |
-| SAHARA_USDT | STRONG_HIGH | 0.008749 | 0.008521 | 2.68% | 2.76 | NEUTRAL | Chiusura 1H sopra 0.008749 |
-| CHILLGUY_USDT | STRONG_LOW | 0.01112 | 0.0123 | 9.59% | 2.99 | NEUTRAL | Chiusura 1H sotto 0.01112 |
-| ZAMA_USDT | STRONG_LOW | 0.04962 | 0.05113 | 2.95% | 3.06 | NEUTRAL | Chiusura 1H sotto 0.04962 |
+| FOLKS_USDT | STRONG_LOW | 2.014 | 2.024 | 0.49% | 0.52 | NEUTRAL | Chiusura 1H sotto 2.014 |
+| ESPORTS_USDT | STRONG_HIGH | 0.01713 | 0.01657 | 3.38% | 1.15 | NEUTRAL | Chiusura 1H sopra 0.01713 |
+| BTW_USDT | STRONG_LOW | 0.37898 | 0.40021 | 5.30% | 1.21 | NEUTRAL | Chiusura 1H sotto 0.37898 |
+| SLX_USDT | STRONG_HIGH | 0.0736 | 0.0725 | 1.52% | 1.28 | NEUTRAL | Chiusura 1H sopra 0.0736 |
+| QTUM_USDT | STRONG_LOW | 0.8026 | 0.8103 | 0.95% | 1.32 | NEUTRAL | Chiusura 1H sotto 0.8026 |
+| BR_USDT | STRONG_LOW | 0.21541 | 0.22058 | 2.34% | 1.48 | NEUTRAL | Chiusura 1H sotto 0.21541 |
+| NAORIS_USDT | STRONG_LOW | 0.02799 | 0.0285 | 1.79% | 1.63 | NEUTRAL | Chiusura 1H sotto 0.02799 |
+| ETHW_USDT | STRONG_LOW | 0.267 | 0.2714 | 1.62% | 1.70 | NEUTRAL | Chiusura 1H sotto 0.267 |
+| ROBO_USDT | STRONG_LOW | 0.01278 | 0.01321 | 3.26% | 1.90 | NEUTRAL | Chiusura 1H sotto 0.01278 |
+| CLO_USDT | STRONG_HIGH | 0.128 | 0.1206 | 6.14% | 1.94 | NEUTRAL | Chiusura 1H sopra 0.128 |
+| OL_USDT | STRONG_HIGH | 0.005095 | 0.004993 | 2.04% | 1.96 | NEUTRAL | Chiusura 1H sopra 0.005095 |
+| XAI_USDT | STRONG_HIGH | 0.007814 | 0.007653 | 2.10% | 1.99 | NEUTRAL | Chiusura 1H sopra 0.007814 |
+| KOMA_USDT | STRONG_LOW | 0.012708 | 0.013472 | 5.67% | 2.02 | NEUTRAL | Chiusura 1H sotto 0.012708 |
+| SUSHI_USDT | STRONG_HIGH | 0.2046 | 0.1985 | 3.07% | 2.10 | NEUTRAL | Chiusura 1H sopra 0.2046 |
+| YFI_USDT | STRONG_LOW | 2,236.00 | 2,268.00 | 1.41% | 2.13 | NEUTRAL | Chiusura 1H sotto 2236 |
+| NIGHT_USDT | STRONG_LOW | 0.01883 | 0.0191 | 1.41% | 2.16 | NEUTRAL | Chiusura 1H sotto 0.01883 |
+| ACE_USDT | STRONG_LOW | 0.1812 | 0.18676 | 2.98% | 2.17 | NEUTRAL | Chiusura 1H sotto 0.1812 |
+| PIEVERSE_USDT | STRONG_LOW | 0.9897 | 1.0362 | 4.49% | 2.24 | NEUTRAL | Chiusura 1H sotto 0.9897 |
+| SHELL_USDT | STRONG_HIGH | 0.02322 | 0.02271 | 2.25% | 2.29 | NEUTRAL | Chiusura 1H sopra 0.02322 |
+| EDGE_USDT | STRONG_LOW | 0.3585 | 0.371 | 3.37% | 2.30 | NEUTRAL | Chiusura 1H sotto 0.3585 |
+| UAI_USDT | STRONG_HIGH | 0.387 | 0.366 | 5.74% | 2.30 | NEUTRAL | Chiusura 1H sopra 0.387 |
+| RSR_USDT | STRONG_LOW | 0.001373 | 0.001397 | 1.72% | 2.32 | NEUTRAL | Chiusura 1H sotto 0.001373 |
+| CROSS_USDT | STRONG_LOW | 0.10666 | 0.10936 | 2.47% | 2.56 | NEUTRAL | Chiusura 1H sotto 0.10666 |
+| LINEA_USDT | STRONG_HIGH | 0.002587 | 0.002536 | 2.01% | 2.67 | NEUTRAL | Chiusura 1H sopra 0.002587 |
+| ZAMA_USDT | STRONG_LOW | 0.04962 | 0.05095 | 2.61% | 2.70 | NEUTRAL | Chiusura 1H sotto 0.04962 |
+| LISTA_USDT | STRONG_LOW | 0.06526 | 0.0719 | 9.24% | 2.71 | NEUTRAL | Chiusura 1H sotto 0.06526 |
+| SAHARA_USDT | STRONG_HIGH | 0.008749 | 0.00851 | 2.81% | 2.89 | NEUTRAL | Chiusura 1H sopra 0.008749 |
+| BLUAI_USDT | STRONG_HIGH | 0.01396 | 0.013174 | 5.97% | 2.90 | NEUTRAL | Chiusura 1H sopra 0.01396 |
+| CHILLGUY_USDT | STRONG_LOW | 0.01112 | 0.01231 | 9.67% | 3.02 | NEUTRAL | Chiusura 1H sotto 0.01112 |
 | RUNE_USDT | STRONG_LOW | 0.4526 | 0.4705 | 3.80% | 3.10 | NEUTRAL | Chiusura 1H sotto 0.4526 |
-| BLUAI_USDT | STRONG_HIGH | 0.01396 | 0.013117 | 6.43% | 3.11 | NEUTRAL | Chiusura 1H sopra 0.01396 |
-| MASK_USDT | STRONG_LOW | 0.4087 | 0.425 | 3.84% | 3.20 | NEUTRAL | Chiusura 1H sotto 0.4087 |
-| BROCCOLI_USDT | STRONG_LOW | 0.01659 | 0.01822 | 8.95% | 3.29 | NEUTRAL | Chiusura 1H sotto 0.01659 |
-| SUPER_USDT | STRONG_LOW | 0.10593 | 0.10901 | 2.83% | 3.40 | NEUTRAL | Chiusura 1H sotto 0.10593 |
+| MASK_USDT | STRONG_LOW | 0.4087 | 0.4245 | 3.72% | 3.11 | NEUTRAL | Chiusura 1H sotto 0.4087 |
+| FF_USDT | STRONG_LOW | 0.08759 | 0.09066 | 3.39% | 3.13 | NEUTRAL | Chiusura 1H sotto 0.08759 |
+| BROCCOLI_USDT | STRONG_LOW | 0.01659 | 0.01816 | 8.65% | 3.17 | NEUTRAL | Chiusura 1H sotto 0.01659 |
+| ONDO_USDT | STRONG_LOW | 0.347 | 0.3564 | 2.64% | 3.48 | NEUTRAL | Chiusura 1H sotto 0.347 |
+| PIPPIN_USDT | STRONG_LOW | 0.01776 | 0.01846 | 3.79% | 3.50 | NEUTRAL | Chiusura 1H sotto 0.01776 |
 
 **Strong Low più vicini:**
-BR_USDT 0.21541 (1.92%, 1.21 ATR, NEUTRAL); BTW_USDT 0.37898 (5.66%, 1.30 ATR, NEUTRAL); QTUM_USDT 0.8026 (1.21%, 1.68 ATR, NEUTRAL); NAORIS_USDT 0.02799 (1.93%, 1.76 ATR, NEUTRAL); ROBO_USDT 0.01278 (3.40%, 1.99 ATR, NEUTRAL)
+FOLKS_USDT 2.014 (0.49%, 0.52 ATR, NEUTRAL); BTW_USDT 0.37898 (5.30%, 1.21 ATR, NEUTRAL); QTUM_USDT 0.8026 (0.95%, 1.32 ATR, NEUTRAL); BR_USDT 0.21541 (2.34%, 1.48 ATR, NEUTRAL); NAORIS_USDT 0.02799 (1.79%, 1.63 ATR, NEUTRAL)
 
 **Strong High più vicini:**
-ESPORTS_USDT 0.01713 (3.13%, 1.07 ATR, NEUTRAL); SLX_USDT 0.0736 (1.94%, 1.63 ATR, NEUTRAL); SUSHI_USDT 0.2046 (2.45%, 1.69 ATR, NEUTRAL); XAI_USDT 0.007814 (1.90%, 1.80 ATR, NEUTRAL); CLO_USDT 0.128 (5.79%, 1.84 ATR, NEUTRAL)
+ESPORTS_USDT 0.01713 (3.38%, 1.15 ATR, NEUTRAL); SLX_USDT 0.0736 (1.52%, 1.28 ATR, NEUTRAL); CLO_USDT 0.128 (6.14%, 1.94 ATR, NEUTRAL); OL_USDT 0.005095 (2.04%, 1.96 ATR, NEUTRAL); XAI_USDT 0.007814 (2.10%, 1.99 ATR, NEUTRAL)
 
 ## Best Available Opportunity
 
